@@ -14,5 +14,5 @@
 8) buyer logout
 9) buyer login 
 
-10) calulate morgage
+10) calculate morgage
 */

@@ -9,7 +9,6 @@
 <body>
 
 <header>
-    <!-- Replace LoginHeader component with HTML header content -->
     <div id="root">
         <div class="headerLogin">
           <a href="#default" class="logo">
@@ -26,6 +25,7 @@
 </header>
 
 <main>
+    <!--login container-->
     <div class="flex-container">
         <form class="form" onsubmit="getLogin(event)">
             <h1>Cyber Property</h1>
@@ -57,10 +57,8 @@
         const loginEmail = document.getElementById('loginEmail').value;
         const loginPass = document.getElementById('loginPass').value;
         
-        // Your login logic here
-        // Use loginEmail and loginPass
         
-        // For example:
+        // To be changed
         if (loginEmail === "admin@gmail.com") {
             // Redirect to admin page
             window.location.href = "AdminPage.html";
@@ -77,7 +75,7 @@
 
     function logout(){
         //Redirect to Login.html or homepage
-        window.location.href = "home.html"; // or redirect straight to login.html, removing the need of a homepage?
+        window.location.href = "home.html"; // or redirect straight to login.html
     }
 </script>
 

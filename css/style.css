@@ -1,0 +1,361 @@
+/* Login.css */
+
+/* Center the login form */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh;
+}
+
+/* Style the form */
+.form {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #A34343;
+  border-radius: 5px;
+  background-color: #FBF8DD;
+  box-shadow: 0 0 0 0.2rem rgba(163, 67, 67, 0.2);
+
+}
+
+/* Style the form header */
+.form h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #A34343;
+  font-size: 30px;
+}
+.registerlink:hover {
+  color: #A34343;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Style form inputs and button */
+.form input[type="text"],
+.form input[type="password"],
+.form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+.form button {
+  background-color: #C0D6E8;
+  color: #A34343;
+  cursor: pointer;
+}
+
+/* Style the submit button on hover */
+.form button:hover {
+  background-color: #E9C874;
+}
+
+/* Style the error message */
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.logindropdown{
+  margin-bottom: 20px;
+}
+
+/* Reset default styles */
+.role {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0.5rem 2.0rem;
+  margin-left: 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.role:hover {
+  border-color: #aaa;
+}
+
+/* Focus effect */
+.role:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/*loginheader.css*/
+
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerLogin {
+  overflow: hidden;
+  background-color: #A34343;
+  padding: 20px 10px;
+}
+
+.headerLogin a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.headerLogin a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.headerLogin a:hover {
+  background-color: #FBF8DD;
+  color: black;
+}
+
+.headerLogin a.active {
+  background-color: #E9C874;
+  color: white;
+}
+
+.headerLogin-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .headerLogin a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .headerLogin-right {
+    float: none;
+  }
+}
+
+/* Dropdown Button */
+.logindropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .logindropbtn:hover, .logindropbtn:focus {
+    background-color: #ddd;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .logindropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .logindropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .logindropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .logindropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .logindropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .logindropdown:hover .dropbtn {background-color: #ddd;}
+  
+
+
+/*Homeheader.css: */
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #A34343;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #FBF8DD;
+  color: black;
+}
+
+.header a.active {
+  background-color: #E9C874;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
+  }
+}
+
+/*Adminheader.css:*/
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerAdmin {
+  overflow: hidden;
+  background-color: #A34343;
+  padding: 20px 10px;
+}
+
+.headerAdmin a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.headerAdmin a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.headerAdmin a:hover {
+  background-color: #FBF8DD;
+  color: black;
+}
+
+.headerAdmin a.active {
+  background-color: #E9C874;
+  color: white;
+}
+
+.headerAdmin-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .headerAdmin a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .headerAdmin-right {
+    float: none;
+  }
+}
+
+/* Dropdown Button */
+.logindropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .logindropbtn:hover, .logindropbtn:focus {
+    background-color: #ddd;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .logindropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .logindropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .logindropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .logindropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .logindropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .logindropdown:hover .dropbtn {background-color: #ddd;}
+  
+

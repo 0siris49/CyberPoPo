@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Header</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div>
+    <div class="headerAdmin">
+        <a href="#default" class="logo">
+            Cyber Property
+        </a>
+        <div class="header-right">
+            <a id="viewAccounts" style="cursor: pointer">View Accounts</a>
+            <a id="viewProfiles" style="cursor: pointer">View Profiles</a>
+            <a id="logout" style="cursor: pointer">Logout</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('viewAccounts').addEventListener('click', function() {
+        console.log("View Accounts link clicked");
+        // Add your logic here to handle viewAccounts functionality
+    });
+
+    document.getElementById('viewProfiles').addEventListener('click', function() {
+        console.log("View Profiles link clicked");
+        // Add your logic here to handle viewProfiles functionality
+    });
+
+    document.getElementById('logout').addEventListener('click', function() {
+        console.log("Logout link clicked");
+        // Add your logic here to handle logout functionality
+        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+        
+    });
+
+</script>
+
+</body>
+</html>

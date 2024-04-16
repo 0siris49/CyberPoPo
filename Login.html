@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <!-- Replace LoginHeader component with HTML header content -->
+    <div id="root">
+        <div class="headerLogin">
+          <a href="#default" class="logo">
+            Cyber Property
+          </a>
+          <div class="header-right">
+            <a href="#default" onclick="home()" style="cursor: pointer;">
+              Home
+            </a>
+            <a href="#about">Register</a>
+          </div>
+        </div>
+      </div>
+</header>
+
+<main>
+    <div class="flex-container">
+        <form class="form" onsubmit="getLogin(event)">
+            <h1>Cyber Property</h1>
+            <label class="logindropdown">Login as: 
+                <select name="role" id="role" class="role">
+                    <option value="sysadmin">System Admin</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="seller">Seller</option>
+                    <option value="REA">REA</option>
+                </select>
+            </label>
+            <input type="text" name="loginEmail" id="loginEmail" placeholder="username">
+            <input type="password" name="loginPass" id="loginPass" placeholder="password">
+            <br>
+            <button type="submit">Login</button>
+            <p>Are you a new user?</p>
+            <b onclick="register()" class="registerLink" style="cursor: pointer;">Click here to register</b>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <!-- Optional footer content -->
+</footer>
+
+<script>
+    function getLogin(event) {
+        event.preventDefault();
+        const loginEmail = document.getElementById('loginEmail').value;
+        const loginPass = document.getElementById('loginPass').value;
+        
+        // Your login logic here
+        // Use loginEmail and loginPass
+        
+        // For example:
+        if (loginEmail === "admin@gmail.com") {
+            // Redirect to admin page
+            window.location.href = "AdminPage.html";
+        } else {
+            // Redirect to user dashboard
+            window.location.href = "UserDashboard.html";
+        }
+    }
+
+    function register() {
+        // Redirect to registration page
+        window.location.href = "Register.html";
+    }
+
+    function logout(){
+        //Redirect to Login.html or homepage
+        window.location.href = "home.html"; // or redirect straight to login.html, removing the need of a homepage?
+    }
+</script>
+
+</body>
+</html>

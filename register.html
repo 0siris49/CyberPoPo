@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
 </head>
 <body>
-    <b>This is registration page</b>
+    <form className="loginCenter">
+        <h3 className="h3center"> REGISTER </h3>
+        <p className="pcenter">Please enter your registration details</p>
+        <div className="form-group">
+          <input
+            type="email"
+            className="form-control"
+            id="regEmail"
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <input
+            type="password"
+            className="form-control"
+            id="regPassword"
+          />
+        </div>
+        <br />
+        <label class="logindropdown">Register as: 
+          <select name="role" id="role" class="role">
+              <option value="sysadmin">System Admin</option>
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+              <option value="REA">REA</option>
+          </select>
+      </label>
+        <div className="btndiv btnCenter">
+          <button id="regBtn">Register</button>
+        </div>
+        <div className="askreg">
+        
+        </div>
+      </form>
+      <script src="./js/registrationController.js" type="module"></script>
+      
+      
 </body>
+
 </html>

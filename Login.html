@@ -24,7 +24,7 @@
 <main>
     <!--login container-->
     <div class="flex-container">
-        <form class="form" onsubmit="getLogin(event)">
+        <form class="form">
             <h1>Cyber Property</h1>
             <label class="logindropdown">Login as: 
                 <select name="role" id="role" class="role">
@@ -37,7 +37,7 @@
             <input type="text" name="loginEmail" id="loginEmail" placeholder="username">
             <input type="password" name="loginPass" id="loginPass" placeholder="password">
             <br>
-            <button type="submit">Login</button>
+            <button id="loginBtn">Login</button>
             <p>Are you a new user?</p>
             <b onclick="register()" class="registerLink" style="cursor: pointer;">Click here to register</b>
         </form>
@@ -48,34 +48,7 @@
     <!-- Optional footer content -->
 </footer>
 
-<script> /* whole script tag contents to be transferred to loginController.js then just input <script src="js/loginController.js"><script> */
-    function getLogin(userdetails) {
-        userdetails.preventDefault();
-        const loginEmail = document.getElementById('loginEmail').value;
-        const loginPass = document.getElementById('loginPass').value;
-        const role = document.getElementById('role').value;
-        
-
-        // To be changed
-        if (loginEmail === "admin@gmail.com") {
-            // Redirect to admin page
-            window.location.href = "AdminPage.html";
-        } else {
-            // Redirect to user dashboard
-            window.location.href = "UserDashboard.html"; // controller decides which page it gets redirected to
-        }
-    }
-
-    function register() {
-        // Redirect to registration page
-        window.location.href = "Register.html";
-    }
-
-    function logout(){
-        //Redirect to Login.html or homepage
-        window.location.href = "Login.html"; //redirect straight to login.html
-    }
-</script>
+<script type="module" src="./js/loginController.js"></script>
 
 </body>
 </html>

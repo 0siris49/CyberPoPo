@@ -15,10 +15,7 @@
             Cyber Property
           </a>
           <div class="header-right">
-            <a href="#default" onclick="home()" style="cursor: pointer;">
-              Home
-            </a>
-            <a href="#about">Register</a>
+            <a href="#about" onclick="register()">Register</a>
           </div>
         </div>
       </div>
@@ -51,20 +48,21 @@
     <!-- Optional footer content -->
 </footer>
 
-<script>
-    function getLogin(event) {
-        event.preventDefault();
+<script> /* whole script tag contents to be transferred to loginController.js then just input <script src="js/loginController.js"><script> */
+    function getLogin(userdetails) {
+        userdetails.preventDefault();
         const loginEmail = document.getElementById('loginEmail').value;
         const loginPass = document.getElementById('loginPass').value;
+        const role = document.getElementById('role').value;
         
-        
+
         // To be changed
         if (loginEmail === "admin@gmail.com") {
             // Redirect to admin page
             window.location.href = "AdminPage.html";
         } else {
             // Redirect to user dashboard
-            window.location.href = "UserDashboard.html";
+            window.location.href = "UserDashboard.html"; // controller decides which page it gets redirected to
         }
     }
 
@@ -75,7 +73,7 @@
 
     function logout(){
         //Redirect to Login.html or homepage
-        window.location.href = "home.html"; // or redirect straight to login.html
+        window.location.href = "Login.html"; //redirect straight to login.html
     }
 </script>
 

@@ -1,4 +1,4 @@
-/* Login.css */
+/* Login page stylesheet */
 
 /* Center the login form */
 .flex-container {
@@ -90,8 +90,6 @@
   border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
-
-/*loginheader.css*/
 
 * {box-sizing: border-box;}
 
@@ -198,7 +196,90 @@ body {
   
 
 
-/*Homeheader.css: */
+
+
+
+
+/* admin page stylesheet  */
+.view-container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.view-container-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.utility-bar {
+    display:flex;
+    width: 100%;
+    align-items: center;
+}
+
+button#search-button, button#search-profile-button {
+    width: 40%;
+    height: 37.6px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.person-add, 
+.usrprofile-add, 
+.block-icon,
+.delete-icon {
+    color: #597B6A;
+    margin-right: 100px;
+    font-size: 20px;
+}
+
+button.person-add-button, 
+button.suspend-button, 
+button.usrprofile-add-button, 
+button.usrprofile-suspend-button {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+}
+
+
+input[name="search-user"], input[name="search-profile"] {
+    width: 50%;
+    padding: 10px;
+    margin: 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.suspend-apply-cancel {
+    margin-top: 1%;
+    text-align: right;
+    display: none;
+}
+
+thead#table-header tr th#col-suspend {
+    width: 10%;
+}
+
+table {
+    width: 100%;
+    margin-top: 1%;
+}
+
+table, thead, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.view-title {
+    width: 50%;
+    text-align: left;
+}
+
 * {box-sizing: border-box;}
 
 body { 
@@ -254,7 +335,6 @@ body {
   }
 }
 
-/*Adminheader.css:*/
 * {box-sizing: border-box;}
 
 body { 
@@ -310,52 +390,23 @@ body {
   }
 }
 
-/* Dropdown Button */
-.logindropbtn {
-    background-color: transparent;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+
+.adminwelcome {
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Align items vertically to center */
+    justify-content: center; /* Align items horizontally to center */
+    height: 100px; /* Just for demonstration */
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 60px;
   }
+
+
+
+
+
+
+
   
-  /* Dropdown button on hover & focus */
-  .logindropbtn:hover, .logindropbtn:focus {
-    background-color: #ddd;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .logindropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .logindropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .logindropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .logindropdown-content a:hover {background-color: #ddd;}
-  
-  /* Show the dropdown menu on hover */
-  .logindropdown:hover .dropdown-content {display: block;}
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .logindropdown:hover .dropbtn {background-color: #ddd;}
-  
+
 

@@ -21,10 +21,48 @@
     </div>
 </div>
 
+<div class="adminwelcome">Welcome to System Administrator Page</div>
+
+<!--View User Account-->
+<div class="view-container" id="view-container">
+    <div class="view-container-header">
+        <h2 class="view-title">View User Account</h2>
+        <div class="utility-bar">
+            <button class="person-add-button">
+                <span class="person-add material-icons-outlined">person_add</span>
+            </button>
+            <button class="suspend-button">
+                <span class="block-icon material-icons-outlined">block</span>
+            </button>                
+            <input type="text" name="search-user" id="search-id" placeholder="Name">
+            <button id="search-button">Search</button>
+        </div>
+    </div>
+    <div class="admin view-table" id="view-table">
+        <table>
+            <thead id="table-header">
+                <tr id="row-header">
+                    <th>UserID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="data-table"></tbody>
+        </table>
+    </div>
+    <!--Suspend Apply Button-->
+    <div class="suspend-apply-cancel">
+        <button id="suspend-apply-button">Apply</button>
+        <button id="suspend-cancel-button">Cancel</button>
+    </div>
+</div>
+
+
 <script>
     document.getElementById('viewAccounts').addEventListener('click', function() {
         console.log("View Accounts link clicked");
         // Add logic here to handle viewAccounts functionality
+        window.open(c,"_self");
     });
 
     document.getElementById('viewProfiles').addEventListener('click', function() {

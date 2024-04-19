@@ -1,10 +1,20 @@
 import { loginUser } from "./loginEntity.js";
 
+var controllerMessage = "";
+
 class User {
     constructor (userEmail, userPass, userType){
         this.userEmail = userEmail;
         this.userPass = userPass;
         this.userType = userType;
+    }
+}
+
+export function setControllerMessage(entityMessage){
+    controllerMessage = entityMessage;
+    console.log(controllerMessage,"from Controller");
+    if(controllerMessage != ""){
+        alert(controllerMessage);
     }
 }
 
@@ -17,5 +27,6 @@ document.getElementById('loginBtn').addEventListener('click',function(event){
     let newUser = new User(userEmail,userPass,userType);
     
     loginUser(newUser);
+ 
 })
 //Login system

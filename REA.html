@@ -1,11 +1,76 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Header</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <b>This is REA page</b>
+
+<div>
+    <div class="headerSeller">
+        <a href="#Login.html" class="logo">
+            Cyber Property
+        </a>
+        <div class="header-right">
+            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+        </div>
+        <div class="header-right">
+            <a id="seller-rate-and-review-button" style="cursor: pointer">Blank</a>
+        </div>
+        <div class="header-right">
+            <a id="seller-viewshortlistcount" style="cursor: pointer">Blank</a>
+        </div>
+       
+    </div>
+</div>
+
+<div class="sellerwelcome">Welcome to your REA Page, &nbsp;<div> *inserts name*</div></div>
+
+
+
+
+<script>
+    document.getElementById('viewAccounts').addEventListener('click', function() {
+        console.log("View Accounts link clicked");
+        // Add logic here to handle viewAccounts functionality
+        window.open(c,"_self");
+    });
+
+    document.getElementById('viewProfiles').addEventListener('click', function() {
+        console.log("View Profiles link clicked");
+        // Add logic here to handle viewProfiles functionality
+    });
+
+    document.getElementById('logout').addEventListener('click', function() {
+        console.log("Logout link clicked");
+        // Add logic here to handle logout functionality
+        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+        
+    });
+
+    function toggleReviewForm() {
+    var reviewFormContainer = document.querySelector(".seller-review-container");
+    if (reviewFormContainer.style.display === "none") {
+        reviewFormContainer.style.display = "block";
+    } else {
+        reviewFormContainer.style.display = "none";
+    }
+}
+
+document.getElementById("seller-review-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Your form submission logic goes here, such as sending data to the server
+    
+    // After handling the form submission, toggle the visibility of the form
+    toggleReviewForm();
+});
+
+
+
+</script>
+
 </body>
 </html>

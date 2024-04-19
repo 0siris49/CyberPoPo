@@ -17,8 +17,12 @@
             <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
         </div>
         <div class="header-right">
-            <a id="viewshortlistcount" style="cursor: pointer">View Properties</a>
+            <a id="seller-rate-and-review-button" style="cursor: pointer">Rate and Review an Agent</a>
         </div>
+        <div class="header-right">
+            <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
+        </div>
+       
     </div>
 </div>
 
@@ -33,7 +37,7 @@
             <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
         </div>
     </div>
-    <div class="admin view-table" id="view-table">
+    <div class="seller-view-table" id="view-table">
         <table>
             <thead id="table-header">
                 <tr id="row-header">
@@ -46,6 +50,21 @@
             </thead>
             <tbody id="data-table"></tbody>
         </table>
+    </div>
+    <div class="seller-review-container" style="display: none;">
+    <form id="seller-review-form" class="seller-review-form">
+        <b class="seller-reviewAgent-Title">Review an Agent</b><br><br>
+        <label for="agentName">Agent Name:</label>
+        <input type="text" id="agentName" name="agentName" required><br><br>
+      
+        <label for="review">Review:</label><br>
+        <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
+      
+        <label for="rating">Rating(out of 5 stars):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
+      
+        <button type="submit" id="seller-submit-review-button" onClick="toggleReviewForm()">Submit Review</button>
+      </form>
     </div>
     <!--Suspend Apply Button-->
     <div class="suspend-apply-cancel">
@@ -74,7 +93,28 @@
         
     });
 
+    function toggleReviewForm() {
+    var reviewFormContainer = document.querySelector(".seller-review-container");
+    if (reviewFormContainer.style.display === "none") {
+        reviewFormContainer.style.display = "block";
+    } else {
+        reviewFormContainer.style.display = "none";
+    }
+}
+
+document.getElementById("seller-review-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Your form submission logic goes here, such as sending data to the server
+    
+    // After handling the form submission, toggle the visibility of the form
+    toggleReviewForm();
+});
+
+
+
 </script>
+<script src="./js/sellerReviewForm.js"></script>
 
 </body>
 </html>

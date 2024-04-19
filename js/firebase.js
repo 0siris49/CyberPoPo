@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js';
 import { getFirestore, collection, addDoc, setDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js'
+import { setEntityMessage } from './loginEntity.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -75,7 +76,7 @@ export function createToFireBase(auth, email, password, type){
   });
 }
 
-export function pageRedirect(type){
+function pageRedirect(type){
     if(type === 'REA'){
         window.location.href ='REA.html';
     }else if(type === 'buyer'){
@@ -86,7 +87,7 @@ export function pageRedirect(type){
 }
 
 //Login to Website
-export function loginToFirebase(auth, email, password, type){
+function loginToFirebase(auth, email, password, type){
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
@@ -96,8 +97,9 @@ export function loginToFirebase(auth, email, password, type){
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
+        var errorMessage = error.message;
         console.log(errorMessage);
+        setEntityMessage(errorMessage);
       });
     }
 
@@ -108,20 +110,19 @@ export async function checkEmailPassType(email, password, type){
     const q1 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("email", "==", email));
     const q2 = query(collection(db, "CSIT314/User-Profiles/Buyer-Profile"), where("email", "==", email));
     const q3 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("email", "==", email));
-
+     
     if(type === 'REA'){
 
         var responseToString = "";
         var responseLength = "";
         const queryAns1 = await getDocs(q1);
         queryAns1.forEach((doc) => {
-        //console.log(doc.id, " => ", doc.data()); 
+        
         responseToString = doc.id;
         });
 
         if(responseToString != ""){
-            //console.log("Login as REA", email);
-            loginToFirebase(auth,email,password,type);  
+            loginToFirebase(auth,email,password,type);
         }
 
     }else if(type === 'buyer'){
@@ -135,8 +136,7 @@ export async function checkEmailPassType(email, password, type){
         });
     
         if(responseToString != ""){
-            //console.log("Login as Buyer", email);
-            loginToFirebase(auth,email,password,type);
+          loginToFirebase(auth,email,password,type);
         }
         
     }else if(type === 'seller'){
@@ -150,14 +150,10 @@ export async function checkEmailPassType(email, password, type){
         });
     
         if(responseToString != ""){
-            //console.log("Login as Seller", email);
-            loginToFirebase(auth,email,password,type);
+          loginToFirebase(auth,email,password,type);
         }
-       
-     
     }
 
-    
 
 
 }

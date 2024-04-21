@@ -1,4 +1,4 @@
-***IF OUR REPO IS PUBLIC, PLEASE PRIVATE IT ( ´ ꒳ ` )***
+***IF OUR REPO IS PUBLIC, PLEASE PRIVATE IT ( ´ ꒳ ` )*** (done)
 
 To do:
 > Hook up Registration.html to Backend (Xera)

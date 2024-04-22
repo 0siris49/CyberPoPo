@@ -83,7 +83,9 @@ function pageRedirect(type){
         window.location.href = 'buyer.html';
     }else if(type === 'seller'){
         window.location.href = 'seller.html';
-    }
+    }else if(type === 'sysadmin'){
+      window.location.href = 'AdminPage.html';
+  }
 }
 
 //Login to Website
@@ -110,6 +112,7 @@ export async function checkEmailPassType(email, password, type){
     const q1 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("email", "==", email));
     const q2 = query(collection(db, "CSIT314/User-Profiles/Buyer-Profile"), where("email", "==", email));
     const q3 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("email", "==", email));
+    const q4 = query(collection(db, "CSIT314/User-Profiles/SysAdmin"), where("email", "==", email));
      
     if(type === 'REA'){
 
@@ -152,7 +155,20 @@ export async function checkEmailPassType(email, password, type){
         if(responseToString != ""){
           loginToFirebase(auth,email,password,type);
         }
-    }
+    }else if(email === "sysadmin@gmail.com"){
+
+      var responseToString = "";
+      var responseLength = "";
+      const queryAns4 = await getDocs(q4);
+      queryAns4.forEach((doc) => {
+      //console.log(doc.id, " => ", doc.data()); 
+      responseToString = doc.id;
+      });
+  
+      if(responseToString != ""){
+        loginToFirebase(auth,email,password,'sysadmin');
+      }
+  }
 
 
 

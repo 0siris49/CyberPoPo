@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Header</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -26,7 +27,8 @@
     </div>
 </div>
 
-<div class="sellerwelcome">Welcome to your Seller Page, &nbsp;<div> *inserts name*</div></div>
+<div class="sellerwelcome">Welcome to your Seller Page, &nbsp;<div id="sellerName"> *inserts name*</div></div>
+<div class="sellerwelcome">Idea: under the REA table column has a link to the respective REA page, then seller can rate/review him under respective REA's page</div>
 
 
 <div class="view-container" id="view-container">
@@ -37,7 +39,7 @@
             <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
         </div>
     </div>
-    <div class="seller-view-table" id="view-table">
+    <div class="rea-view-table" id="view-table">
         <table>
             <thead id="table-header">
                 <tr id="row-header">
@@ -46,31 +48,38 @@
                     <th>Rating</th>
                     <th>Reviews</th>
                     <th>Status</th>
+                    <th>REA</th>
                 </tr>
             </thead>
             <tbody id="data-table"></tbody>
         </table>
     </div>
-    <div class="seller-review-container" style="display: none;">
-    <form id="seller-review-form" class="seller-review-form">
-        <b class="seller-reviewAgent-Title">Review an Agent</b><br><br>
-        <label for="agentName">Agent Name:</label>
-        <input type="text" id="agentName" name="agentName" required><br><br>
-      
-        <label for="review">Review:</label><br>
-        <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
-      
-        <label for="rating">Rating(out of 5 stars):</label>
-        <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
-      
-        <button type="submit" id="seller-submit-review-button" onClick="toggleReviewForm()">Submit Review</button>
-      </form>
-    </div>
-    <!--Suspend Apply Button-->
-    <div class="suspend-apply-cancel">
-        <button id="suspend-apply-button">Apply</button>
-        <button id="suspend-cancel-button">Cancel</button>
-    </div>
+    <!-- Idea: under the REA table column has a link to the respective REA page, then seller can rate him under his page--> 
+    <div class="seller-review-container">
+        <form id="seller-review-form" class="seller-review-form">
+            <b class="seller-reviewAgent-Title">Review Agent</b><br><br>
+            <label for="Name">Name:</label>
+            <input type="text" id="agentName" name="agentName" required><br><br>
+          
+            <label for="review">Review:</label><br>
+            <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
+          
+            <div>Rate your REA:</div>
+            <div class="stars">
+                  <input class="star star-5" id="star-5" type="radio" name="star"/>
+                  <label class="star star-5" for="star-5"></label>
+                  <input class="star star-4" id="star-4" type="radio" name="star"/>
+                  <label class="star star-4" for="star-4"></label>
+                  <input class="star star-3" id="star-3" type="radio" name="star"/>
+                  <label class="star star-3" for="star-3"></label>
+                  <input class="star star-2" id="star-2" type="radio" name="star"/>
+                  <label class="star star-2" for="star-2"></label>
+                  <input class="star star-1" id="star-1" type="radio" name="star"/>
+                  <label class="star star-1" for="star-1"></label>
+            </div>
+            <button type="submit" id="seller-submit-review-button" style="cursor: pointer">Submit Review</button>
+        </form>
+    </div>    
 </div>
 
 
@@ -93,28 +102,13 @@
         
     });
 
-    function toggleReviewForm() {
-    var reviewFormContainer = document.querySelector(".seller-review-container");
-    if (reviewFormContainer.style.display === "none") {
-        reviewFormContainer.style.display = "block";
-    } else {
-        reviewFormContainer.style.display = "none";
-    }
-}
-
-document.getElementById("seller-review-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    // Your form submission logic goes here, such as sending data to the server
-    
-    // After handling the form submission, toggle the visibility of the form
-    toggleReviewForm();
-});
-
-
+    document.getElementById("seller-review-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        toggleReviewForm();
+    });
 
 </script>
-<script src="./js/sellerReviewForm.js"></script>
+
 
 </body>
 </html>

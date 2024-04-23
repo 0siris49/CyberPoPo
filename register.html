@@ -1,137 +1,155 @@
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Register</title>
-                    <link rel="stylesheet" href="css/style.css">
-                    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-                </head>
-                <body>
-
-                <header>
-                    <div id="root">
-                        <div id="root">
-                            <div class="headerLogin">
-                                <a href="Login.html" class="logo">
-                                    <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
-                                </a>
-                                <div class="header-right">
-                                    <a href="Login.html">Log in</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    <style>
-                        #regFName, #regLname, #regEmail, #regNum, #regPassword {
-                            border: none;
-                            outline: none;
-                            height: 30px;
-                            width: 100%;
-                        }
-                        .name-label {
-                            color: grey;
-                            margin-top: -7px;
-                            margin-bottom: 0;
-                        }
-                        .radio-group {
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            margin-bottom: 10px;
-                        }
-                        .radioList, input[type="radio"] {
-                            margin-right: 10px;
-                        }
-                        .headerLogin .logo img {
-                            width: 200px; 
-                            height: auto;
-                        }
-                    </style>
-                </header>
-
-                <div class="flex-container">
-                    <form class="form">
-                        <div style="text-align: center;">
-                            <img src="cyberpopo_logo.png" alt="Cyberpopo" style="width: 70%; height: auto; margin-left: auto; margin-right: auto;">
-                            <h3>User Registration Form</h3>
-                        </div>
-                        
-                        <h4 style="margin-bottom: 0;">Name*</h4>
-                        <div style="display: flex; justify-content: space-between;">
-                            <div class="form-group" style="flex: 1; margin-right: 10px;">
-                                <input type="text" class="form-control" id="regFName">
-                                <h5 class="name-label">First Name</h5>
-                            </div>
-                            <div class="form-group" style="flex: 1;">
-                                <input type="text" class="form-control" id="regLname">
-                                <h5 class="name-label">Last Name</h5>
-                            </div>
-                        </div>
-
-                        <h4 style="margin-bottom: -1px;">Email Address*</h4>        
-                        <input type="email" class="form-control" id="regEmail">
-
-                        <h4 style="margin-bottom: -1px;">Phone Number*</h4>        
-                        <input type="text" class="form-control" id="regNum" pattern="[89]\d{7}" title="Please enter a valid phone number starting with 8 or 9 and consisting of 8 digits" maxlength="8">
-
-                        <h4 style="margin-bottom: -1px;">Password*</h4>        
-                        <input type="password" class="form-control" id="regPassword">
-
-                        <h4 style="margin-bottom: -1px;">Date of Birth*</h4>        
-                        <div style="display: flex; justify-content: space-between;">
-                            <input type="text" class="form-control" id="regDobDay" placeholder="Day" style="flex: 1; margin-right: 10px;">
-                            <input type="text" class="form-control" id="regDobMonth" placeholder="Month" style="flex: 1; margin-right: 10px;">
-                            <input type="text" class="form-control" id="regDobYear" placeholder="Year" style="flex: 1;">
-                        </div>
-
-                        
-
-                        <div class="radio-group">
-                            <label class="radioList">Register as:</label><br>
-                            <input type="radio" id="buyer" name="role" value="buyer" checked>
-                            <label for="buyer">Buyer</label>
-                            
-                            <input type="radio" id="seller" name="role" value="seller">
-                            <label for="seller">Seller</label>
-                            
-                            <input type="radio" id="REA" name="role" value="REA">
-                            <label for="REA">REA</label>
-                        </div>
-                        
-                        
-
-                        <div class="btndiv btnCenter">
-                            <button id="regBtn">Register</button>
-                        </div>
-                        <div class="askreg"></div>
-                    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <style>
+        #regFName, #regLname, #regEmail, #regNum, #regPassword {
+            border: none;
+            outline: none;
+            height: 30px;
+            width: 100%;
+        }
+        .name-label {
+            color: grey;
+            margin-top: -7px;
+            margin-bottom: 0;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .radioList, input[type="radio"] {
+            margin-right: 10px;
+        }
+        .headerLogin .logo img {
+            width: 200px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="root">
+            <div id="root">
+                <div class="headerLogin">
+                    <a href="Login.html" class="logo">
+                        <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+                    </a>
+                    <div class="header-right">
+                        <a href="Login.html">Log in</a>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </header>
 
-                <script src="./js/registrationController.js" type="module"></script>
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-                <script>
-                    $(function() {
-                        $("#regDobDay, #regDobMonth, #regDobYear").datepicker({
-                            dateFormat: "dd-mm-yy",
-                            changeYear: true,
-                            yearRange: "c-100:c",
-                            changeMonth: true,
-                            showButtonPanel: true,
-                            onSelect: function(dateText, inst) {
-                                var date = $(this).datepicker("getDate");
-                                if (date) {
-                                    var day = date.getDate();
-                                    var month = date.getMonth() + 1;
-                                    var year = date.getFullYear();
-                                    $("#regDobDay").val(day);
-                                    $("#regDobMonth").val(month);
-                                    $("#regDobYear").val(year);
-                                }
-                            }
-                        });
-                    });
-                </script>
-                </body>
-                </html>
+    <div class="flex-container">
+        <form class="form">
+            <div style="text-align: center;">
+                <img src="cyberpopo_logo.png" alt="Cyberpopo" style="width: 70%; height: auto; margin-left: auto; margin-right: auto;">
+                <h3>User Registration Form</h3>
+            </div>
+            
+            <h4 style="margin-bottom: 0;">Name*</h4>
+            <div style="display: flex; justify-content: space-between;">
+                <div class="form-group" style="flex: 1; margin-right: 10px;">
+                    <input type="text" class="form-control" id="regFName">
+                    <h5 class="name-label">First Name</h5>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <input type="text" class="form-control" id="regLname">
+                    <h5 class="name-label">Last Name</h5>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: -1px;">Email Address*</h4>        
+            <input type="email" class="form-control" id="regEmail">
+
+            <h4 style="margin-bottom: -1px;">Phone Number*</h4>        
+            <input type="text" class="form-control" id="regNum" pattern="[89]\d{7}" title="Please enter a valid phone number starting with 8 or 9 and consisting of 8 digits" maxlength="8">
+
+            <h4 style="margin-bottom: -1px;">Password*</h4>        
+            <input type="password" class="form-control" id="regPassword">
+            <span id="passwordValidationMessage"></span>
+
+            <h4 style="margin-bottom: -1px;">Date of Birth*</h4>        
+            <div style="display: flex; justify-content: space-between;">
+                <input type="text" class="form-control" id="regDobDay" placeholder="Day" style="flex: 1; margin-right: 10px;">
+                <input type="text" class="form-control" id="regDobMonth" placeholder="Month" style="flex: 1; margin-right: 10px;">
+                <input type="text" class="form-control" id="regDobYear" placeholder="Year" style="flex: 1;">
+            </div>
+
+            <div class="radio-group">
+                <label class="radioList">Register as:</label><br>
+                <input type="radio" id="buyer" name="role" value="buyer" checked>
+                <label for="buyer">Buyer</label>
+                
+                <input type="radio" id="seller" name="role" value="seller">
+                <label for="seller">Seller</label>
+                
+                <input type="radio" id="REA" name="role" value="REA">
+                <label for="REA">REA</label>
+            </div>
+
+            <div class="btndiv btnCenter">
+                <button id="regBtn">Register</button>
+            </div>
+            <div class="askreg"></div>
+        </form>
+    </div>
+
+    <script src="./js/registrationController.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script>
+        document.getElementById("regPassword").addEventListener("input", validatePassword);
+        function validatePassword() {
+            var password = document.getElementById("regPassword").value;
+            var uppercaseRegex = /[A-Z]/;
+            var numberRegex = /[0-9]/;
+            var symbolRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+            var hasUppercase = uppercaseRegex.test(password);
+            var hasNumber = numberRegex.test(password);
+            var hasSymbol = symbolRegex.test(password);
+
+            var isValid = hasUppercase && hasNumber && hasSymbol;
+
+            if (!isValid) {
+                document.getElementById("regPassword").setCustomValidity("Password must contain at least one uppercase letter, one number, and one symbol.");
+                document.getElementById("passwordValidationMessage").innerText = "Password must contain at least one uppercase letter, one number, and one symbol.";
+            } else {
+                document.getElementById("regPassword").setCustomValidity("");
+                document.getElementById("passwordValidationMessage").innerText = "";
+            }
+        }
+
+        $(function() {
+            $("#regDobDay, #regDobMonth, #regDobYear").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeYear: true,
+                yearRange: "c-100:c",
+                changeMonth: true,
+                showButtonPanel: true,
+                onSelect: function(dateText, inst) {
+                    var date = $(this).datepicker("getDate");
+                    if (date) {
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1;
+                        var year = date.getFullYear();
+                        $("#regDobDay").val(day);
+                        $("#regDobMonth").val(month);
+                        $("#regDobYear").val(year);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

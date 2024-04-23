@@ -18,7 +18,8 @@ export function setControllerMessage(entityMessage){
     }
 }
 
-document.getElementById('loginBtn').addEventListener('click',function(event){
+//Old Event Listener, causes Uncaught TypeError upon href at/to register page
+/*document.getElementById('loginBtn').addEventListener('click',function(event){
     event.preventDefault();
     const userEmail = document.getElementById('loginEmail').value;
     const userPass = document.getElementById('loginPass').value;
@@ -28,5 +29,22 @@ document.getElementById('loginBtn').addEventListener('click',function(event){
     
     loginUser(newUser);
  
-})
+})*/
+
+document.addEventListener("DOMContentLoaded", () => {
+    // your javascript code here
+    const loginButton = document.querySelector("loginBtn");
+    if (loginButton) {
+        loginButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            const userEmail = document.getElementById('loginEmail').value;
+            const userPass = document.getElementById('loginPass').value;
+            const userType = document.getElementById('role').value;
+
+            let newUser = new User(userEmail, userPass, userType);
+
+            loginUser(newUser);
+        });
+    }
+});
 //Login system

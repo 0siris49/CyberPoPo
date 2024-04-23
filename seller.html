@@ -21,7 +21,7 @@
             <a id="seller-rate-and-review-button" style="cursor: pointer">Rate and Review an Agent</a>
         </div>
         <div class="header-right">
-            <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
+            <a id="seller-viewshortlistcount" style="cursor: pointer">View My Properties</a>
         </div>
        
     </div>
@@ -53,8 +53,17 @@
             </thead>
             <tbody id="data-table"></tbody>
         </table>
+        <br/><br/>
+        <button id="clicker" data-count="0" style="cursor: pointer">View in Full Details</button>
+        <div id="clickedNum">Your property is viewed 0 times</div>
+        <br/>
+        <button id="clicker1" data-count="0" style="cursor: pointer">Shortlist this property</button>
+        <div id="clickedNum1">Your property is shortlisted 0 times</div>
     </div>
-    <!-- Idea: under the REA table column has a link to the respective REA page, then seller can rate him under his page--> 
+    <!-- Idea: under the REA table column has a link to the respective REA page, then seller can rate n review him under his page--> 
+    <!-- As a seller, I want to view how many views my properties are getting --> 
+    <!-- As a seller, I want to know how many times my properties are getting shortlisted, so that I can keep track of who is shortlisting my property -->
+   
     <div class="seller-review-container">
         <form id="seller-review-form" class="seller-review-form">
             <b class="seller-reviewAgent-Title">Review Agent</b><br><br>
@@ -82,19 +91,7 @@
     </div>    
 </div>
 
-
 <script>
-    document.getElementById('viewAccounts').addEventListener('click', function() {
-        console.log("View Accounts link clicked");
-        // Add logic here to handle viewAccounts functionality
-        window.open(c,"_self");
-    });
-
-    document.getElementById('viewProfiles').addEventListener('click', function() {
-        console.log("View Profiles link clicked");
-        // Add logic here to handle viewProfiles functionality
-    });
-
     document.getElementById('logout').addEventListener('click', function() {
         console.log("Logout link clicked");
         // Add logic here to handle logout functionality
@@ -102,12 +99,34 @@
         
     });
 
-    document.getElementById("seller-review-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-        toggleReviewForm();
-    });
-
 </script>
+
+<script>  
+    document.addEventListener('DOMContentLoaded', function() {
+    var clicker = document.getElementById('clicker');
+    var clickedNum = document.getElementById('clickedNum');
+    var count = 0;
+
+    clicker.addEventListener('click', function() {
+        count++;
+        clickedNum.textContent = 'Your property is viewed ' + count + ' times';
+        clicker.setAttribute('data-count', count);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var clicker = document.getElementById('clicker1');
+    var clickedNum = document.getElementById('clickedNum1');
+    var count = 0;
+
+    clicker.addEventListener('click', function() {
+        count++;
+        clickedNum.textContent = 'Your property is shorlisted ' + count + ' times';
+        clicker.setAttribute('data-count', count);
+    });
+});
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 </body>

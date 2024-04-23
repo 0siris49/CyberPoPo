@@ -235,26 +235,8 @@ button#search-button, button#search-profile-button {
     height: 37.6px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    background-color:  #E9C874;
 }
-
-.person-add, 
-.usrprofile-add, 
-.block-icon,
-.delete-icon {
-    color: #597B6A;
-    margin-right: 100px;
-    font-size: 20px;
-}
-
-button.person-add-button, 
-button.suspend-button, 
-button.usrprofile-add-button, 
-button.usrprofile-suspend-button {
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-}
-
 
 input[name="search-user"], input[name="search-profile"] {
     width: 50%;
@@ -264,6 +246,18 @@ input[name="search-user"], input[name="search-profile"] {
     border-radius: 50px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.create-account-icon {
+  padding: 0px;
+  background-color:  #E9C874;
+}
+
+.suspend-account-icon{
+ margin-left: 10px;
+ margin-right: 30px;
+ background-color:  #E9C874;
+ 
 }
 
 .suspend-apply-cancel {
@@ -496,6 +490,16 @@ body {
         
     }
 
+    button#clicker, #clicker1 {
+      width: 20%;
+      height: 37.6px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin-left: 5px;
+      background-color: #E9C874;
+      
+  }
+
     .seller-reviewAgent-Title{
         margin-left: 165px;
         font-size: 20px;
@@ -566,6 +570,8 @@ body {
       content: '\f006';
       font-family: FontAwesome;
     }
+
+
 
 
 /*REA rating*/

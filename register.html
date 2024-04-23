@@ -13,8 +13,8 @@
                     <div id="root">
                         <div id="root">
                             <div class="headerLogin">
-                                <a href="Login.html" class="logo" style="display: inline-block; width: 30%;">
-                                    <img src="cyberpopo_logo.png" alt="Cyberpopo Logo" style="width: 100%;">
+                                <a href="Login.html" class="logo">
+                                    <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
                                 </a>
                                 <div class="header-right">
                                     <a href="Login.html">Log in</a>
@@ -23,7 +23,7 @@
                         </div>
 
                     <style>
-                        #regFName, #regLname, #regEmail, #regNum {
+                        #regFName, #regLname, #regEmail, #regNum, #regPassword {
                             border: none;
                             outline: none;
                             height: 30px;
@@ -42,6 +42,10 @@
                         }
                         .radioList, input[type="radio"] {
                             margin-right: 10px;
+                        }
+                        .headerLogin .logo img {
+                            width: 200px; 
+                            height: auto;
                         }
                     </style>
                 </header>
@@ -64,12 +68,15 @@
                                 <h5 class="name-label">Last Name</h5>
                             </div>
                         </div>
+
                         <h4 style="margin-bottom: -1px;">Email Address*</h4>        
                         <input type="email" class="form-control" id="regEmail">
 
                         <h4 style="margin-bottom: -1px;">Phone Number*</h4>        
                         <input type="text" class="form-control" id="regNum" pattern="[89]\d{7}" title="Please enter a valid phone number starting with 8 or 9 and consisting of 8 digits" maxlength="8">
 
+                        <h4 style="margin-bottom: -1px;">Password*</h4>        
+                        <input type="password" class="form-control" id="regPassword">
 
                         <h4 style="margin-bottom: -1px;">Date of Birth*</h4>        
                         <div style="display: flex; justify-content: space-between;">

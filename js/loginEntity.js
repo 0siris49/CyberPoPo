@@ -1,4 +1,4 @@
-import { checkEmailPassType } from "./firebase.js";
+/*import { checkEmailPassType } from "./firebase.js";
 import { setControllerMessage } from "./loginController.js";
 var message = "";
 
@@ -19,7 +19,7 @@ export function loginUser(arg){
 
 export function getEntityMessage(){
     return message;
-}
+}*/
 
 
  

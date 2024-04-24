@@ -8,28 +8,90 @@
 </head>
 <body>
 
-<div>
-    <div class="headerSeller">
-        <a href="#Login.html" class="logo">
-            Cyber Property
-        </a>
-        <div class="header-right">
-            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+<header>
+    <style>
+        /* CSS for search bar */
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0; /* Light gray background color */
+            border-radius: 5px;
+            margin-bottom: 20px; /* Add some margin at the bottom */
+        }
+
+        .search-bar input[type="text"],
+        .search-bar select {
+            padding: 8px;
+            border: 1px solid #ccc; /* Gray border */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green background color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        .search-bar button:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+    </style>
+
+    <div>
+        <div class="headerSeller">
+            <a href="#Login.html" class="logo">
+                Cyber Property
+            </a>
+            <div class="header-right">
+                <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-rate-and-review-button" style="cursor: pointer">Rate and Review an Agent</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
+            </div>
         </div>
-        <div class="header-right">
-            <a id="seller-rate-and-review-button" style="cursor: pointer">Rate and Review an Agent</a>
-        </div>
-        <div class="header-right">
-            <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
-        </div>
-       
     </div>
-</div>
+</header>
 
 <div class="sellerwelcome">Welcome to your Buyer Page, &nbsp;<div> *inserts name*</div></div>
 
-
-
+<div class="view-container" id="view-container">
+    <div class="search-bar">
+        <form id="property-search-form">
+            <input type="text" placeholder="Enter location...">
+            <select name="price-range">
+                <option value="">Price Range</option>
+                <option value="0-100000">$0 - $100,000</option>
+                <option value="100000-200000">$100,000 - $200,000</option>
+                <!-- Add more price range options as needed -->
+            </select>
+            <select name="property-type">
+                <option value="">Property Type</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <!-- Add more property type options as needed -->
+            </select>
+            <select name="bedrooms">
+                <option value="">Bedrooms</option>
+                <option value="1">1 Bedroom</option>
+                <option value="2">2 Bedrooms</option>
+                <option value="3">3 Bedrooms</option>
+                <!-- Add more bedroom options as needed -->
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
 
 <script>
     document.getElementById('viewAccounts').addEventListener('click', function() {
@@ -47,29 +109,26 @@
         console.log("Logout link clicked");
         // Add logic here to handle logout functionality
         window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-        
+
     });
 
     function toggleReviewForm() {
-    var reviewFormContainer = document.querySelector(".seller-review-container");
-    if (reviewFormContainer.style.display === "none") {
-        reviewFormContainer.style.display = "block";
-    } else {
-        reviewFormContainer.style.display = "none";
+        var reviewFormContainer = document.querySelector(".seller-review-container");
+        if (reviewFormContainer.style.display === "none") {
+            reviewFormContainer.style.display = "block";
+        } else {
+            reviewFormContainer.style.display = "none";
+        }
     }
-}
 
-document.getElementById("seller-review-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+    document.getElementById("seller-review-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
 
-    // Your form submission logic goes here, such as sending data to the server
-    
-    // After handling the form submission, toggle the visibility of the form
-    toggleReviewForm();
-});
+        // Your form submission logic goes here, such as sending data to the server
 
-
-
+        // After handling the form submission, toggle the visibility of the form
+        toggleReviewForm();
+    });
 </script>
 
 </body>

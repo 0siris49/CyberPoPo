@@ -1,4 +1,4 @@
-import { loginUser } from "./loginEntity.js";
+import { loginEntity } from "./userEntity.js";
 
 var controllerMessage = "";
 
@@ -18,22 +18,8 @@ export function setControllerMessage(entityMessage){
     }
 }
 
-//Old Event Listener, causes Uncaught TypeError upon href at/to register page
-/*document.getElementById('loginBtn').addEventListener('click',function(event){
-    event.preventDefault();
-    const userEmail = document.getElementById('loginEmail').value;
-    const userPass = document.getElementById('loginPass').value;
-    const userType = document.getElementById('role').value;
-
-    let newUser = new User(userEmail,userPass,userType);
-    
-    loginUser(newUser);
- 
-})*/
-
 document.addEventListener("DOMContentLoaded", () => {
-    // your javascript code here
-    const loginButton = document.querySelector("loginBtn");
+    const loginButton = document.getElementById("loginBtn");
     if (loginButton) {
         loginButton.addEventListener("click", function (event) {
             event.preventDefault();
@@ -42,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const userType = document.getElementById('role').value;
 
             let newUser = new User(userEmail, userPass, userType);
-
-            loginUser(newUser);
+            let initLoginEntity = new loginEntity(newUser);
+            
         });
     }
 });

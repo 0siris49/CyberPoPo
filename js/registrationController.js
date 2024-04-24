@@ -1,6 +1,6 @@
 //Registration Controller
-import { registerUser } from "./registrationEntity.js";
 
+import {registrationEntity} from "./userEntity.js";
 class User {
     constructor (userEmail, userPass, userType, dayDOB, monthDOB, yearDOB,firstName,lastName,phoneNum){
         this.userEmail = userEmail;
@@ -38,7 +38,6 @@ document.getElementById('regBtn').addEventListener('click',function(event){
         userType = userRole;
     }
     let newUser = new User(userEmail,userPass,userType,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum);
-    
-    registerUser(newUser);
+    let newEntity = new registrationEntity(newUser);
 })
 //Registers user to Firebase

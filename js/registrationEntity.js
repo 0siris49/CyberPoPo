@@ -1,4 +1,4 @@
-import { auth, createToFireBase} from "./firebase.js";
+/*import { auth, createToFireBase} from "./firebase.js";
 
 export function registerUser(arg){
     var email = arg.userEmail;
@@ -12,7 +12,8 @@ export function registerUser(arg){
     var phoneNum = arg.phoneNum;
     createToFireBase(auth,email,password,type,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum);
     
-}
+}*/
+
 
 
 

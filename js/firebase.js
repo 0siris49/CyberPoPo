@@ -145,10 +145,10 @@ export default class FirebaseClass {
 
     //Function to read from Firebase to check whether the email + type exists
     async checkEmailPassType(email, password, type) {
-        const q1 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("email", "==", email));
-        const q2 = query(collection(db, "CSIT314/User-Profiles/Buyer-Profile"), where("email", "==", email));
-        const q3 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("email", "==", email));
-        const q4 = query(collection(db, "CSIT314/User-Profiles/SysAdmin"), where("email", "==", email));
+        const q1 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("Email", "==", email));
+        const q2 = query(collection(db, "CSIT314/User-Profiles/Buyer-Profile"), where("Email", "==", email));
+        const q3 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", email));
+        const q4 = query(collection(db, "CSIT314/User-Profiles/SysAdmin"), where("Email", "==", email));
 
         if (type === 'REA') {
 

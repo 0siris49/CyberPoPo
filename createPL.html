@@ -144,31 +144,59 @@
                 <label for="property_description">Property Description:</label>
                 <textarea id="property_description" name="property_description" rows="4" required></textarea>
 
-                <label for="property_price">Property Price:</label>
-                <input type="number" id="property_price" name="property_price" required>
+                <label for="property_price">Property Price($):</label>
+                <input type="number" id="property_price" name="property_price" required min="0">
 
                 <label for="property_bedroom">Number of Bedroom(s):</label>
-                <input type="number" id="property_bedroom" name="property_bedroom" required>
+                <select id="property_bedroom" name="property_bedroom" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
 
                 <label for="property_bathroom">Number of Bathroom(s):</label>
-                <input type="number" id="property_bathroom" name="property_bathroom" required>
+                <select id="property_bathroom" name="property_bathroom" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
 
                 <label for="property_size">Interior Size(sqm):</label>
-                <input type="number" id="property_size" name="property_size" required><br><br>
+                <input type="number" id="property_size" name="property_size" required min="0"><br><br>
 
                 <label for="property_image">Property Image:</label>
                 <input type="file" id="property_image" name="property_image"><br><br>
 
+                <label for="year_built">Year Built:</label>
+                <input type="number" id="year_built" name="year_built" required min="0" pattern="\d{4,}">
+
                 <label for="property_agent">Agent Name:</label>
                 <input type="text" id="property_agent" name="property_agent" required>
+
+                <label for="Agent_ID">Agent License Number:</label>
+                <input type="number" id="Agent_ID" name="Agent_ID" required>
 
                 <input type="submit" value="Submit" id="submitForm">
             </div>
 
-           
-
             <button type="button" id="toggleFields">Show More Property Fields</button>
-            
+
         </form>
     </div>
 

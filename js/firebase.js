@@ -4,7 +4,9 @@ import {
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    updateProfile
 } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js';
 import {
     getFirestore,
@@ -18,6 +20,8 @@ import {
 import {
     setEntityMessage
 } from './userEntity.js';
+
+import { sellerEntity,buyerEntity } from './userEntity.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDnSLz1ZbiZCKYoETZ-7jGPzYuelhE1DXE",
@@ -37,7 +41,9 @@ export const auth = getAuth(app);
 
 export default class FirebaseClass {
 
-    // Initialize Firebase
+    constructor(){
+        console.log("Created Firebase Object");
+    }
 
 
     //Just an async function to write to Firestore
@@ -99,9 +105,19 @@ export default class FirebaseClass {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
 
-                const user = userCredential.user;
                 console.log("User Created");
                 this.storeToDatabase(type,email,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum);
+                updateProfile(auth.currentUser, {
+                    displayName: firstName,
+                    email: email,
+                    phoneNumber: phoneNum,
+                    type: type
+                  }).then(() => {
+                    console.log("Display Name Set ",firstName );
+                  }).catch((error) => {
+                    // An error occurred
+                    // ...
+                  });
                 
             })
             .catch((error) => {
@@ -129,7 +145,7 @@ export default class FirebaseClass {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
+                //const user = userCredential.user;
                 console.log("Login Successful");
                 this.pageRedirect(type);
             })
@@ -145,6 +161,7 @@ export default class FirebaseClass {
 
     //Function to read from Firebase to check whether the email + type exists
     async checkEmailPassType(email, password, type) {
+        console.log("Starting login process");
         const q1 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("Email", "==", email));
         const q2 = query(collection(db, "CSIT314/User-Profiles/Buyer-Profile"), where("Email", "==", email));
         const q3 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", email));
@@ -208,6 +225,38 @@ export default class FirebaseClass {
 
 
 
+    }
+
+    getCurrentUser(){
+        auth.onAuthStateChanged(user => {
+            console.log(user);
+            console.log("From getCurrentUser");
+            if(user){
+                console.log(user.displayName);
+                var displayNameString = user.displayName;
+                let initSellerEntity = new sellerEntity();
+                initSellerEntity.setEntityDisplayName(displayNameString);
+            }else{
+                console.log("No one");
+            }
+        })
+          
+    }
+
+    getCurrentUserBuyer(){
+        auth.onAuthStateChanged(user => {
+            console.log(user);
+            console.log("From getCurrentUser");
+            if(user){
+                console.log(user.displayName);
+                var displayNameString = user.displayName;
+                let initBuyerEntity = new buyerEntity();
+                initBuyerEntity.setEntityDisplayName(displayNameString);
+            }else{
+                console.log("No one");
+            }
+        })
+          
     }
 }
 // Your web app's Firebase configuration

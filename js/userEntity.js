@@ -2,6 +2,8 @@
 import FirebaseClass from "./firebase.js";
 import { auth } from "./firebase.js";
 import { setControllerMessage } from "./loginController.js";
+import { sellerController } from "./sellerController.js";
+import { buyerController } from "./buyerController.js";
 
 
 export class registrationEntity{
@@ -32,7 +34,37 @@ export class loginEntity{
         console.log("From Login Entity, ",email,password,type);
         
         let firebaseObj = new FirebaseClass();
-       firebaseObj.checkEmailPassType(email,password,type);
+        firebaseObj.checkEmailPassType(email,password,type);
+    }
+}
+
+export class sellerEntity{
+    constructor(){
+    }
+    getUserToEntity(){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.getCurrentUser();
+    }
+
+    setEntityDisplayName(displayNameFromFirebase){
+        let initSellerController = new sellerController();
+        initSellerController.setSellerControllerDisplayName(displayNameFromFirebase);
+    }
+}
+
+export class buyerEntity{
+    constructor(){
+
+    }
+
+    getUserToEntity(){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.getCurrentUserBuyer();
+    }
+
+    setEntityDisplayName(displayNameFromFirebase){
+        let initBuyerController = new buyerController();
+        initBuyerController.setBuyerControllerDisplayName(displayNameFromFirebase);
     }
 
     

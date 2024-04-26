@@ -6,164 +6,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>New Property Listing</title>
+    <style>
+        body {
+            padding-bottom: 50px;
+            font-family: Arial, sans-serif;
+        }
+
+        .headerSeller {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #A34343;
+            color: #fff;
+        }
+
+        .headerSeller .logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .createPLheader {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .PL-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .create-PL-form {
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fbf8dd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #e9c874;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #e4b94d;
+        }
+
+        #submitForm {
+            background-color: #A34343;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #submitForm:hover {
+            background-color: #791414;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <style>
-            body {
-                padding-bottom: 300px;
-            }
-
-            .createPLheader{
-                font-size: 20px;
-                text-align: center;            
-            }
-
-            .headerSeller .logo img {
-                width: 200px;
-                height: auto;
-            }
-
-            .PL-div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .create-PL-form {
-                width: 500px;
-                height: auto;
-                padding: 20px;
-                margin-top: 200px;
-                border: 1px solid #A34343;
-                border-radius: 5px;
-                background-color: #FBF8DD;
-                box-shadow: 0 0 0 0.2rem rgba(163, 67, 67, 0.2);
-            }
-
-            input[type="text"],
-            input[type="number"],
-            select,
-            textarea {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-sizing: border-box;
-            }
-
-            textarea {
-                resize: vertical;
-            }
-
-            input[type="submit"] {
-                background-color: #E9C874;
-                color: white;
-                padding: 15px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: bold;
-                margin-left: 180px;
-            }
-
-
-            input[type="submit"]:hover {
-                background-color: #e4b94d;
-            }
-
-            .hidden{
-                display: none;
-            }
-        </style>
-
-
-        <div>
-            <div class="headerSeller">
-                <a href="#Login.html" class="logo">
-                    <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
-                </a>
-                <div class="header-right">
-                    <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
-                </div>
-                <!--- <div class="header-right">
-                    <a id="seller-rate-and-review-button" style="cursor: pointer" href="REA.html"></a>
-                </div> -->
-                <div class="header-right">
-                    <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
-                </div>
-          
+        <div class="headerSeller">
+            <a href="#Login.html" class="logo">
+                <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+            </a>
+            <div>
+                <a id="logout" href="Login.html">Logout</a>
             </div>
         </div>
     </header>
 
-
     <div class="PL-div">
         <form action="/submit_property" method="POST" class="create-PL-form">
-            <div class="createPLheader"><p>Create Property Listings Form</p></div><br>
+            <div class="createPLheader">Create Property Listing Form</div>
 
-            <label for="property_title">Property Name:</label><br>
-            <input type="text" id="property_title" name="property_title" required><br><br>
+            <label for="property_title">Property Name:</label>
+            <input type="text" id="property_title" name="property_title" required>
 
-            <label for="property_location">Property Location:</label><br>
-            <input type="text" id="property_location" name="property_location" required><br><br>
+            <label for="property_location">Property Location:</label>
+            <input type="text" id="property_location" name="property_location" required>
 
-            <label for="property_type">Property Type:</label><br>
+            <label for="property_type">Property Type:</label>
             <select id="property_type" name="property_type" required>
                 <option value="house">House</option>
                 <option value="apartment">Apartment</option>
                 <option value="condo">Condo</option>
-            </select><br><br>
+            </select>
+
             <div id="extraFields" class="hidden">
-                <label for="property_description">Property Description:</label><br>
-                <textarea id="property_description" name="property_description" rows="4" cols="50"
-                    required></textarea><br><br>
+                <label for="property_description">Property Description:</label>
+                <textarea id="property_description" name="property_description" rows="4" required></textarea>
 
-                <label for="property_price">Property Price:</label><br>
-                <input type="number" id="property_price" name="property_price" required><br><br>
+                <label for="property_price">Property Price:</label>
+                <input type="number" id="property_price" name="property_price" required>
 
-                <label for="property_bedroom">Number of Bedroom(s):</label><br>
-                <input type="number" id="property_bedroom" name="property_bedroom" required><br><br>
+                <label for="property_bedroom">Number of Bedroom(s):</label>
+                <input type="number" id="property_bedroom" name="property_bedroom" required>
 
-                <label for="property_bathroom">Number of Bathroom(s):</label><br>
-                <input type="number" id="property_bathroom" name="property_bathroom" required><br><br>
+                <label for="property_bathroom">Number of Bathroom(s):</label>
+                <input type="number" id="property_bathroom" name="property_bathroom" required>
 
-                <label for="property_size">Interior Size(sqm):</label><br>
+                <label for="property_size">Interior Size(sqm):</label>
                 <input type="number" id="property_size" name="property_size" required><br><br>
 
-                <label for="property_image">Property Image:</label><br>
+                <label for="property_image">Property Image:</label>
                 <input type="file" id="property_image" name="property_image"><br><br>
-            </div>
-            <br>
-            <label for="property_agent">Agent Name:</label><br>
-            <input type="text" id="property_agent" name="property_agent" required><br><br>
 
-            <br>
-            <button type="button" id="toggleFields">Show all Property Fields</button><br><br><br>
-            <input type="submit" value="Submit">
+                <label for="property_agent">Agent Name:</label>
+                <input type="text" id="property_agent" name="property_agent" required>
+
+                <input type="submit" value="Submit" id="submitForm">
+            </div>
+
+           
+
+            <button type="button" id="toggleFields">Show More Property Fields</button>
+            
         </form>
     </div>
-</body>
-<script>
 
-    document.addEventListener("DOMContentLoaded", function () {
-        var toggleButton = document.getElementById("toggleFields");
-        var extraFields = document.getElementById("extraFields");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toggleButton = document.getElementById("toggleFields");
+            var extraFields = document.getElementById("extraFields");
 
-        toggleButton.addEventListener("click", function () {
-            if (extraFields.classList.contains("hidden")) {
-                extraFields.classList.remove("hidden");
-                toggleButton.textContent = "Hide Extra Property Fields";
-            } else {
-                extraFields.classList.add("hidden");
-                toggleButton.textContent = "Show More Property Fields";
-            }
+            toggleButton.addEventListener("click", function () {
+                if (extraFields.classList.contains("hidden")) {
+                    extraFields.classList.remove("hidden");
+                    toggleButton.textContent = "Hide Extra Property Fields";
+                } else {
+                    extraFields.classList.add("hidden");
+                    toggleButton.textContent = "Show More Property Fields";
+                }
+            });
         });
-    });
-
-</script>
+    </script>
+</body>
 
 </html>

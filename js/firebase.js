@@ -60,7 +60,17 @@ export default class FirebaseClass {
                     MonthDOB: monthDOB,
                     YearDOB: yearDOB
                 });
-                console.log("Document written with ID: ", docRef.id);
+
+                const docRef2 = await addDoc(collection(db, "CSIT314/All-Users/UserData"), {
+                    FirstName: firstName,
+                    LastName: lastName,
+                    Phone: phoneNum,
+                    Email: email,
+                    DayDOB: dayDOB,
+                    MonthDOB: monthDOB,
+                    YearDOB: yearDOB
+                });
+                console.log("Document written with ID: ", docRef.id, docRef2.id);
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
@@ -76,7 +86,17 @@ export default class FirebaseClass {
                     MonthDOB: monthDOB,
                     YearDOB: yearDOB
                 });
-                console.log("Document written with ID: ", docRef.id);
+
+                const docRef2 = await addDoc(collection(db, "CSIT314/All-Users/UserData"), {
+                    FirstName: firstName,
+                    LastName: lastName,
+                    Phone: phoneNum,
+                    Email: email,
+                    DayDOB: dayDOB,
+                    MonthDOB: monthDOB,
+                    YearDOB: yearDOB
+                });
+                console.log("Document written with ID: ", docRef.id, docRef2.id);
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
@@ -92,7 +112,17 @@ export default class FirebaseClass {
                     MonthDOB: monthDOB,
                     YearDOB: yearDOB
                 });
-                console.log("Document written with ID: ", docRef.id);
+
+                const docRef2 = await addDoc(collection(db, "CSIT314/All-Users/UserData"), {
+                    FirstName: firstName,
+                    LastName: lastName,
+                    Phone: phoneNum,
+                    Email: email,
+                    DayDOB: dayDOB,
+                    MonthDOB: monthDOB,
+                    YearDOB: yearDOB
+                });
+                console.log("Document written with ID: ", docRef.id, docRef2.id);
             } catch (e) {
                 console.error("Error adding document: ", e);
 
@@ -257,6 +287,26 @@ export default class FirebaseClass {
             }
         })
           
+    }
+    async storePropertyListingToDatabase(arg) {
+        try {
+            const docRef = await addDoc(collection(db, "CSIT314/PropertyListings/createdPLs"), {
+                propertyName: arg.propName,
+                propertyLocation: arg.propLocation,
+                propertyType: arg.propType,
+                propertyDescription: arg.propDesc,
+                propertyPrice: arg.propPrice,
+                propertyBedroom: arg.propBedroom,
+                propertyBathroom: arg.propBathroom,
+                propertySize: arg.propSize,
+                propertyYearBuilt: arg.propYearBuilt,
+                propertyAgent: arg.propAgent,
+                propertyAgentID: arg.propAgentID
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
     }
 }
 // Your web app's Firebase configuration

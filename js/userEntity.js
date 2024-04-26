@@ -70,6 +70,19 @@ export class buyerEntity{
     
 }
 
+export class reaEntity{
+    construtor(){
+
+    }
+
+    createPropertyListingToFirebase(arg){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.storePropertyListingToDatabase(arg);
+    }
+
+    
+}
+
 export function setEntityMessage(messageFromFirebase){
     
     var message = messageFromFirebase;

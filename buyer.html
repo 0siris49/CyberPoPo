@@ -77,25 +77,32 @@
                 <option value="">Price Range</option>
                 <option value="0-100000">$0 - $100,000</option>
                 <option value="100000-200000">$100,000 - $200,000</option>
-                <!-- Add more price range options as needed -->
             </select>
             <select name="property-type">
                 <option value="">Property Type</option>
                 <option value="house">House</option>
                 <option value="apartment">Apartment</option>
-                <!-- Add more property type options as needed -->
+                <option value="apartment">Condo</option>
             </select>
             <select name="bedrooms">
                 <option value="">Bedrooms</option>
                 <option value="1">1 Bedroom</option>
                 <option value="2">2 Bedrooms</option>
                 <option value="3">3 Bedrooms</option>
-                <!-- Add more bedroom options as needed -->
+                <option value="3">4 Bedrooms</option>
+                <option value="3">5 Bedrooms</option>
+                <option value="3">6 Bedrooms</option>
+                <option value="3">7 Bedrooms</option>
+                <option value="3">8 Bedrooms</option>
+                <option value="3">9 Bedrooms</option>
+                <option value="3">10 Bedrooms</option>
             </select>
             <button type="submit">Search</button>
         </form>
     </div>
 </div>
+
+<div id="property-listings-container"></div>    
 
 <script>
     document.getElementById('viewAccounts').addEventListener('click', function() {

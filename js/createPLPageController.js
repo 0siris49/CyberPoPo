@@ -1,8 +1,8 @@
 import { reaEntity } from "./userEntity.js";
 
-class propertyListing{
+export class createPropertyListingObject{
     constructor(propName,propLocation,propType,propDesc,propPrice,propBedroom,propBathroom,propSize,propYearBuilt,propAgent
-        ,propAgentID){
+        ,propSellerEmail,propAgentID){
             this.propName = propName;
             this.propLocation = propLocation;
             this.propType = propType;
@@ -13,8 +13,14 @@ class propertyListing{
             this.propSize = propSize;
             this.propYearBuilt = propYearBuilt;
             this.propAgent = propAgent;
+            this.propSellerEmail = propSellerEmail;
             this.propAgentID = propAgentID;
         }
+
+        setControllerMessage(messageFromEntity){
+            alert(messageFromEntity);
+        }
+
 }
 
 
@@ -33,14 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const propSize = document.getElementById('property_size').value;
             const propYearBuilt = document.getElementById('year_built').value;
             const propAgent = document.getElementById('property_agent').value;
+            const propSellerEmail = document.getElementById('property_seller').value;
             const propAgentID = document.getElementById('agent_id').value;
 
             console.log(propName,propLocation,propType,propDesc,propPrice,propBedroom,propBathroom,propSize,propYearBuilt,propAgent
-            ,propAgentID);
+            ,propSellerEmail,propAgentID);
 
-            let newPL = new propertyListing(propName,propLocation,propType,propDesc,propPrice,propBedroom,propBathroom,propSize,propYearBuilt,propAgent,propAgentID);
+            let newPL = new createPropertyListingObject(propName,propLocation,propType,propDesc,propPrice,propBedroom,propBathroom,propSize,propYearBuilt,propAgent,propSellerEmail,propAgentID);
             let initReaEntity = new reaEntity();
             initReaEntity.createPropertyListingToFirebase(newPL);
         });
     }
 });
+

@@ -15,9 +15,11 @@ import {
     setDoc,
     getDocs,
     query,
-    where
+    where,
+    doc,
 } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js'
 import {
+    reaEntity,
     setEntityMessage
 } from './userEntity.js';
 
@@ -61,7 +63,8 @@ export default class FirebaseClass {
                     YearDOB: yearDOB
                 });
 
-                const docRef2 = await addDoc(collection(db, "CSIT314/All-Users/UserData"), {
+                const userData = collection(db,"CSIT314/All-Users/UserData");
+                await setDoc(doc(userData,email),{
                     FirstName: firstName,
                     LastName: lastName,
                     Phone: phoneNum,
@@ -69,8 +72,8 @@ export default class FirebaseClass {
                     DayDOB: dayDOB,
                     MonthDOB: monthDOB,
                     YearDOB: yearDOB
-                });
-                console.log("Document written with ID: ", docRef.id, docRef2.id);
+                })
+                
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
@@ -87,7 +90,8 @@ export default class FirebaseClass {
                     YearDOB: yearDOB
                 });
 
-                const docRef2 = await addDoc(collection(db, "CSIT314/All-Users/UserData"), {
+                const userData = collection(db,"CSIT314/All-Users/UserData");
+                await setDoc(doc(userData,email),{
                     FirstName: firstName,
                     LastName: lastName,
                     Phone: phoneNum,
@@ -95,8 +99,8 @@ export default class FirebaseClass {
                     DayDOB: dayDOB,
                     MonthDOB: monthDOB,
                     YearDOB: yearDOB
-                });
-                console.log("Document written with ID: ", docRef.id, docRef2.id);
+                })
+                
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
@@ -113,7 +117,8 @@ export default class FirebaseClass {
                     YearDOB: yearDOB
                 });
 
-                const docRef2 = await addDoc(collection(db, "CSIT314/All-Users/UserData"), {
+                const userData = collection(db,"CSIT314/All-Users/UserData");
+                await setDoc(doc(userData,email),{
                     FirstName: firstName,
                     LastName: lastName,
                     Phone: phoneNum,
@@ -121,8 +126,8 @@ export default class FirebaseClass {
                     DayDOB: dayDOB,
                     MonthDOB: monthDOB,
                     YearDOB: yearDOB
-                });
-                console.log("Document written with ID: ", docRef.id, docRef2.id);
+                })
+                
             } catch (e) {
                 console.error("Error adding document: ", e);
 
@@ -209,6 +214,8 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
+            }else{
+                console.log("User does not exist");
             }
 
         } else if (type === 'buyer') {
@@ -223,6 +230,8 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
+            }else{
+                console.log("User does not exist");
             }
 
         } else if (type === 'seller') {
@@ -237,6 +246,8 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
+            }else{
+                console.log("User does not exist");
             }
         } else if (email === "sysadmin@gmail.com") {
 
@@ -250,6 +261,8 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, 'sysadmin');
+            }else{
+                console.log("User does not exist");
             }
         }
 
@@ -257,15 +270,20 @@ export default class FirebaseClass {
 
     }
 
-    getCurrentUser(){
-        auth.onAuthStateChanged(user => {
-            console.log(user);
-            console.log("From getCurrentUser");
+    getCurrentUserSeller(){
+        auth.onAuthStateChanged(async user => {
+            //console.log(user);
+            //console.log("From getCurrentUser");
             if(user){
-                console.log(user.displayName);
                 var displayNameString = user.displayName;
                 let initSellerEntity = new sellerEntity();
                 initSellerEntity.setEntityDisplayName(displayNameString);
+                var currentUserEmail = user.email;
+                var allPropsList = await this.getSellerProperties(currentUserEmail);
+                
+                initSellerEntity.getSellerPropList(allPropsList);
+                
+                //-------------------------------------------------------------------------------
             }else{
                 console.log("No one");
             }
@@ -273,10 +291,26 @@ export default class FirebaseClass {
           
     }
 
+    async getSellerProperties(currentUserEmail){
+        let userDataPLQuery = "CSIT314/All-Users/UserData/"+currentUserEmail+"/ownedPropList";
+        const currentUserOwnedPL = collection(db,userDataPLQuery);
+        const querySnapshot = await getDocs(currentUserOwnedPL);
+        var allData = ''; 
+        querySnapshot.forEach((doc) => {
+            var docStringify = JSON.stringify(doc.data());
+            allData += docStringify + "---";
+          });
+
+          return allData;
+          
+          //console.log(allData);
+    }
+
+
     getCurrentUserBuyer(){
         auth.onAuthStateChanged(user => {
-            console.log(user);
-            console.log("From getCurrentUser");
+            //console.log(user);
+            //console.log("From getCurrentUser");
             if(user){
                 console.log(user.displayName);
                 var displayNameString = user.displayName;
@@ -290,37 +324,56 @@ export default class FirebaseClass {
     }
     async storePropertyListingToDatabase(arg) {
         try {
-            const docRef = await addDoc(collection(db, "CSIT314/PropertyListings/createdPLs"), {
-                propertyName: arg.propName,
-                propertyLocation: arg.propLocation,
-                propertyType: arg.propType,
-                propertyDescription: arg.propDesc,
-                propertyPrice: arg.propPrice,
-                propertyBedroom: arg.propBedroom,
-                propertyBathroom: arg.propBathroom,
-                propertySize: arg.propSize,
-                propertyYearBuilt: arg.propYearBuilt,
-                propertyAgent: arg.propAgent,
-                propertyAgentID: arg.propAgentID
+            const createdPL = collection(db,"CSIT314/PropertyListings/createdPLs");
+            let userDataPLQuery = "CSIT314/All-Users/UserData/"+arg.propSellerEmail+"/ownedPropList";
+            const userDataPL = collection(db,userDataPLQuery)
+            var i =1;
+            const createPLCount = await getDocs(createdPL);
+            const q = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", arg.propSellerEmail));
+            var responseToString = "";
+            const queryAns = await getDocs(q);
+            queryAns.forEach((doc) => {
+                responseToString = doc.id;
             });
-            console.log("Document written with ID: ", docRef.id);
+
+            if (responseToString != "") {
+                createPLCount.forEach((doc) => { 
+                    i++;
+                  });
+    
+                  console.log(i);            
+                await setDoc(doc(createdPL,i.toString()),{
+                    propertyID: i,
+                    propertyName: arg.propName,
+                    propertyLocation: arg.propLocation,
+                    propertyType: arg.propType,
+                    propertyDescription: arg.propDesc,
+                    propertyPrice: arg.propPrice,
+                    propertyBedroom: arg.propBedroom,
+                    propertyBathroom: arg.propBathroom,
+                    propertySize: arg.propSize,
+                    propertyYearBuilt: arg.propYearBuilt,
+                    propertyAgent: arg.propAgent,
+                    propertySeller: arg.propSellerEmail,
+                    propertyAgentID: arg.propAgentID
+                })
+    
+                await setDoc(doc(userDataPL,i.toString()),{
+                    propertyID: i,
+                    propertyName: arg.propName,
+                    propertyAgent: arg.propAgent,
+                    AgentID: arg.propAgentID
+                })
+                
+                console.log("Document written with ID: ", i);
+            }else{
+                let initReaEntity = new reaEntity();
+                initReaEntity.setEntityMessage("No such seller email");
+            }
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     }
-    
-    async getAllPropertyListings() {
-        try {
-            const querySnapshot = await getDocs(collection(db, "CSIT314/PropertyListings/createdPLs"));
-            return querySnapshot.docs.map(doc => doc.data());
-        } catch (error) {
-            console.error("Error fetching property listings:", error);
-            return [];
-        }
-    }
-    
-
-
-
 }
 // Your web app's Firebase configuration

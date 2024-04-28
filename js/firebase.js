@@ -354,15 +354,20 @@ export default class FirebaseClass {
                     propertySize: arg.propSize,
                     propertyYearBuilt: arg.propYearBuilt,
                     propertyAgent: arg.propAgent,
+                    propertyAgentEmail: arg.propAgentEmail,
                     propertySeller: arg.propSellerEmail,
-                    propertyAgentID: arg.propAgentID
+                    propertyAgentID: arg.propAgentID,
+                    propStatus: "Available",
+                    propRating:"0"
                 })
     
                 await setDoc(doc(userDataPL,i.toString()),{
                     propertyID: i,
                     propertyName: arg.propName,
                     propertyAgent: arg.propAgent,
-                    AgentID: arg.propAgentID
+                    propertyAgentEmail: arg.propAgentEmail,
+                    AgentID: arg.propAgentID,
+                    propStatus: "Available"
                 })
                 
                 console.log("Document written with ID: ", i);

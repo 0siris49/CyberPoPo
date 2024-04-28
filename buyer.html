@@ -30,10 +30,9 @@
                 border-radius: 5px;
                 font-size: 16px;
                 margin-right: 10px;
-                /* adds spacing between elements */
             }
 
-            button {
+            .shortlisted-button, button {
                 padding: 10px 20px;
                 background-color: #4CAF50;
                 color: white;
@@ -42,21 +41,20 @@
                 cursor: pointer;
                 font-size: 16px;
                 transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-                box-shadow: 0 9px #999;
-                /* Shadow to give the button a raised effect */
             }
-
-            button:hover {
+            
+            .shortlisted-button{
+                box-shadow: 0 7px #999;
+            }
+            
+            .shortlisted-button:hover {
                 background-color: #45a049;
             }
 
-            button:active {
+            .shortlisted-button:active {
                 background-color: #388e3c;
-                /* A slightly darker green when the button is pressed */
                 box-shadow: 0 5px #666;
-                /* Shorten the shadow to give the impression of pressing down */
                 transform: translateY(4px);
-                /* Move the button down to mimic a press */
             }
 
 
@@ -78,6 +76,7 @@
             .property-listing:hover {
                 background-color: #f0f0f0;
                 border-color: gold;
+                border-width: 4px;
             }
 
             .rea-info {
@@ -95,6 +94,10 @@
 
             .rea-info p {
                 margin: 5px 0;
+            }
+
+            .view-details-button{
+                margin-left: 10px;
             }
         </style>
 

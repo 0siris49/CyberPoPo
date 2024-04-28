@@ -36,7 +36,7 @@ export class buyerController {
                 <p><strong>Location:</strong> ${listing.propertyLocation}</p>
                 <p><strong>Type:</strong> ${listing.propertyType}</p>
                 <p><strong>Description:</strong> ${listing.propertyDescription}</p>
-                <p><strong>Price:</strong> ${listing.propertyPrice}</p>
+                <p><strong>Price: SGD </strong> ${listing.propertyPrice}</p>
                 <button class="shortlisted-button">Shortlisted</button>
                 <a href="fullPropertyDetails.html?propertyId=${listing.propertyId}" class="view-details-button">View Details</a>
             ` + `

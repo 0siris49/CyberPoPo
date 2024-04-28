@@ -13,7 +13,7 @@ export class registrationEntity{
     var email = arg.userEmail;
     var password = arg.userPass;
     var type = arg.userType;
-    var dayDOB = arg.dayDOB;
+    var dayDOB = arg.dayDOB; 
     var monthDOB = arg.monthDOB;
     var yearDOB = arg.yearDOB;
     var firstName = arg.firstName;

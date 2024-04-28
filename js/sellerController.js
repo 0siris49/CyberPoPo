@@ -26,6 +26,7 @@ export class sellerController{
         var cleanID = [];
         var cleanPropName = [];
         var cleanAgent = [];
+        var cleanStatus = [];
 
 
         for(let i=0; i<totalPropList;i++){
@@ -49,10 +50,17 @@ export class sellerController{
                     //console.log(result);
                     cleanPropName.push(result);
                 }
-                 if(removeEtc.search("propertyAgent") != -1){
+
+                if(removeEtc.search("propertyAgent") != -1){
                     var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
                     ///console.log(result);
                     cleanAgent.push(result);
+                }
+
+                if(removeEtc.search("propStatus") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    ///console.log(result);
+                    cleanStatus.push(result);
                 }
             }
         }
@@ -70,7 +78,7 @@ export class sellerController{
             <td><a href="www.google.com"> <div>${cleanPropName[i]}</div>  </a></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>${cleanStatus[i]}</td>
             <td>${cleanAgent[i]}</td>`;
             table.appendChild(row);
         }

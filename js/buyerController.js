@@ -32,17 +32,23 @@ export class buyerController {
             const listingElement = document.createElement('div');
             listingElement.classList.add('property-listing');
             listingElement.innerHTML = `
-                    <h2>${listing.propertyName}</h2>
-                    <p><strong>Location:</strong> ${listing.propertyLocation}</p>
-                    <p><strong>Type:</strong> ${listing.propertyType}</p>
-                    <p><strong>Description:</strong> ${listing.propertyDescription}</p>
-                    <p><strong>Price:</strong> ${listing.propertyPrice}</p>
-                    <!-- Buttons for actions on the property -->
-                    <button class="shortlisted-button">Shortlisted</button>
-                    <a href="fullPropertyDetails.html?propertyId=${listing.propertyId}" class="view-details-button">View Details</a>
-                `;
+                <h2>${listing.propertyName}</h2>
+                <p><strong>Location:</strong> ${listing.propertyLocation}</p>
+                <p><strong>Type:</strong> ${listing.propertyType}</p>
+                <p><strong>Description:</strong> ${listing.propertyDescription}</p>
+                <p><strong>Price:</strong> ${listing.propertyPrice}</p>
+                <button class="shortlisted-button">Shortlisted</button>
+                <a href="fullPropertyDetails.html?propertyId=${listing.propertyId}" class="view-details-button">View Details</a>
+            ` + `
+            <div class="rea-info">
+            <h4>Real Estate Agent Information</h4>
+            <p><strong>Name:</strong> ${listing.reaName}</p>
+            <p><strong>Contact:</strong> ${listing.reaContact}</p>
+            </div>
+            `;
             container.appendChild(listingElement);
         });
     }
-    
+
+
 }

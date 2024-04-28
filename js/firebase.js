@@ -375,6 +375,7 @@ export default class FirebaseClass {
             console.error("Error adding document: ", e);
         }
     }
+    
     async getAllPropertyListings() {
         try {
             const querySnapshot = await getDocs(collection(db, "CSIT314/PropertyListings/createdPLs"));

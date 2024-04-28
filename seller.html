@@ -31,7 +31,7 @@
     <div class="view-container-header">
         <h2 class="view-title">View My Properties</h2>
         <div class="utility-bar">
-            <input type="text" name="seller-search-properties" id="search-id" placeholder="ID">
+            <input type="text" name="seller-search-properties" id="search-id" placeholder="ID / Property Name / REA">
             <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
         </div>
     </div>
@@ -57,14 +57,40 @@
     <!-- As a seller, I want to know how many times my properties are getting shortlisted, so that I can keep track of who is shortlisting my property -->
    
     
-<script>
-    document.getElementById('logout').addEventListener('click', function() {
-        console.log("Logout link clicked");
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-        
-    });
 
-</script>
+
+    <script>
+        document.getElementById('logout').addEventListener('click', function() {
+            console.log("Logout link clicked");
+            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+        });
+    
+        document.getElementById('seller-search-button').addEventListener('click', function() {
+            var input, filter, table, tr, td_id, td_name, td_rea, i, txtValue_id, txtValue_name, txtValue_rea;
+            input = document.getElementById("search-id");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+    
+            for (i = 0; i < tr.length; i++) {
+                td_id = tr[i].getElementsByTagName("td")[0]; // Assuming ID is in the first column
+                td_name = tr[i].getElementsByTagName("td")[1]; // Assuming Property Name is in the second column
+                td_rea = tr[i].getElementsByTagName("td")[5]; // Assuming REA is in the sixth column
+                if (td_id || td_name || td_rea) {
+                    txtValue_id = td_id.textContent || td_id.innerText;
+                    txtValue_name = td_name.textContent || td_name.innerText;
+                    txtValue_rea = td_rea.textContent || td_rea.innerText;
+                    if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_rea.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    
+    </script>
+    
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

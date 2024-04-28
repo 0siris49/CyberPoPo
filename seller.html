@@ -50,11 +50,7 @@
             <tbody id="data-table"></tbody>
         </table>
         <br/><br/>
-        <button id="clicker" data-count="0" style="cursor: pointer">View in Full Details</button>
-        <div id="clickedNum">Your property is viewed 0 times</div>
-        <br/>
-        <button id="clicker1" data-count="0" style="cursor: pointer">Shortlist this property</button>
-        <div id="clickedNum1">Your property is shortlisted 0 times</div>
+
     </div>
     <!-- Idea: under the REA table column has a link to the respective REA page, then seller can rate n review him under his page--> 
     <!-- As a seller, I want to view how many views my properties are getting --> 
@@ -70,31 +66,7 @@
 
 </script>
 
-<script>  
-    document.addEventListener('DOMContentLoaded', function() {
-    var clicker = document.getElementById('clicker');
-    var clickedNum = document.getElementById('clickedNum');
-    var count = 0;
 
-    clicker.addEventListener('click', function() {
-        count++;
-        clickedNum.textContent = 'Your property is viewed ' + count + ' times';
-        clicker.setAttribute('data-count', count);
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    var clicker = document.getElementById('clicker1');
-    var clickedNum = document.getElementById('clickedNum1');
-    var count = 0;
-
-    clicker.addEventListener('click', function() {
-        count++;
-        clickedNum.textContent = 'Your property is shorlisted ' + count + ' times';
-        clicker.setAttribute('data-count', count);
-    });
-});
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="module" src="./js/sellerController.js"></script>
 

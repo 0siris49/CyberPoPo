@@ -37,9 +37,12 @@ export class buyerController {
                     <p><strong>Type:</strong> ${listing.propertyType}</p>
                     <p><strong>Description:</strong> ${listing.propertyDescription}</p>
                     <p><strong>Price:</strong> ${listing.propertyPrice}</p>
-                    <!-- Add more details as needed -->
+                    <!-- Buttons for actions on the property -->
+                    <button class="shortlisted-button">Shortlisted</button>
+                    <a href="fullPropertyDetails.html?propertyId=${listing.propertyId}" class="view-details-button">View Details</a>
                 `;
             container.appendChild(listingElement);
         });
     }
+    
 }

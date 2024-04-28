@@ -1,147 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Header</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<header>
-    <style>
-        /* CSS for search bar */
-        .search-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0; /* Light gray background color */
-            border-radius: 5px;
-            margin-bottom: 20px; /* Add some margin at the bottom */
-        }
+    <header>
+        <style>
+            .search-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #f0f0f0;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
 
-        .search-bar input[type="text"],
-        .search-bar select {
-            padding: 8px;
-            border: 1px solid #ccc; /* Gray border */
-            border-radius: 5px;
-            font-size: 16px;
-        }
+            .search-bar input[type="text"],
+            .search-bar select {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
 
-        .search-bar button {
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Green background color */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s; /* Smooth transition for hover effect */
-        }
+            .search-bar button {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
 
-        .search-bar button:hover {
-            background-color: #45a049; /* Darker green color on hover */
-        }
-        .headerSeller .logo img {
-            width: 200px; 
-            height: auto;
-        }
-    </style>
+            .search-bar button:hover {
+                background-color: #45a049;
+            }
 
-    <div>
-        <div class="headerSeller">
-            <a href="#Login.html" class="logo">
-                <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
-            </a>
-            <div class="header-right">
-                <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
-            </div>
-            <div class="header-right">
-                <a id="seller-rate-and-review-button" style="cursor: pointer" href="REA.html">Rate and Review an Agent</a>
-            </div>
-            <div class="header-right">
-                <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
+            .headerSeller .logo img {
+                width: 200px;
+                height: auto;
+            }
+
+            #property-listings-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .property-listing {
+                width: 80%;
+                margin: 10px auto;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .property-listing button {
+                margin-right: 10px;
+                padding: 8px 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #4CAF50;
+                color: white;
+                font-size: 14px;
+            }
+
+            .property-listing button:hover {
+                background-color: #45a049;
+            }
+
+            .property-listing .view-details-button {
+                display: inline-block;
+                margin-right: 10px;
+                padding: 8px 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #4CAF50;
+                color: white;
+                font-size: 14px;
+                text-decoration: none;
+            }
+
+            .property-listing .view-details-button:hover {
+                background-color: #45a049;
+            }
+        </style>
+
+
+        <div>
+            <div class="headerSeller">
+                <a href="#Login.html" class="logo">
+                    <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+                </a>
+                <div class="header-right">
+                    <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+                </div>
+                <div class="header-right">
+                    <a id="seller-rate-and-review-button" style="cursor: pointer" href="REA.html">Rate and Review an
+                        Agent</a>
+                </div>
+                <div class="header-right">
+                    <a id="seller-viewshortlistcount" style="cursor: pointer">View Properties</a>
+                </div>
             </div>
         </div>
+    </header>
+
+    <div class="sellerwelcome">Welcome to your Buyer Page, &nbsp;<div id="buyerName"></div>
     </div>
-</header>
 
-<div class="sellerwelcome">Welcome to your Buyer Page, &nbsp;<div id="buyerName"></div></div>
-
-<div class="view-container" id="view-container">
-    <div class="search-bar">
-        <form id="property-search-form">
-            <input type="text" placeholder="Enter location...">
-            <select name="price-range">
-                <option value="">Price Range</option>
-                <option value="0-100000">$0 - $100,000</option>
-                <option value="100000-200000">$100,000 - $200,000</option>
-            </select>
-            <select name="property-type">
-                <option value="">Property Type</option>
-                <option value="house">House</option>
-                <option value="apartment">Apartment</option>
-                <option value="apartment">Condo</option>
-            </select>
-            <select name="bedrooms">
-                <option value="">Bedrooms</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedrooms</option>
-                <option value="3">3 Bedrooms</option>
-                <option value="3">4 Bedrooms</option>
-                <option value="3">5 Bedrooms</option>
-                <option value="3">6 Bedrooms</option>
-                <option value="3">7 Bedrooms</option>
-                <option value="3">8 Bedrooms</option>
-                <option value="3">9 Bedrooms</option>
-                <option value="3">10 Bedrooms</option>
-            </select>
-            <button type="submit">Search</button>
-        </form>
+    <div class="view-container" id="view-container">
+        <div class="search-bar">
+            <form id="property-search-form">
+                <input type="text" placeholder="Enter location...">
+                <select name="price-range">
+                    <option value="">Price Range</option>
+                    <option value="0-100000">$0 - $100,000</option>
+                    <option value="100000-200000">$100,000 - $200,000</option>
+                </select>
+                <select name="property-type">
+                    <option value="">Property Type</option>
+                    <option value="house">House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="apartment">Condo</option>
+                </select>
+                <select name="bedrooms">
+                    <option value="">Bedrooms</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                    <option value="3">3 Bedrooms</option>
+                    <option value="3">4 Bedrooms</option>
+                    <option value="3">5 Bedrooms</option>
+                    <option value="3">6 Bedrooms</option>
+                    <option value="3">7 Bedrooms</option>
+                    <option value="3">8 Bedrooms</option>
+                    <option value="3">9 Bedrooms</option>
+                    <option value="3">10 Bedrooms</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<div id="property-listings-container"></div>    
+    <div id="property-listings-container"></div>
 
-<script>
-    document.getElementById('viewAccounts').addEventListener('click', function() {
-        console.log("View Accounts link clicked");
-        // Add logic here to handle viewAccounts functionality
-        window.open(c,"_self");
-    });
+    <script>
+        document.getElementById('viewAccounts').addEventListener('click', function () {
+            console.log("View Accounts link clicked");
+            // Add logic here to handle viewAccounts functionality
+            window.open(c, "_self");
+        });
 
-    document.getElementById('viewProfiles').addEventListener('click', function() {
-        console.log("View Profiles link clicked");
-        // Add logic here to handle viewProfiles functionality
-    });
+        document.getElementById('viewProfiles').addEventListener('click', function () {
+            console.log("View Profiles link clicked");
+            // Add logic here to handle viewProfiles functionality
+        });
 
-    document.getElementById('logout').addEventListener('click', function() {
-        console.log("Logout link clicked");
-        // Add logic here to handle logout functionality
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+        document.getElementById('logout').addEventListener('click', function () {
+            console.log("Logout link clicked");
+            // Add logic here to handle logout functionality
+            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
-    });
+        });
 
-    function toggleReviewForm() {
-        var reviewFormContainer = document.querySelector(".seller-review-container");
-        if (reviewFormContainer.style.display === "none") {
-            reviewFormContainer.style.display = "block";
-        } else {
-            reviewFormContainer.style.display = "none";
+        function toggleReviewForm() {
+            var reviewFormContainer = document.querySelector(".seller-review-container");
+            if (reviewFormContainer.style.display === "none") {
+                reviewFormContainer.style.display = "block";
+            } else {
+                reviewFormContainer.style.display = "none";
+            }
         }
-    }
-
-    document.getElementById("seller-review-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-
-        // Your form submission logic goes here, such as sending data to the server
-
-        // After handling the form submission, toggle the visibility of the form
-        toggleReviewForm();
-    });
-</script>
-<script type="module" src="./js/buyerController.js"></script>
+    </script>
+    <script type="module" src="./js/buyerController.js"></script>
 
 </body>
+
 </html>

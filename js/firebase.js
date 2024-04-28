@@ -375,5 +375,14 @@ export default class FirebaseClass {
             console.error("Error adding document: ", e);
         }
     }
+    async getAllPropertyListings() {
+        try {
+            const querySnapshot = await getDocs(collection(db, "CSIT314/PropertyListings/createdPLs"));
+            return querySnapshot.docs.map(doc => doc.data());
+        } catch (error) {
+            console.error("Error fetching property listings:", error);
+            return [];
+        }
+    }
 }
 // Your web app's Firebase configuration

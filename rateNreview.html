@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Header</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div>
+    <div class="headerSeller">
+        <a href="Login.html" class="logo">
+            Cyber Property
+        </a>
+        <div class="header-right">
+            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+        </div>
+        <div class="header-right">
+            <a id="seller-viewshortlistcount" style="cursor: pointer" href="seller.html">View My Properties</a>
+        </div>
+       
+    </div>
+</div>
+
+<div class="sellerwelcome">Welcome to your Seller Page, &nbsp;<div id="sellerName"></div></div>
+<div class="sellerwelcome">Idea: under the REA table column has a link to the respective REA page, then seller can rate/review him under respective REA's page</div>
+   
+    <div class="seller-review-container">
+        <form id="seller-review-form" class="seller-review-form">
+            <b class="seller-reviewAgent-Title">Review Agent</b><br><br>
+            <label for="Name">Name:</label>
+            <input type="text" id="agentName" name="agentName" required><br><br>
+            <label for="agent_id">Agent License Number:</label>
+            <input type="text" id="agent_id" name="agent_id" required><br><br>
+            
+          
+            <label for="review">Review:</label><br>
+            <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
+          
+            <div>Rate your REA:</div>
+            <div class="stars">
+                  <input class="star star-5" id="star-5" type="radio" name="star"/>
+                  <label class="star star-5" for="star-5"></label>
+                  <input class="star star-4" id="star-4" type="radio" name="star"/>
+                  <label class="star star-4" for="star-4"></label>
+                  <input class="star star-3" id="star-3" type="radio" name="star"/>
+                  <label class="star star-3" for="star-3"></label>
+                  <input class="star star-2" id="star-2" type="radio" name="star"/>
+                  <label class="star star-2" for="star-2"></label>
+                  <input class="star star-1" id="star-1" type="radio" name="star"/>
+                  <label class="star star-1" for="star-1"></label>
+            </div>
+            <button type="submit" id="seller-submit-review-button" style="cursor: pointer">Submit Review</button>
+        </form>
+    </div>    
+</div>
+
+<script>
+    document.getElementById('logout').addEventListener('click', function() {
+        console.log("Logout link clicked");
+        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+        
+    });
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="module" src="./js/sellerController.js"></script>
+
+
+</body>
+</html>

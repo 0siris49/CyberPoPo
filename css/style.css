@@ -490,12 +490,10 @@ body {
         
     }
 
-    button#clicker, #clicker1 {
-      width: 20%;
-      height: 37.6px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      margin-left: 5px;
+    button#propertyView-btton, #propertyShortlisted-button {
+      width: 30%;
+      height: 45px;
+      margin-left: 260px;
       background-color: #E9C874;
       
   }

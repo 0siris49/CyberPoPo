@@ -32,7 +32,8 @@
                 margin-right: 10px;
             }
 
-            .shortlisted-button, button {
+            .shortlisted-button,
+            button {
                 padding: 10px 20px;
                 background-color: #4CAF50;
                 color: white;
@@ -42,11 +43,11 @@
                 font-size: 16px;
                 transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
             }
-            
-            .shortlisted-button{
+
+            .shortlisted-button {
                 box-shadow: 0 7px #999;
             }
-            
+
             .shortlisted-button:hover {
                 background-color: #45a049;
             }
@@ -96,8 +97,38 @@
                 margin: 5px 0;
             }
 
-            .view-details-button{
+            .view-details-button {
                 margin-left: 10px;
+            }
+
+            .scroll-up-btn {
+                all: unset;
+                position: fixed;
+                bottom: 25px;
+                right: 30px;
+                height: 90px;
+                width: 90px;
+                background-color: #080808;
+                border-radius: 99%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            .scroll-up-btn .arrow-up {
+                width: 28px;
+                height: 28px;
+                border-left: 4px solid #f9f9f9;
+                border-bottom: 4px solid #f9f9f9;
+                transform: rotate(135deg);
+                margin-bottom: -14px;
+                pointer-events: none;
+            }
+
+
+            html {
+                scroll-behavior: smooth;
             }
         </style>
 
@@ -153,10 +184,13 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-
     </div>
 
     <div id="property-listings-container"></div>
+
+    <button class="scroll-up-btn">
+        <i class="arrow-up"></i>
+    </button>
 
     <script>
         document.getElementById('viewAccounts').addEventListener('click', function () {
@@ -185,6 +219,18 @@
                 reviewFormContainer.style.display = "none";
             }
         }
+
+    </script>
+
+
+    <script>
+        const btn = document.querySelector(".scroll-up-btn");
+        btn.addEventListener("click", () => {
+            document.documentElement.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
     </script>
     
     <script type="module" src="./js/buyerController.js"></script>

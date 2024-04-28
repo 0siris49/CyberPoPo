@@ -1,141 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Listing Details</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Property Listing Details</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
 
-        .container {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 800px;
-            width: 90%;
-            margin: 20px auto;
-        }
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                max-width: 800px;
+                width: 90%;
+                margin: 20px auto;
+            }
 
-        .container h2 {
-            text-align: center;
-            color: #333;
-        }
+            .container h2 {
+                text-align: center;
+                color: #333;
+            }
 
-        dl {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
+            dl {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 20px;
+            }
 
-        dt {
-            font-weight: bold;
-            color: #555;
-        }
+            dt {
+                font-weight: bold;
+                color: #555;
+            }
 
-        dd {
-            color: #333;
-        }
+            dd {
+                color: #333;
+            }
 
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #777;
-        }
-    </style>
-</head>
+            .footer {
+                text-align: center;
+                margin-top: 20px;
+                color: #777;
+            }
+        </style>
+    </head>
 
-<body>
-    <div class="headerSeller">
-        <a href="Login.html" class="logo">Cyber Property</a>
-        <div class="header-right">
-            <a id="logout" href="Login.html">Logout</a>
+    <body>
+        <div class="headerSeller">
+            <a href="Login.html" class="logo">Cyber Property</a>
+            <div class="header-right">
+                <a id="logout" href="Login.html">Logout</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-rate-and-review-button" href="rateNreview.html">Rate and Review an Agent</a>
+            </div>   
         </div>
-        <div class="header-right">
-            <a id="seller-rate-and-review-button" href="rateNreview.html">Rate and Review an Agent</a>
-        </div>   
-    </div>
 
-    <div class="container">
-        <h2>Property Listing Details</h2>
-        <dl>
-            <dt>Property Name:</dt>
-            <dd id="property_name"></dd>
+        <div class="container">
+            <h2>Property Listing Details</h2>
+            <dl>
+                <dt>Property Name:</dt>
+                <dd id="property_name"></dd>
 
-            <dt>Property Location:</dt>
-            <dd id="property_location"></dd>
+                <dt>Property Location:</dt>
+                <dd id="property_location"></dd>
 
-            <dt>Property Type:</dt>
-            <dd id="property_type"></dd>
+                <dt>Property Type:</dt>
+                <dd id="property_type"></dd>
 
-            <dt>Property Description:</dt>
-            <dd id="property_description"></dd>
+                <dt>Property Description:</dt>
+                <dd id="property_description"></dd>
 
-            <dt>Property Price($):</dt>
-            <dd id="property_price"></dd>
+                <dt>Property Price($):</dt>
+                <dd id="property_price"></dd>
 
-            <dt>Number of Bedroom(s):</dt>
-            <dd id="property_bedroom"></dd>
+                <dt>Number of Bedroom(s):</dt>
+                <dd id="property_bedroom"></dd>
 
-            <dt>Number of Bathroom(s):</dt>
-            <dd id="property_bathroom"></dd>
+                <dt>Number of Bathroom(s):</dt>
+                <dd id="property_bathroom"></dd>
 
-            <dt>Interior Size(sqm):</dt>
-            <dd id="property_size"></dd>
+                <dt>Interior Size(sqm):</dt>
+                <dd id="property_size"></dd>
 
-            <dt>Year Built:</dt>
-            <dd id="year_built"></dd>
+                <dt>Year Built:</dt>
+                <dd id="year_built"></dd>
 
-            <dt>Agent Name:</dt>
-            <dd id="property_agent"></dd>
+                <dt>Agent Name:</dt>
+                <dd id="property_agent"></dd>
 
-            <dt>Agent License Number:</dt>
-            <dd id="agent_id"></dd>
+                <dt>Agent License Number:</dt>
+                <dd id="agent_id"></dd>
 
-            <dt>Seller(email):</dt>
-            <dd id="property_seller"></dd>
-        </dl>
+                <dt>Seller(email):</dt>
+                <dd id="property_seller"></dd>
+            </dl>
+
+            
+            <div id="propertyView">Your property is viewed 0 times (only respective seller can see)</div>
+            <br/>
+            <div id="propertyShortlisted">Your property is shortlisted 0 times (only respective seller can see)</div><br><br>
+            <button id="propertyShortlisted-button" data-count="0" style="cursor: pointer">Shortlist this property(only buyer can see)</button>
+        </div>
+
+        <div class="container">
+            <h2>Mortgage Calculator</h2>
+            <p>The formula for calculating your monthly mortgage payment \( M \) is given by:</p>
+            <p>$$ M = P \cdot \frac{r(1+r)^n}{(1+r)^n - 1} $$</p>
+            <form id="mortgageCalculator" onsubmit="calculateMortgage(event)">
+                <label for="principal">Loan Amount ($):</label><br>
+                <input type="number" id="principal" required min="0" style="margin-bottom: 10px;"><br>  <!-- Added margin-bottom for spacing -->
+            
+                <label for="interest">Annual Interest Rate (%):</label><br>
+                <input type="number" step="0.01" id="interest" required min="0" style="margin-bottom: 10px;"><br>  <!-- Added margin-bottom for spacing -->
+            
+                <label for="years">Loan Term (years):</label><br>
+                <input type="number" id="years" required min="0" style="margin-bottom: 10px;"><br>  <!-- Added margin-bottom for spacing -->
+            
+                <button type="submit">Calculate</button>
+            </form>
+            <div id="monthlyPayment">Monthly Payment: $0</div>
+        </div>
+        
+        <script>
+            function calculateMortgage(event) {
+                event.preventDefault();
+    
+                var principal = document.getElementById('principal').value;
+                var interest = document.getElementById('interest').value / 100 / 12;
+                var payments = document.getElementById('years').value * 12;
+    
+                var x = Math.pow(1 + interest, payments);
+                var monthly = (principal * x * interest) / (x - 1);
+    
+                if (isFinite(monthly)) {
+                    document.getElementById('monthlyPayment').textContent = 'Monthly Payment: $' + monthly.toFixed(2);
+                } else {
+                    document.getElementById('monthlyPayment').textContent = 'Monthly Payment: $0';
+                }
+            }
+        </script>
+
+        <script>  
+            document.addEventListener('DOMContentLoaded', function() {
+            var clicker = document.getElementById('propertyView-Button');
+            var clickedNum = document.getElementById('propertyView');
+            var count = 0;
+        
+            clicker.addEventListener('click', function() {
+                count++;
+                clickedNum.textContent = 'Your property is viewed ' + count + ' times (only respective seller can see)';
+                clicker.setAttribute('data-count', count);
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var clicker = document.getElementById('propertyShortlisted-button');
+            var clickedNum = document.getElementById('propertyShortlisted');
+            var count = 0;
+        
+            clicker.addEventListener('click', function() {
+                count++;
+                clickedNum.textContent = 'Your property is shortlisted ' + count + ' times (only respective seller can see)';
+                clicker.setAttribute('data-count', count);
+            });
+        });
+        </script>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 
         
-        <div id="propertyView">Your property is viewed 0 times (only respective seller can see)</div>
-        <br/>
-        <div id="propertyShortlisted">Your property is shortlisted 0 times (only respective seller can see)</div><br><br>
-        <button id="propertyShortlisted-button" data-count="0" style="cursor: pointer">Shortlist this property(only buyer can see)</button>
-    </div>
-
-    <script>  
-        document.addEventListener('DOMContentLoaded', function() {
-        var clicker = document.getElementById('propertyView-Button');
-        var clickedNum = document.getElementById('propertyView');
-        var count = 0;
-    
-        clicker.addEventListener('click', function() {
-            count++;
-            clickedNum.textContent = 'Your property is viewed ' + count + ' times (only respective seller can see)';
-            clicker.setAttribute('data-count', count);
-        });
-    });
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        var clicker = document.getElementById('propertyShortlisted-button');
-        var clickedNum = document.getElementById('propertyShortlisted');
-        var count = 0;
-    
-        clicker.addEventListener('click', function() {
-            count++;
-            clickedNum.textContent = 'Your property is shortlisted ' + count + ' times (only respective seller can see)';
-            clicker.setAttribute('data-count', count);
-        });
-    });
-    </script>
-    
-</body>
-</html>
+    </body>
+    </html>

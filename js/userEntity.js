@@ -1,7 +1,7 @@
 //import { auth, createToFireBase} from "./firebase.js";
 import FirebaseClass from "./firebase.js";
 import { auth } from "./firebase.js";
-import { setControllerMessage } from "./loginController.js";
+import { User } from "./loginController.js";
 import { sellerController } from "./sellerController.js";
 import { buyerController } from "./buyerController.js";
 import { createPropertyListingObject } from "./createPLPageController.js";
@@ -30,7 +30,11 @@ export class registrationEntity{
 }
 
 export class loginEntity{
-    constructor(arg){
+    constructor(){
+        
+    }
+
+    loginToFirebase(arg){
         var email = arg.userEmail;
         var password = arg.userPass;
         var type = arg.userType;
@@ -39,6 +43,15 @@ export class loginEntity{
         let firebaseObj = new FirebaseClass();
         firebaseObj.checkEmailPassType(email,password,type);
     }
+
+    setEntityMessage(messageFromFirebase){
+    
+        var message = messageFromFirebase;
+        console.log(message,'from Entity');
+        let initLoginController = new User();
+        initLoginController.setControllerMessage(messageFromFirebase);
+    }
+
 }
 
 export class sellerEntity{

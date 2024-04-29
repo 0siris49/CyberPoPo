@@ -2,12 +2,21 @@ import { loginEntity } from "./userEntity.js";
 
 var controllerMessage = "";
 
-class User {
+export class User {
     constructor (userEmail, userPass, userType){
         this.userEmail = userEmail;
         this.userPass = userPass;
         this.userType = userType;
     }
+
+    setControllerMessage(entityMessage){
+        controllerMessage = entityMessage;
+        console.log(controllerMessage,"from Controller");
+        if(controllerMessage != ""){
+            alert(controllerMessage);
+        }
+    }
+    
 }
 
 export function setControllerMessage(entityMessage){
@@ -28,7 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const userType = document.getElementById('role').value;
 
             let newUser = new User(userEmail, userPass, userType);
-            let initLoginEntity = new loginEntity(newUser);
+            let initLoginEntity = new loginEntity();
+            initLoginEntity.loginToFirebase(newUser);
             
         });
     }

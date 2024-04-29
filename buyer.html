@@ -157,31 +157,31 @@
     <div class="view-container" id="view-container">
         <div class="search-bar">
             <form id="property-search-form">
-                <input type="text" name="location" placeholder="Enter location..." required>
-                <select name="price-range" required>
-                    <option value="">Price Range</option>
-                    <option value="0-100000">$0 - $100,000</option>
-                    <option value="100000-200000">$100,000 - $200,000</option>
-                    <option value="200000-300000">$200,000 - $300,000</option>
-                    <option value="300000-400000">$300,000 - $400,000</option>
-                    <option value="400000-500000">$400,000 - $500,000</option>
-                    <option value="500000+">$500,000+</option>
+                <input type="text" name="location" placeholder="Enter location..." id="property_location" required>
+                <select name="price-range" id="property_range" required>
+                    <option disabled selected>Price Range</option>
+                    <option value="1">$0 - $100,000</option>
+                    <option value="2">$100,001 - $200,000</option>
+                    <option value="3">$200,001 - $300,000</option>
+                    <option value="4">$300,001 - $400,000</option>
+                    <option value="5">$400,001 - $500,000</option>
+                    <option value="6">$500,001+</option>
                 </select>
-                <select name="property-type" required>
-                    <option value="">Property Type</option>
+                <select placeholder="Property Type" id="property_type" required>
+                    <option disabled selected>Property Type</option>
                     <option value="house">House</option>
                     <option value="apartment">Apartment</option>
                     <option value="condo">Condo</option>
                 </select>
-                <select name="bedrooms" required>
-                    <option value="">Bedrooms</option>
+                <select name="bedrooms" id="property_bedroom" required>
+                    <option disabled selected>Bedrooms</option>
                     <option value="1">1 Bedroom</option>
                     <option value="2">2 Bedrooms</option>
                     <option value="3">3 Bedrooms</option>
                     <option value="4">4 Bedrooms</option>
                     <option value="5">5+ Bedrooms</option>
                 </select>
-                <button type="submit">Search</button>
+                <button id="searchBtn">Search</button>
             </form>
         </div>
     </div>

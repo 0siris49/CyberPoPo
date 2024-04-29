@@ -20,7 +20,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js'
 import {
     reaEntity,
-    setEntityMessage
+    loginEntity
 } from './userEntity.js';
 
 import { sellerEntity,buyerEntity } from './userEntity.js';
@@ -188,7 +188,8 @@ export default class FirebaseClass {
                 const errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage);
-                setEntityMessage(errorMessage);
+                let initLoginEntity = new loginEntity();
+                initLoginEntity.setEntityMessage(errorMessage);
             });
     }
 
@@ -215,7 +216,8 @@ export default class FirebaseClass {
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
             }else{
-                console.log("User does not exist");
+                let initLoginEntity = new loginEntity();
+                initLoginEntity.setEntityMessage("User does not exist");
             }
 
         } else if (type === 'buyer') {
@@ -231,7 +233,8 @@ export default class FirebaseClass {
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
             }else{
-                console.log("User does not exist");
+                let initLoginEntity = new loginEntity();
+                initLoginEntity.setEntityMessage("User does not exist");
             }
 
         } else if (type === 'seller') {
@@ -247,7 +250,8 @@ export default class FirebaseClass {
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
             }else{
-                console.log("User does not exist");
+                let initLoginEntity = new loginEntity();
+                initLoginEntity.setEntityMessage("User does not exist");
             }
         } else if (email === "sysadmin@gmail.com") {
 
@@ -262,7 +266,8 @@ export default class FirebaseClass {
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, 'sysadmin');
             }else{
-                console.log("User does not exist");
+                let initLoginEntity = new loginEntity();
+                initLoginEntity.setEntityMessage("User does not exist");
             }
         }
 

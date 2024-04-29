@@ -4,7 +4,7 @@ import FirebaseClass from './firebase.js';
 window.onload = function () {
     let initBuyerController = new buyerController();
     initBuyerController.getUserToController();
-    initBuyerController.getPropertyListings();
+    
 };
 
 export class buyerController {
@@ -14,18 +14,27 @@ export class buyerController {
         initBuyerEntity.getUserToEntity();
     }
 
-    async getPropertyListings() {
-        const firebase = new FirebaseClass();
-        const propertyListings = await firebase.getAllPropertyListings();
-        this.pullPropertyListings(propertyListings);
-    }
 
     setBuyerControllerDisplayName(displayNameFromEntity) {
         var displayUserName = displayNameFromEntity;
-        document.getElementById('buyerName').innerHTML = displayUserName;
+        const buyerNameTag = document.getElementById('buyerName');
+        if(buyerNameTag){
+            document.getElementById('buyerName').innerHTML=displayUserName;
+        }
+    
     }
 
-    pullPropertyListings(propertyListings) {
+    getSearchParams(){
+        
+    }
+
+    /*async getPropertyListings() {
+        const firebase = new FirebaseClass();
+        const propertyListings = await firebase.getAllPropertyListings();
+        this.pullPropertyListings(propertyListings);
+    } */
+
+    /*pullPropertyListings(propertyListings) {
         const container = document.getElementById('property-listings-container');
         container.innerHTML = '';
         propertyListings.forEach(listing => {
@@ -48,7 +57,7 @@ export class buyerController {
             `;
             container.appendChild(listingElement);
         });
-    }
+    }*/
 
 
 }

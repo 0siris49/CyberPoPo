@@ -25,12 +25,10 @@ export class registrationEntity{
     firebaseObj.createToFireBase(auth,email,password,type,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum);
     
     }   
-
-    
 }
 
 export class loginEntity{
-    constructor(){
+    constructor(){ 
         
     }
 
@@ -38,7 +36,7 @@ export class loginEntity{
         var email = arg.userEmail;
         var password = arg.userPass;
         var type = arg.userType;
-        console.log("From Login Entity, ",email,password,type);
+        //console.log("From Login Entity, ",email,password,type);
         
         let firebaseObj = new FirebaseClass();
         firebaseObj.checkEmailPassType(email,password,type);
@@ -52,6 +50,12 @@ export class loginEntity{
         initLoginController.setControllerMessage(messageFromFirebase);
     }
 
+}
+
+export class logoutEntity{
+    constructor(){
+
+    }
 }
 
 export class sellerEntity{
@@ -89,6 +93,16 @@ export class buyerEntity{
         initBuyerController.setBuyerControllerDisplayName(displayNameFromFirebase);
     }
 
+    passSearchParamsToEntity(arg){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.getBuyerSearchListings(arg);
+    }
+
+    retrieveSearchResultsEntity(searchResult){
+        let initBuyerController = new buyerController();
+        initBuyerController.retrieveSearchResultsController(searchResult);
+    }
+
     
 }
 
@@ -98,9 +112,8 @@ export class reaEntity{
     }
 
     createPropertyListingToFirebase(arg){
-        let firebaseObj = new FirebaseClass();
+       let firebaseObj = new FirebaseClass();
        var result = firebaseObj.storePropertyListingToDatabase(arg);
-       console.log(result," From reaEntity")
     }
 
     setEntityMessage(messageFromFirebase){

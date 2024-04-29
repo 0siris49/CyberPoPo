@@ -297,23 +297,24 @@ export default class FirebaseClass {
     }
 
     async getSellerProperties(currentUserEmail){
-        let userDataPLQuery = "CSIT314/All-Users/UserData/"+currentUserEmail+"/ownedPropList";
-        const currentUserOwnedPL = collection(db,userDataPLQuery);
-        const querySnapshot = await getDocs(currentUserOwnedPL);
+        //let userDataPLQuery = "CSIT314/All-Users/UserData/"+currentUserEmail+"/ownedPropList";
+        //const currentUserOwnedPL = collection(db,userDataPLQuery);
+        const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertySeller", "==", currentUserEmail));
+        const querySnapshot = await getDocs(q);
         var allData = ''; 
         querySnapshot.forEach((doc) => {
             var docStringify = JSON.stringify(doc.data());
             allData += docStringify + "---";
           });
-
+          console.log(allData);
           return allData;
           
-          //console.log(allData);
+          
     }
 
 
     getCurrentUserBuyer(){
-        auth.onAuthStateChanged(user => {
+        auth.onAuthStateChanged(async user => {
             //console.log(user);
             //console.log("From getCurrentUser");
             if(user){
@@ -334,14 +335,21 @@ export default class FirebaseClass {
             const userDataPL = collection(db,userDataPLQuery)
             var i =1;
             const createPLCount = await getDocs(createdPL);
-            const q = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", arg.propSellerEmail));
-            var responseToString = "";
-            const queryAns = await getDocs(q);
+            const q1 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", arg.propSellerEmail));
+            const q2 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("Email", "==", arg.propAgentEmail));
+            var responseToStringq1 = "";
+            var responseToStringq2 = "";
+            const queryAns = await getDocs(q1);
             queryAns.forEach((doc) => {
-                responseToString = doc.id;
+                responseToStringq1 = doc.id;
+            });
+            const queryAns2 = await getDocs(q2);
+            queryAns2.forEach((doc) => {
+                responseToStringq2 = doc.id;
             });
 
-            if (responseToString != "") {
+            if (responseToStringq1 != "") {
+               if(responseToStringq2 != ""){
                 createPLCount.forEach((doc) => { 
                     i++;
                   });
@@ -358,27 +366,32 @@ export default class FirebaseClass {
                     propertyBathroom: arg.propBathroom,
                     propertySize: arg.propSize,
                     propertyYearBuilt: arg.propYearBuilt,
-                    propertyAgent: arg.propAgent,
+                    propAgent: arg.propAgent,
                     propertyAgentEmail: arg.propAgentEmail,
                     propertySeller: arg.propSellerEmail,
-                    propertyAgentID: arg.propAgentID,
-                    propStatus: "Available",
-                    propRating:"0"
+                    propertyAGTID: arg.propAgentID,
+                    propRating:"0",
+                    propRTC:"0",
+                    propStatus: "Available"
                 })
     
-                await setDoc(doc(userDataPL,i.toString()),{
+                /*await setDoc(doc(userDataPL,i.toString()),{
                     propertyID: i,
                     propertyName: arg.propName,
                     propertyAgent: arg.propAgent,
                     propertyAgentEmail: arg.propAgentEmail,
                     AgentID: arg.propAgentID,
                     propStatus: "Available"
-                })
+                })*/
                 
                 console.log("Document written with ID: ", i);
+               }else{
+                    let initReaEntity = new reaEntity();
+                    initReaEntity.setEntityMessage("No such REA Email")
+               }
             }else{
                 let initReaEntity = new reaEntity();
-                initReaEntity.setEntityMessage("No such seller email");
+                initReaEntity.setEntityMessage("No such Seller Email");
             }
 
         } catch (e) {
@@ -386,14 +399,41 @@ export default class FirebaseClass {
         }
     }
     
-    async getAllPropertyListings() {
-        try {
-            const querySnapshot = await getDocs(collection(db, "CSIT314/PropertyListings/createdPLs"));
-            return querySnapshot.docs.map(doc => doc.data());
-        } catch (error) {
-            console.error("Error fetching property listings:", error);
-            return [];
+    async getBuyerSearchListings(arg){
+        const priceRangeOpt = arg.propPriceRange;
+        var priceUpperString = 0;
+        var priceLowerString = 0;
+        const propTypeOpt = arg.propType;
+        const propBedrooms = arg.propBedrooms;
+        if(priceRangeOpt == 1){
+            priceUpperString = 100000;
+            priceLowerString = 0;
+        }else if(priceRangeOpt == 2){
+            priceUpperString = 200000;
+            priceLowerString = 100001;
+        }else if(priceRangeOpt == 3){
+            priceUpperString = 300000;
+            priceLowerString = 200001;
+        }else if(priceRangeOpt == 4){
+            priceUpperString = 400000;
+            priceLowerString = 300001;
+        }else if(priceRangeOpt == 5){
+            priceUpperString = 500000;
+            priceLowerString = 400001;
+        }else if(priceRangeOpt == 6){
+            priceLowerString = 500001;
         }
+        console.log(priceLowerString,priceUpperString,propTypeOpt,propBedrooms);
+        const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyPrice", ">=", priceLowerString.toString()), where("propertyPrice", "<=",priceUpperString.toString() ), where("propertyType", "==",propTypeOpt.toString() ),where("propertyBedroom", "==",propBedrooms.toString(), where("propStatus", "==","Available")));
+        const queryAns = await getDocs(q);
+        var allData = ''; 
+        queryAns.forEach((doc) => {
+            var docStringify = JSON.stringify(doc.data());
+            allData += docStringify + "---";
+          });
+          console.log(allData);
+          let initBuyerEntity = new buyerEntity();
+          initBuyerEntity.retrieveSearchResultsEntity(allData);
     }
 }
 // Your web app's Firebase configuration

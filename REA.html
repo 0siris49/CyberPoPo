@@ -1,127 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Header</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Header</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
-<div>
+  <div>
     <div class="headerSeller">
-        <a href="#Login.html" class="logo">
-            Cyber Property
-        </a>
-        <div class="header-right">
-            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+      <a href="#Login.html" class="logo">
+        Cyber Property
+      </a>
+      <div class="header-right">
+        <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+      </div>
+      <div class="header-right">
+        <a id="" style="cursor: pointer">View listed Properties ratings</a>
+      </div>
+      <div class="header-right">
+        <a id="rea-review-page" style="cursor: pointer">View My Ratings</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sellerwelcome">Welcome to your REA Page, &nbsp;<div> *inserts name*</div>
+  </div>
+
+  <div class="ratingbox">
+    <span class="heading">User Rating</span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <p>4.1 average based on 254 reviews.</p>
+    <hr style="border:3px solid #f1f1f1">
+
+    <div class="row">
+      <div class="side">
+        <div>5 star</div>
+      </div>
+      <div class="middle">
+        <div class="bar-container">
+          <div class="bar-5"></div>
         </div>
-        <div class="header-right">
-            <a id="" style="cursor: pointer">View listed Properties ratings</a>
+      </div>
+      <div class="side right">
+        <div>150</div>
+      </div>
+      <div class="side">
+        <div>4 star</div>
+      </div>
+      <div class="middle">
+        <div class="bar-container">
+          <div class="bar-4"></div>
         </div>
-        <div class="header-right">
-            <a id="rea-review-page" style="cursor: pointer">View My Ratings</a>
+      </div>
+      <div class="side right">
+        <div>63</div>
+      </div>
+      <div class="side">
+        <div>3 star</div>
+      </div>
+      <div class="middle">
+        <div class="bar-container">
+          <div class="bar-3"></div>
         </div>
-       
-    </div>
-</div>
-
-<div class="sellerwelcome">Welcome to your REA Page, &nbsp;<div> *inserts name*</div></div>
-
-<div class="ratingbox">
-<span class="heading">User Rating</span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<p>4.1 average based on 254 reviews.</p>
-<hr style="border:3px solid #f1f1f1">
-
-<div class="row">
-  <div class="side">
-    <div>5 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-5"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>150</div>
-  </div>
-  <div class="side">
-    <div>4 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-4"></div>
+      </div>
+      <div class="side right">
+        <div>15</div>
+      </div>
+      <div class="side">
+        <div>2 star</div>
+      </div>
+      <div class="middle">
+        <div class="bar-container">
+          <div class="bar-2"></div>
+        </div>
+      </div>
+      <div class="side right">
+        <div>6</div>
+      </div>
+      <div class="side">
+        <div>1 star</div>
+      </div>
+      <div class="middle">
+        <div class="bar-container">
+          <div class="bar-1"></div>
+        </div>
+      </div>
+      <div class="side right">
+        <div>20</div>
+      </div>
     </div>
   </div>
-  <div class="side right">
-    <div>63</div>
-  </div>
-  <div class="side">
-    <div>3 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-3"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>15</div>
-  </div>
-  <div class="side">
-    <div>2 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-2"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>6</div>
-  </div>
-  <div class="side">
-    <div>1 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-1"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>20</div>
-  </div>
-</div>
-</div>
 
 
-<script>
-    document.getElementById('viewAccounts').addEventListener('click', function() {
-        console.log("View Accounts link clicked");
-        // Add logic here to handle viewAccounts functionality
-        window.open(c,"_self");
+  <script>
+    document.getElementById('viewAccounts').addEventListener('click', function () {
+      console.log("View Accounts link clicked");
+      // Add logic here to handle viewAccounts functionality
+      window.open(c, "_self");
     });
 
-    document.getElementById('viewProfiles').addEventListener('click', function() {
-        console.log("View Profiles link clicked");
-        // Add logic here to handle viewProfiles functionality
+    document.getElementById('viewProfiles').addEventListener('click', function () {
+      console.log("View Profiles link clicked");
+      // Add logic here to handle viewProfiles functionality
     });
 
-    document.getElementById('logout').addEventListener('click', function() {
-        console.log("Logout link clicked");
-        // Add logic here to handle logout functionality
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-        
+    document.getElementById('logout').addEventListener('click', function () {
+      console.log("Logout link clicked");
+      // Add logic here to handle logout functionality
+      window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+
     });
 
-document.getElementById("seller-review-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-});
-</script>
+    document.getElementById("seller-review-form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+    });
+  </script>
 
 </body>
+
 </html>

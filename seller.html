@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,95 +8,110 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
-<div>
-    <div class="headerSeller">
-        <a href="Login.html" class="logo">
-            Cyber Property
-        </a>
-        <div class="header-right">
-            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
-        </div>
-        <div class="header-right">
-            <a id="seller-rate-and-review-button" style="cursor: pointer" href="rateNreview.html">Rate and Review an Agent</a>
-        </div>   
-    </div>
-</div>
-
-<div class="sellerwelcome">Welcome to your Seller Page, &nbsp;<div id="sellerName"></div></div>
-<div class="sellerwelcome">Idea: under the REA table column has a link to the respective REA page, then seller can rate/review him under respective REA's page</div>
-
-
-<div class="view-container" id="view-container">
-    <div class="view-container-header">
-        <h2 class="view-title">View My Properties</h2>
-        <div class="utility-bar">
-            <input type="text" name="seller-search-properties" id="search-id" placeholder="ID / Property Name / REA">
-            <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
+    <div>
+        <div class="headerSeller">
+            <a href="Login.html" class="logo">
+                Cyber Property
+            </a>
+            <div class="header-right">
+                <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-rate-and-review-button" style="cursor: pointer" href="rateNreview.html">Rate and Review an
+                    Agent</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-viewProperties-button" style="cursor: pointer" href="seller.html">Fetch My Lisings</a>
+            </div>
         </div>
     </div>
-    <div class="rea-view-table" id="view-table">
-        <table id="table">
-            <thead id="table-header">
-                <tr id="row-header">
-                    <th>ID</th>
-                    <th>Property Name</th>
-                    <th>Rating</th>
-                    <th>Reviews</th>
-                    <th>Status</th>
-                    <th>REA</th>
-                </tr>
-            </thead>
-            <tbody id="data-table"></tbody>
-        </table>
-        <br/><br/>
 
+    <div class="sellerwelcome">Welcome to your Seller Page, &nbsp;<div id="sellerName"></div>
     </div>
-    <!-- Idea: under the REA table column has a link to the respective REA page, then seller can rate n review him under his page--> 
-    <!-- As a seller, I want to view how many views my properties are getting --> 
-    <!-- As a seller, I want to know how many times my properties are getting shortlisted, so that I can keep track of who is shortlisting my property -->
-   
-    
+    <div class="sellerwelcome">Idea: under the REA table column has a link to the respective REA page, then seller can
+        rate/review him under respective REA's page</div>
 
 
-    <script>
-        document.getElementById('logout').addEventListener('click', function() {
-            console.log("Logout link clicked");
-            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-        });
-    
-        document.getElementById('seller-search-button').addEventListener('click', function() {
-            var input, filter, table, tr, td_id, td_name, td_rea, i, txtValue_id, txtValue_name, txtValue_rea;
-            input = document.getElementById("search-id");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("table");
-            tr = table.getElementsByTagName("tr");
-    
-            for (i = 0; i < tr.length; i++) {
-                td_id = tr[i].getElementsByTagName("td")[0]; // Assuming ID is in the first column
-                td_name = tr[i].getElementsByTagName("td")[1]; // Assuming Property Name is in the second column
-                td_rea = tr[i].getElementsByTagName("td")[5]; // Assuming REA is in the sixth column
-                if (td_id || td_name || td_rea) {
-                    txtValue_id = td_id.textContent || td_id.innerText;
-                    txtValue_name = td_name.textContent || td_name.innerText;
-                    txtValue_rea = td_rea.textContent || td_rea.innerText;
-                    if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_rea.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
+    <div class="view-container" id="view-container">
+        <div class="view-container-header">
+            <h2 class="view-title">View My Properties</h2>
+            <div class="utility-bar">
+                <input type="text" name="seller-search-properties" id="search-id"
+                    placeholder="ID / Property Name / Rating / Status / REA">
+                <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
+            </div>
+        </div>
+        <div class="seller-view-table" id="view-table">
+            <table id="table">
+                <thead id="table-header">
+                    <tr id="row-header">
+                        <th>ID</th>
+                        <th>Property Name</th>
+                        <th>Rating</th>
+                        <th>Reviews</th>
+                        <th>Status</th>
+                        <th>REA-In-Charge</th>
+                    </tr>
+                </thead>
+                <tbody id="data-table"></tbody>
+            </table>
+            <br /><br />
+
+        </div>
+        <!-- Idea: under the REA table column has a link to the respective REA page, then seller can rate n review him under his page-->
+        <!-- As a seller, I want to view how many views my properties are getting -->
+        <!-- As a seller, I want to know how many times my properties are getting shortlisted, so that I can keep track of who is shortlisting my property -->
+
+
+
+
+        <script>
+            document.getElementById('logout').addEventListener('click', function () {
+                console.log("Logout link clicked");
+                window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+            });
+
+            document.getElementById('seller-search-button').addEventListener('click', function () {
+    var input, filter, table, tr, td_id, td_name, td_avail, td_rea, td_rating, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_rea, txtValue_rating;
+    input = document.getElementById("search-id");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td_id = tr[i].getElementsByTagName("td")[0]; // Assuming ID is in the first column
+        td_name = tr[i].getElementsByTagName("td")[1]; // Assuming Property Name is in the second column
+        td_rating = tr[i].getElementsByTagName("td")[2]; // rating
+        td_avail = tr[i].getElementsByTagName("td")[4]; // Status
+        td_rea = tr[i].getElementsByTagName("td")[5]; // Assuming REA is in the sixth column
+        
+        if (td_id && td_name && td_avail && td_rea && td_rating) {
+            txtValue_id = td_id.textContent || td_id.innerText;
+            txtValue_name = td_name.textContent || td_name.innerText;
+            txtValue_avail = td_avail.textContent || td_avail.innerText;
+            txtValue_rea = td_rea.textContent || td_rea.innerText;
+            txtValue_rating = td_rating.textContent || td_rating.innerText;
+            if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_rea.toUpperCase().indexOf(filter) > -1 || txtValue_avail.toUpperCase().indexOf(filter) > -1 || txtValue_rating.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
-        });
-    
-    </script>
-    
+        }
+    }
+});
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="module" src="./js/sellerController.js"></script>
+        </script>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="module" src="./js/sellerController.js"></script>
 
 
 </body>
+
 </html>

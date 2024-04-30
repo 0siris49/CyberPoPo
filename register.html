@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,42 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <style>
-        #regFName, #regLName, #regEmail, #regNum, #regPassword {
+        #regFName,
+        #regLName,
+        #regEmail,
+        #regNum,
+        #regPassword {
             border: none;
             outline: none;
             height: 30px;
             width: 100%;
         }
+
         .name-label {
             color: grey;
             margin-top: -7px;
             margin-bottom: 0;
         }
+
         .radio-group {
             display: flex;
             flex-direction: row;
             align-items: center;
             margin-bottom: 10px;
         }
-        .radioList, input[type="radio"] {
+
+        .radioList,
+        input[type="radio"] {
             margin-right: 10px;
         }
+
         .headerLogin .logo img {
-            width: 200px; 
+            width: 200px;
             height: auto;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div id="root">
@@ -52,10 +63,11 @@
     <div class="flex-container">
         <form class="form">
             <div style="text-align: center;">
-                <img src="cyberpopo_logo.png" alt="Cyberpopo" style="width: 70%; height: auto; margin-left: auto; margin-right: auto;">
+                <img src="cyberpopo_logo.png" alt="Cyberpopo"
+                    style="width: 70%; height: auto; margin-left: auto; margin-right: auto;">
                 <h3>User Registration Form</h3>
             </div>
-            
+
             <h4 style="margin-bottom: 0;">Name*</h4>
             <div style="display: flex; justify-content: space-between;">
                 <div class="form-group" style="flex: 1; margin-right: 10px;">
@@ -68,20 +80,23 @@
                 </div>
             </div>
 
-            <h4 style="margin-bottom: -1px;">Email Address*</h4>        
+            <h4 style="margin-bottom: -1px;">Email Address*</h4>
             <input type="email" class="form-control" id="regEmail">
 
-            <h4 style="margin-bottom: -1px;">Phone Number*</h4>        
-            <input type="text" class="form-control" id="regNum" pattern="[89]\d{7}" title="Please enter a valid phone number starting with 8 or 9 and consisting of 8 digits" maxlength="8">
+            <h4 style="margin-bottom: -1px;">Phone Number*</h4>
+            <input type="text" class="form-control" id="regNum" pattern="[89]\d{7}"
+                title="Please enter a valid phone number starting with 8 or 9 and consisting of 8 digits" maxlength="8">
 
-            <h4 style="margin-bottom: -1px;">Password*</h4>        
+            <h4 style="margin-bottom: -1px;">Password*</h4>
             <input type="password" class="form-control" id="regPassword">
             <span id="passwordValidationMessage"></span>
 
-            <h4 style="margin-bottom: -1px;">Date of Birth*</h4>        
+            <h4 style="margin-bottom: -1px;">Date of Birth*</h4>
             <div style="display: flex; justify-content: space-between;">
-                <input type="text" class="form-control" id="regDobDay" placeholder="Day" style="flex: 1; margin-right: 10px;">
-                <input type="text" class="form-control" id="regDobMonth" placeholder="Month" style="flex: 1; margin-right: 10px;">
+                <input type="text" class="form-control" id="regDobDay" placeholder="Day"
+                    style="flex: 1; margin-right: 10px;">
+                <input type="text" class="form-control" id="regDobMonth" placeholder="Month"
+                    style="flex: 1; margin-right: 10px;">
                 <input type="text" class="form-control" id="regDobYear" placeholder="Year" style="flex: 1;">
             </div>
 
@@ -89,10 +104,10 @@
                 <label class="radioList">Register as:</label><br>
                 <input type="radio" id="buyer" name="role" value="buyer">
                 <label for="buyer">Buyer</label>
-                
+
                 <input type="radio" id="seller" name="role" value="seller">
                 <label for="seller">Seller</label>
-                
+
                 <input type="radio" id="REA" name="role" value="REA">
                 <label for="REA">REA</label>
             </div>
@@ -130,14 +145,14 @@
             }
         }
 
-        $(function() {
+        $(function () {
             $("#regDobDay, #regDobMonth, #regDobYear").datepicker({
                 dateFormat: "dd-mm-yy",
                 changeYear: true,
                 yearRange: "c-100:c",
                 changeMonth: true,
                 showButtonPanel: true,
-                onSelect: function(dateText, inst) {
+                onSelect: function (dateText, inst) {
                     var date = $(this).datepicker("getDate");
                     if (date) {
                         var day = date.getDate();
@@ -152,4 +167,5 @@
         });
     </script>
 </body>
+
 </html>

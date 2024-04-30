@@ -266,20 +266,48 @@ input[name="search-user"], input[name="search-profile"] {
     display: none;
 }
 
-thead#table-header tr th#col-suspend {
-    width: 10%;
+/* Define styles for table header */
+#table-header tr th#col-suspend {
+  width: 10%;
 }
 
+/* General table styles */
 table {
-    width: 100%;
-    margin-top: 1%;
+  width: 100%;
+  margin-top: 1%;
+  border-collapse: collapse;
+  border: 2px solid #333; /* Dark border around table */
 }
 
-table, thead, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
+/* Styles for table header row */
+#table-header tr th {
+  background-color: #f2f2f2; /* Light gray background */
+  color: #333; /* Dark text color */
+  border: 1px solid #ddd; /* Light border around header cells */
+  padding: 8px; /* Padding for header cells */
 }
+
+/* Styles for table data rows */
+table tr {
+  background-color: #fff; /* White background for data rows */
+}
+
+/* Alternate row color for better readability */
+table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Light gray background for even rows */
+}
+
+/* Styles for table cells */
+table th, table td {
+  border: 1px solid #ddd; /* Light border around cells */
+  padding: 8px; /* Padding for cells */
+}
+
+/* Center align text in table cells */
+table th, table td {
+  text-align: center;
+}
+
 
 .view-title {
     width: 50%;

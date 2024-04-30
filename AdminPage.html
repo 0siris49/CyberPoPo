@@ -1,83 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Header</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<div>
-    <div class="headerAdmin">
-        <a href="#Login.html" class="logo">
-            Cyber Property
-        </a>
-        <div class="header-right">
-            <a id="viewAccounts" style="cursor: pointer">View Accounts</a>
-            <a id="viewProfiles" style="cursor: pointer">View Profiles</a>
-            <a id="logout" style="cursor: pointer">Logout</a>
+    <div>
+        <div class="headerAdmin">
+            <a href="#Login.html" class="logo">
+                Cyber Property
+            </a>
+            <div class="header-right">
+                <a id="viewAccounts" style="cursor: pointer">View Accounts</a>
+                <a id="viewProfiles" style="cursor: pointer">View Profiles</a>
+                <a id="logout" style="cursor: pointer">Logout</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="adminwelcome">Welcome to System Administrator Page</div>
+    <div class="adminwelcome">Welcome to System Administrator Page</div>
 
-<!--View User Account-->
-<div class="view-container" id="view-container">
-    <div class="view-container-header">
-        <h2 class="view-title">View User Account</h2>
-        <div class="utility-bar">
-            <button class="create-account-icon" style="cursor: pointer">
-                <span class="create account">create account</span>
-            </button>
-            <button class="suspend-account-icon" style="cursor: pointer" >
-                <span class="suspend-icon">suspend account</span>
-            </button>                
-            <input type="text" name="search-user" id="search-id" placeholder="Name">
-            <button id="search-button" style="cursor: pointer">Search</button>
+    <!--View User Account-->
+    <div class="view-container" id="view-container">
+        <div class="view-container-header">
+            <h2 class="view-title">View User Account</h2>
+            <div class="utility-bar">
+                <button class="create-account-icon" style="cursor: pointer">
+                    <span class="create account">create account</span>
+                </button>
+                <button class="suspend-account-icon" style="cursor: pointer">
+                    <span class="suspend-icon">suspend account</span>
+                </button>
+                <input type="text" name="search-user" id="search-id" placeholder="Name">
+                <button id="search-button" style="cursor: pointer">Search</button>
+            </div>
+        </div>
+        <div class="admin view-table" id="view-table">
+            <table>
+                <thead id="table-header">
+                    <tr id="row-header">
+                        <th>UserID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="data-table"></tbody>
+            </table>
+        </div>
+        <!--Suspend Apply Button-->
+        <div class="suspend-apply-cancel">
+            <button id="suspend-apply-button">Apply</button>
+            <button id="suspend-cancel-button">Cancel</button>
         </div>
     </div>
-    <div class="admin view-table" id="view-table">
-        <table>
-            <thead id="table-header">
-                <tr id="row-header">
-                    <th>UserID</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="data-table"></tbody>
-        </table>
-    </div>
-    <!--Suspend Apply Button-->
-    <div class="suspend-apply-cancel">
-        <button id="suspend-apply-button">Apply</button>
-        <button id="suspend-cancel-button">Cancel</button>
-    </div>
-</div>
 
 
-<script>
-    document.getElementById('viewAccounts').addEventListener('click', function() {
-        console.log("View Accounts link clicked");
-        // Add logic here to handle viewAccounts functionality
-        window.open(c,"_self");
-    });
+    <script>
+        document.getElementById('viewAccounts').addEventListener('click', function () {
+            console.log("View Accounts link clicked");
+            // Add logic here to handle viewAccounts functionality
+            window.open(c, "_self");
+        });
 
-    document.getElementById('viewProfiles').addEventListener('click', function() {
-        console.log("View Profiles link clicked");
-        // Add logic here to handle viewProfiles functionality
-    });
+        document.getElementById('viewProfiles').addEventListener('click', function () {
+            console.log("View Profiles link clicked");
+            // Add logic here to handle viewProfiles functionality
+        });
 
-    document.getElementById('logout').addEventListener('click', function() {
-        console.log("Logout link clicked");
-        // Add logic here to handle logout functionality
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-        
-    });
+        document.getElementById('logout').addEventListener('click', function () {
+            console.log("Logout link clicked");
+            // Add logic here to handle logout functionality
+            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
-</script>
+        });
+
+    </script>
 
 </body>
+
 </html>

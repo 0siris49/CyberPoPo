@@ -14,16 +14,22 @@ import {
     addDoc,
     setDoc,
     getDocs,
+    getDoc,
+    updateDoc,
     query,
     where,
     doc,
 } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js'
 import {
     reaEntity,
-    loginEntity
+    loginEntity,
+    currentUserEntity
 } from './userEntity.js';
 
-import { sellerEntity,buyerEntity } from './userEntity.js';
+import {
+    sellerEntity,
+    buyerEntity
+} from './userEntity.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDnSLz1ZbiZCKYoETZ-7jGPzYuelhE1DXE",
@@ -43,13 +49,13 @@ export const auth = getAuth(app);
 
 export default class FirebaseClass {
 
-    constructor(){
+    constructor() {
         console.log("Created Firebase Object");
     }
 
 
     //Just an async function to write to Firestore
-    async storeToDatabase(type,email,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum) {
+    async storeToDatabase(type, email, dayDOB, monthDOB, yearDOB, firstName, lastName, phoneNum) {
 
         if (type === "REA") {
             try {
@@ -63,17 +69,18 @@ export default class FirebaseClass {
                     YearDOB: yearDOB
                 });
 
-                const userData = collection(db,"CSIT314/All-Users/UserData");
-                await setDoc(doc(userData,email),{
+                const userData = collection(db, "CSIT314/All-Users/UserData");
+                await setDoc(doc(userData, email), {
                     FirstName: firstName,
                     LastName: lastName,
                     Phone: phoneNum,
                     Email: email,
                     DayDOB: dayDOB,
                     MonthDOB: monthDOB,
-                    YearDOB: yearDOB
+                    YearDOB: yearDOB,
+                    userType: type
                 })
-                
+
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
@@ -90,17 +97,18 @@ export default class FirebaseClass {
                     YearDOB: yearDOB
                 });
 
-                const userData = collection(db,"CSIT314/All-Users/UserData");
-                await setDoc(doc(userData,email),{
+                const userData = collection(db, "CSIT314/All-Users/UserData");
+                await setDoc(doc(userData, email), {
                     FirstName: firstName,
                     LastName: lastName,
                     Phone: phoneNum,
                     Email: email,
                     DayDOB: dayDOB,
                     MonthDOB: monthDOB,
-                    YearDOB: yearDOB
+                    YearDOB: yearDOB,
+                    userType: type
                 })
-                
+
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
@@ -117,17 +125,18 @@ export default class FirebaseClass {
                     YearDOB: yearDOB
                 });
 
-                const userData = collection(db,"CSIT314/All-Users/UserData");
-                await setDoc(doc(userData,email),{
+                const userData = collection(db, "CSIT314/All-Users/UserData");
+                await setDoc(doc(userData, email), {
                     FirstName: firstName,
                     LastName: lastName,
                     Phone: phoneNum,
                     Email: email,
                     DayDOB: dayDOB,
                     MonthDOB: monthDOB,
-                    YearDOB: yearDOB
+                    YearDOB: yearDOB,
+                    userType: type
                 })
-                
+
             } catch (e) {
                 console.error("Error adding document: ", e);
 
@@ -136,24 +145,24 @@ export default class FirebaseClass {
     }
 
     //Create and store user to Firebase Authentication + Firestore
-    createToFireBase(auth,email,password,type,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum) {
+    createToFireBase(auth, email, password, type, dayDOB, monthDOB, yearDOB, firstName, lastName, phoneNum) {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
 
                 console.log("User Created");
-                this.storeToDatabase(type,email,dayDOB,monthDOB,yearDOB,firstName,lastName,phoneNum);
+                this.storeToDatabase(type, email, dayDOB, monthDOB, yearDOB, firstName, lastName, phoneNum);
                 updateProfile(auth.currentUser, {
                     displayName: firstName,
                     email: email,
                     phoneNumber: phoneNum,
                     type: type
-                  }).then(() => {
-                    console.log("Display Name Set ",firstName );
-                  }).catch((error) => {
+                }).then(() => {
+                    console.log("Display Name Set ", firstName);
+                }).catch((error) => {
                     // An error occurred
                     // ...
-                  });
-                
+                });
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -215,7 +224,7 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
-            }else{
+            } else {
                 let initLoginEntity = new loginEntity();
                 initLoginEntity.setEntityMessage("User does not exist");
             }
@@ -232,7 +241,7 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
-            }else{
+            } else {
                 let initLoginEntity = new loginEntity();
                 initLoginEntity.setEntityMessage("User does not exist");
             }
@@ -249,7 +258,7 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, type);
-            }else{
+            } else {
                 let initLoginEntity = new loginEntity();
                 initLoginEntity.setEntityMessage("User does not exist");
             }
@@ -265,7 +274,7 @@ export default class FirebaseClass {
 
             if (responseToString != "") {
                 this.loginToFirebase(auth, email, password, 'sysadmin');
-            }else{
+            } else {
                 let initLoginEntity = new loginEntity();
                 initLoginEntity.setEntityMessage("User does not exist");
             }
@@ -275,65 +284,65 @@ export default class FirebaseClass {
 
     }
 
-    getCurrentUserSeller(){
+    getCurrentUserSeller() {
         auth.onAuthStateChanged(async user => {
             //console.log(user);
             //console.log("From getCurrentUser");
-            if(user){
+            if (user) {
                 var displayNameString = user.displayName;
                 let initSellerEntity = new sellerEntity();
                 initSellerEntity.setEntityDisplayName(displayNameString);
                 var currentUserEmail = user.email;
                 var allPropsList = await this.getSellerProperties(currentUserEmail);
-                
+
                 initSellerEntity.getSellerPropList(allPropsList);
-                
+
                 //-------------------------------------------------------------------------------
-            }else{
+            } else {
                 console.log("No one");
             }
         })
-          
+
     }
 
-    async getSellerProperties(currentUserEmail){
+    async getSellerProperties(currentUserEmail) {
         //let userDataPLQuery = "CSIT314/All-Users/UserData/"+currentUserEmail+"/ownedPropList";
         //const currentUserOwnedPL = collection(db,userDataPLQuery);
         const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertySeller", "==", currentUserEmail));
         const querySnapshot = await getDocs(q);
-        var allData = ''; 
+        var allData = '';
         querySnapshot.forEach((doc) => {
             var docStringify = JSON.stringify(doc.data());
             allData += docStringify + "---";
-          });
-          console.log(allData);
-          return allData;
-          
-          
+        });
+        console.log(allData);
+        return allData;
+
+
     }
 
 
-    getCurrentUserBuyer(){
+    getCurrentUserBuyer() {
         auth.onAuthStateChanged(async user => {
             //console.log(user);
             //console.log("From getCurrentUser");
-            if(user){
+            if (user) {
                 console.log(user.displayName);
                 var displayNameString = user.displayName;
                 let initBuyerEntity = new buyerEntity();
                 initBuyerEntity.setEntityDisplayName(displayNameString);
-            }else{
+            } else {
                 console.log("No one");
             }
         })
-          
+
     }
     async storePropertyListingToDatabase(arg) {
         try {
-            const createdPL = collection(db,"CSIT314/PropertyListings/createdPLs");
-            let userDataPLQuery = "CSIT314/All-Users/UserData/"+arg.propSellerEmail+"/ownedPropList";
-            const userDataPL = collection(db,userDataPLQuery)
-            var i =1;
+            const createdPL = collection(db, "CSIT314/PropertyListings/createdPLs");
+            let userDataPLQuery = "CSIT314/All-Users/UserData/" + arg.propSellerEmail + "/ownedPropList";
+            const userDataPL = collection(db, userDataPLQuery)
+            var i = 1;
             const createPLCount = await getDocs(createdPL);
             const q1 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", arg.propSellerEmail));
             const q2 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("Email", "==", arg.propAgentEmail));
@@ -349,47 +358,48 @@ export default class FirebaseClass {
             });
 
             if (responseToStringq1 != "") {
-               if(responseToStringq2 != ""){
-                createPLCount.forEach((doc) => { 
-                    i++;
-                  });
-    
-                  console.log(i);            
-                await setDoc(doc(createdPL,i.toString()),{
-                    propertyID: i,
-                    propertyName: arg.propName,
-                    propertyLocation: arg.propLocation,
-                    propertyType: arg.propType,
-                    propertyDescription: arg.propDesc,
-                    propertyPrice: arg.propPrice,
-                    propertyBedroom: arg.propBedroom,
-                    propertyBathroom: arg.propBathroom,
-                    propertySize: arg.propSize,
-                    propertyYearBuilt: arg.propYearBuilt,
-                    propAgent: arg.propAgent,
-                    propertyAgentEmail: arg.propAgentEmail,
-                    propertySeller: arg.propSellerEmail,
-                    propertyAGTID: arg.propAgentID,
-                    propRating:"0",
-                    propRTC:"0",
-                    propStatus: "Available"
-                })
-    
-                /*await setDoc(doc(userDataPL,i.toString()),{
-                    propertyID: i,
-                    propertyName: arg.propName,
-                    propertyAgent: arg.propAgent,
-                    propertyAgentEmail: arg.propAgentEmail,
-                    AgentID: arg.propAgentID,
-                    propStatus: "Available"
-                })*/
-                
-                console.log("Document written with ID: ", i);
-               }else{
+                if (responseToStringq2 != "") {
+                    createPLCount.forEach((doc) => {
+                        i++;
+                    });
+
+                    console.log(i);
+                    await setDoc(doc(createdPL, i.toString()), {
+                        propertyID: i,
+                        propertyName: arg.propName,
+                        propertyLocation: arg.propLocation,
+                        propertyType: arg.propType,
+                        propertyDescription: arg.propDesc,
+                        propertyPrice: arg.propPrice,
+                        propertyBedroom: arg.propBedroom,
+                        propertyBathroom: arg.propBathroom,
+                        propertySize: arg.propSize,
+                        propertyYearBuilt: arg.propYearBuilt,
+                        propAgent: arg.propAgent,
+                        propertyAgentEmail: arg.propAgentEmail,
+                        propertySeller: arg.propSellerEmail,
+                        propertyAGTID: arg.propAgentID,
+                        propRating: "0",
+                        propRTC: "0",
+                        propViewCount: "0",
+                        propStatus: "Available"
+                    })
+
+                    /*await setDoc(doc(userDataPL,i.toString()),{
+                        propertyID: i,
+                        propertyName: arg.propName,
+                        propertyAgent: arg.propAgent,
+                        propertyAgentEmail: arg.propAgentEmail,
+                        AgentID: arg.propAgentID,
+                        propStatus: "Available"
+                    })*/
+
+                    console.log("Document written with ID: ", i);
+                } else {
                     let initReaEntity = new reaEntity();
                     initReaEntity.setEntityMessage("No such REA Email")
-               }
-            }else{
+                }
+            } else {
                 let initReaEntity = new reaEntity();
                 initReaEntity.setEntityMessage("No such Seller Email");
             }
@@ -398,42 +408,120 @@ export default class FirebaseClass {
             console.error("Error adding document: ", e);
         }
     }
-    
-    async getBuyerSearchListings(arg){
+
+    async getBuyerSearchListings(arg) {
         const priceRangeOpt = arg.propPriceRange;
         var priceUpperString = 0;
         var priceLowerString = 0;
         const propTypeOpt = arg.propType;
         const propBedrooms = arg.propBedrooms;
-        if(priceRangeOpt == 1){
+        if (priceRangeOpt == 1) {
             priceUpperString = 100000;
             priceLowerString = 0;
-        }else if(priceRangeOpt == 2){
+        } else if (priceRangeOpt == 2) {
             priceUpperString = 200000;
             priceLowerString = 100001;
-        }else if(priceRangeOpt == 3){
+        } else if (priceRangeOpt == 3) {
             priceUpperString = 300000;
             priceLowerString = 200001;
-        }else if(priceRangeOpt == 4){
+        } else if (priceRangeOpt == 4) {
             priceUpperString = 400000;
             priceLowerString = 300001;
-        }else if(priceRangeOpt == 5){
+        } else if (priceRangeOpt == 5) {
             priceUpperString = 500000;
             priceLowerString = 400001;
-        }else if(priceRangeOpt == 6){
+        } else if (priceRangeOpt == 6) {
             priceLowerString = 500001;
         }
-        console.log(priceLowerString,priceUpperString,propTypeOpt,propBedrooms);
-        const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyPrice", ">=", priceLowerString.toString()), where("propertyPrice", "<=",priceUpperString.toString() ), where("propertyType", "==",propTypeOpt.toString() ),where("propertyBedroom", "==",propBedrooms.toString(), where("propStatus", "==","Available")));
+        //console.log(priceLowerString, priceUpperString, propTypeOpt, propBedrooms);
+        const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyPrice", ">=", priceLowerString.toString()), where("propertyPrice", "<=", priceUpperString.toString()), where("propertyType", "==", propTypeOpt.toString()), where("propertyBedroom", "==", propBedrooms.toString(), where("propStatus", "==", "Available")));
         const queryAns = await getDocs(q);
-        var allData = ''; 
+        var allData = '';
         queryAns.forEach((doc) => {
             var docStringify = JSON.stringify(doc.data());
             allData += docStringify + "---";
-          });
-          console.log(allData);
-          let initBuyerEntity = new buyerEntity();
-          initBuyerEntity.retrieveSearchResultsEntity(allData);
+        });
+        //console.log(allData);
+        let initBuyerEntity = new buyerEntity();
+        initBuyerEntity.retrieveSearchResultsEntity(allData);
+    }
+
+    async retrieveDocWithID(propertyID) {
+        const docRef = doc(db, "CSIT314/PropertyListings/createdPLs", propertyID.toString());
+        const docSnap = await getDoc(docRef);
+
+        var docStringify = JSON.stringify(docSnap.data());
+        console.log(docStringify);
+        let initBuyerEntity = new buyerEntity();
+        initBuyerEntity.retrievePropDetailsEntity(docStringify);
+
+    }
+
+    getCurrentUserType() {
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+
+                const uid = user.uid;
+                const userEmail = user.email;
+                const docRef = doc(db, "CSIT314/All-Users/UserData", userEmail);
+                const docSnap = await getDoc(docRef);
+                var docStringify = JSON.stringify(docSnap.data());
+                //console.log(docStringify);
+                var splitDoc = docStringify.split(",");
+                var splitDocLength = splitDoc.length;
+                var userType = '';
+
+                for(let i=0; i<splitDocLength; i++){
+                    var currentAttri = splitDoc[i].toString();
+                    var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+                    //console.log(removeEtc);
+                    if(removeEtc.search("userType") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        userType = result;
+                    }
+                }
+
+                let initCurrentUserEntity = new currentUserEntity();
+                initCurrentUserEntity.setCurrentUserType(userType);
+                
+                
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
+
+    }
+
+    async updateClickCount(propertyID){
+        //console.log(propertyID,"From Firebase about property ID to update clicks")
+        const propRef = doc(db,"CSIT314/PropertyListings/createdPLs",propertyID.toString());
+        const propSnap = await getDoc(propRef);
+        var docStringify = JSON.stringify(propSnap.data());
+        var splitDoc = docStringify.split(",");
+        var splitDocLength = splitDoc.length;
+        var currentClickCount = '';
+
+        for(let i=0; i<splitDocLength; i++){
+            var currentAttri = splitDoc[i].toString();
+            var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+            //console.log(removeEtc);
+            if(removeEtc.search("propViewCount") != -1){
+                var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                currentClickCount = result;
+            }
+        }
+
+        currentClickCount = +currentClickCount + +1;
+
+        await updateDoc(propRef,{
+            propViewCount: currentClickCount
+        });
+
+        
+
+
     }
 }
 // Your web app's Firebase configuration

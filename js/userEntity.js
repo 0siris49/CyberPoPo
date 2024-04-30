@@ -5,10 +5,11 @@ import { User } from "./loginController.js";
 import { sellerController } from "./sellerController.js";
 import { buyerController } from "./buyerController.js";
 import { createPropertyListingObject } from "./createPLPageController.js";
+import { fullPropertyDetailsController } from "./fullPropertyDetailsController.js";
 
 
 export class registrationEntity{
-
+ 
     constructor(arg){
     var email = arg.userEmail;
     var password = arg.userPass;
@@ -103,6 +104,21 @@ export class buyerEntity{
         initBuyerController.retrieveSearchResultsController(searchResult);
     }
 
+    propDetailsSearchParamEntity(propertyID){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.retrieveDocWithID(propertyID);
+    }
+    
+    retrievePropDetailsEntity(details){
+        let initFPDC = new fullPropertyDetailsController();
+        initFPDC.receivePropDetails(details);
+    }
+
+    updateClickCount(propertyID){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.updateClickCount(propertyID);
+    }
+
     
 }
 
@@ -124,6 +140,23 @@ export class reaEntity{
 
 
     
+}
+
+export class currentUserEntity{
+    constructor(){
+
+    }
+
+    currentUserTypeEntity(){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.getCurrentUserType();
+    
+    }
+
+    setCurrentUserType(userType){
+        let initFPDC = new fullPropertyDetailsController();
+        initFPDC.setCurrentUserTypeController(userType);
+    }
 }
 
 export function setEntityMessage(messageFromFirebase){

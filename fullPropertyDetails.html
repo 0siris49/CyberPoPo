@@ -106,12 +106,11 @@
         </dl>
 
 
-        <div id="propertyView">Your property is viewed 0 times (only respective seller can see)</div>
+        <div id="propertyView" style="display:none">Your property is viewed <span id="paraViewCount"></span> times</div>
         <br />
-        <div id="propertyShortlisted">Your property is shortlisted 0 times (only respective seller can see)</div>
+        <div id="propertyShortlisted" style="display:none">Your property is shortlisted <span id="shortlistCount"></span> times</div>
         <br><br>
-        <button id="propertyShortlisted-button" data-count="0" style="cursor: pointer">Shortlist this property(only
-            buyer can see)</button>
+        <button id="propertyShortlisted-button" data-count="0" style="display:none">Shortlist this property</button>
     </div>
 
     <div class="container">
@@ -156,7 +155,7 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        /*document.addEventListener('DOMContentLoaded', function () {
             var clicker = document.getElementById('propertyView-Button');
             var clickedNum = document.getElementById('propertyView');
             var count = 0;
@@ -178,10 +177,11 @@
                 clickedNum.textContent = 'Your property is shortlisted ' + count + ' times (only respective seller can see)';
                 clicker.setAttribute('data-count', count);
             });
-        });
+        });*/
     </script>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+    <script type="module" src="./js/fullPropertyDetailsController.js"></script>
 
 
 </body>

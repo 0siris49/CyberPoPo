@@ -327,7 +327,7 @@ export default class FirebaseClass {
             //console.log(user);
             //console.log("From getCurrentUser");
             if (user) {
-                console.log(user.displayName);
+                ///console.log(user.displayName);
                 var displayNameString = user.displayName;
                 let initBuyerEntity = new buyerEntity();
                 initBuyerEntity.setEntityDisplayName(displayNameString);
@@ -521,6 +521,39 @@ export default class FirebaseClass {
 
         
 
+
+    }
+
+    getCurrentUserREA(){
+        auth.onAuthStateChanged(async user => {
+            //console.log(user);
+            //console.log("From getCurrentUser");
+            if (user) {
+                var currentREAEmail = user.email;
+                console.log(currentREAEmail);
+                var displayNameString = user.displayName;
+                let initREAEntity = new reaEntity();
+                initREAEntity.setEntityDisplayName(displayNameString);
+                var allPropList = await this.getREAPropListing(currentREAEmail);
+                initREAEntity.getREAPropListEntity(allPropList);
+                ///console.log(allPropList);
+
+            } else {
+                console.log("No one");
+            }
+        })
+    }
+
+    async getREAPropListing(currentREAEmail){
+        const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyAgentEmail", "==", currentREAEmail));
+        const querySnapshot = await getDocs(q);
+        var allData = '';
+        querySnapshot.forEach((doc) => {
+            var docStringify = JSON.stringify(doc.data());
+            allData += docStringify + "---";
+        });
+        //console.log(allData);
+        return allData;
 
     }
 }

@@ -141,7 +141,7 @@
                     <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
                 </div>
                 <div class="header-right">
-                    <a id="seller-rate-and-review-button" style="cursor: pointer" href="REA.html">Rate and Review an
+                    <a id="seller-rate-and-review-button" style="cursor: pointer" href="rateNreview.html">Rate and Review an
                         Agent</a>
                 </div>
                 <div class="header-right">
@@ -210,15 +210,6 @@
             window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
         });
-
-        function toggleReviewForm() {
-            var reviewFormContainer = document.querySelector(".seller-review-container");
-            if (reviewFormContainer.style.display === "none") {
-                reviewFormContainer.style.display = "block";
-            } else {
-                reviewFormContainer.style.display = "none";
-            }
-        }
 
     </script>
 

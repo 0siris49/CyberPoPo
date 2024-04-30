@@ -116,7 +116,7 @@ export class buyerController {
                 <p><strong>Type:</strong> ${cleanType[x]}</p>
                 <p><strong>Description:</strong> ${cleanDesc[x]}</p>
                 <p><strong>Price: SGD </strong> ${cleanPrice[x]}</p>
-                <button class="shortlisted-button">Shortlisted</button>
+                <button class="shortlisted-button">Shortlist this Property</button>
                 <a href="fullPropertyDetails.html?propertyId=${cleanID[x]}" class="view-details-button">View Details</a>
             ` + `
             <div class="rea-info">

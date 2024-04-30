@@ -526,12 +526,12 @@ body {
       
   }
 
-    .seller-reviewAgent-Title{
-        margin-left: 165px;
+    .reviewAgent-Title{
+        margin-left: 205px;
         font-size: 20px;
     }
 
-    .seller-review-container {
+    .review-container {
         width: 50%;
         margin: 0 auto;
         display: flex;
@@ -541,7 +541,7 @@ body {
     }
 
       /* Style the form */
-      .seller-review-form {
+      .review-form {
         width: 600px;
         padding: 20px;
         border: 1px solid #A34343;
@@ -551,7 +551,7 @@ body {
       
       }
 
-      button#seller-submit-review-button {
+      button#submit-review-button {
         width: 40%;
         height: 37.6px;
         margin-top: 25px;
@@ -600,6 +600,23 @@ body {
 
 
 /*REA rating*/
+
+.rea-view-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.view-container-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.utility-bar {
+  display:flex;
+  width: 100%;
+  align-items: center;
+}
 
 .ratingBox {
   font-family: Arial;
@@ -672,6 +689,45 @@ body {
   }
 }
 
+button#rea-search-button {
+  width: 30%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+  
+}
+
+button#rea-update-button {
+  width: 10%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+  
+}
+
+button#rea-delete-button {
+  width: 10%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+  
+}
+
+input[name="rea-search-properties"]{
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-left: 52px;
+}
   
 
 

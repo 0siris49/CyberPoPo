@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,79 +8,93 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<style>
-    #agent_name{
-        width: 300px;
-    }
-    #agent_email{
-        width: 257px;
-    }
-    .seller-review-container{
-        width: 600px;
-    }
+    <style>
+        .review-form input[type="text"],
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-</style>
+        .review-container {
+            width: 600px;
+        }
 
-<div>
-    <div class="headerSeller">
-        <a href="Login.html" class="logo">
-            Cyber Property
-        </a>
-        <div class="header-right">
-            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+        .reviewAgent-Title{
+            text-align: center;
+
+        }
+    </style>
+
+    <div>
+        <div class="headerSeller">
+            <a href="Login.html" class="logo">
+                Cyber Property
+            </a>
+            <div class="header-right">
+                <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-viewshortlistcount" style="cursor: pointer" href="buyer.html">Back To Listings(only visible to buyers)</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-viewshortlistcount" style="cursor: pointer" href="seller.html">View My Properties(only visible to sellers)</a>
+            </div>
+           
+
         </div>
-        <div class="header-right">
-            <a id="seller-viewshortlistcount" style="cursor: pointer" href="seller.html">View My Properties</a>
-        </div>
-       
     </div>
-</div>
 
-<div class="sellerwelcome">Welcome to your Rate and Review Page, &nbsp;<div id="sellerName/ buyerName"></div></div>
-   
-    <div class="seller-review-container">
-        <form id="seller-review-form" class="seller-review-form">
-            <b class="seller-reviewAgent-Title">Review Agent</b><br><br>
+    <div class="sellerwelcome">Welcome to your Rate and Review Page, &nbsp;<div id="sellerName/ buyerName"></div>
+    </div>
+
+    <div class="review-container">
+        <form id="review-form" class="review-form">
+            <b class="reviewAgent-Title">Review Agent</b><br><br>
             <label for="agent_name">Name:</label>
             <input type="text" id="agent_name" name="agent_name" required><br><br>
             <label for="agent_email">Agent Email:</label>
             <input type="text" id="agent_email" name="agent_email" required><br><br>
-            
-          
+
+
             <label for="review">Review:</label><br>
             <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
-          
+
             <div>Rate your REA:</div>
             <div class="stars">
-                  <input class="star star-5" id="star-5" type="radio" name="star"/>
-                  <label class="star star-5" for="star-5"></label>
-                  <input class="star star-4" id="star-4" type="radio" name="star"/>
-                  <label class="star star-4" for="star-4"></label>
-                  <input class="star star-3" id="star-3" type="radio" name="star"/>
-                  <label class="star star-3" for="star-3"></label>
-                  <input class="star star-2" id="star-2" type="radio" name="star"/>
-                  <label class="star star-2" for="star-2"></label>
-                  <input class="star star-1" id="star-1" type="radio" name="star"/>
-                  <label class="star star-1" for="star-1"></label>
+                <input class="star star-5" id="star-5" type="radio" name="star" />
+                <label class="star star-5" for="star-5"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star" />
+                <label class="star star-4" for="star-4"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star" />
+                <label class="star star-3" for="star-3"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star" />
+                <label class="star star-2" for="star-2"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star" />
+                <label class="star star-1" for="star-1"></label>
             </div>
-            <button type="submit" id="seller-submit-review-button" style="cursor: pointer">Submit Review</button>
+            <button type="submit" id="submit-review-button" style="cursor: pointer">Submit Review</button>
         </form>
-    </div>    
-</div>
+    </div>
+    </div>
 
-<script>
-    document.getElementById('logout').addEventListener('click', function() {
-        console.log("Logout link clicked");
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-        
-    });
+    <script>
+        document.getElementById('logout').addEventListener('click', function () {
+            console.log("Logout link clicked");
+            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
-</script>
+        });
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="module" src="./js/sellerController.js"></script>
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="module" src="./js/sellerController.js"></script>
 
 
 </body>
+
 </html>

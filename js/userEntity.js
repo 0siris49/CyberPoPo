@@ -8,7 +8,7 @@ import { createPropertyListingObject } from "./createPLPageController.js";
 import { fullPropertyDetailsController } from "./fullPropertyDetailsController.js";
 import { reaController } from "./reaController.js";
 
-
+  
 export class registrationEntity{
  
     constructor(arg){
@@ -151,6 +151,11 @@ export class reaEntity{
     getREAPropListEntity(allPropList){
         let initREAController = new reaController();
         initREAController.getREAPropListController(allPropList);
+    }
+
+    updatePropListDetails(arg){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.updatePropListDetails(arg);
     }
 
 

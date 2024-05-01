@@ -164,8 +164,8 @@
 
           </tr>
         </thead>
-        <button id="rea-update-button" name="rea-update-button" style="cursor: pointer">Update</button>
-        <button id="rea-delete-button" name="rea-delete-button" style="cursor: pointer">Delete</button>
+        <!--<button id="rea-update-button" name="rea-update-button" style="cursor: pointer">Update</button>-->
+        <!--<button id="rea-delete-button" name="rea-delete-button" style="cursor: pointer">Delete</button>-->
         <tbody id="data-table">when listing comes out each listing got a update and delete button under option header,
           if delete,
           a modal pops out and ask to confirm deletion(modal is done). Then, controller pops out alerts whether
@@ -264,43 +264,50 @@
     <div id="updateModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="/update_property" method="POST" class="update-PL-form">
+        <form method="POST" class="update-PL-form">
           <div class="updatePLheader">Update Property details for Listing *ID(auto fetched when click-on update)*</div>
 
           <div id="extraFields" class="hidden">
             <div id="rea-property-id"></div>
           </div>
-
+          <br>
           <label for="property_title">Property Name:</label>
           <input type="text" id="property_title" name="property_title" required>
-
+          <br>
+          <br>
           <label for="property_location">Property Location:</label>
           <input type="text" id="property_location" name="property_location" required>
-
+          <br>
+          <br>
           <label for="property_type">Property Type:</label>
           <select id="property_type" name="property_type" required>
             <option value="house">House</option>
             <option value="apartment">Apartment</option>
             <option value="condo">Condo</option>
           </select>
-
+          <br>
+          <br>
           <label for="year_built">Year Built:</label>
           <input type="number" id="year_built" name="year_built" required min="0" pattern="\d{4,}">
-
+          <br>
+          <br>
           <label for="property_agent">Agent Name:</label>
           <input type="text" id="property_agent" name="property_agent" required>
-
+          <br>
+          <br>
           <label for="property_email">Agent Email:</label>
           <input type="text" id="property_email" name="property_email" required>
-
+          <br>
+          <br>
           <label for="Agent_id">Agent License Number:</label>
           <input type="number" id="agent_id" name="Agent_id" required>
-
+          <br>
+          <br>
           <label for="property_seller">Seller(email):</label>
           <input type="text" id="property_seller" name="property_seller" placeholder="email" required>
+          <br>
 
-
-          <button id="submitUpdateForm">Update</button>
+          <button id="submitUpdateForm" >Update</button>
         </form>
       </div>
     </div>

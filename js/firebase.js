@@ -5,7 +5,7 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
+    onAuthStateChanged, 
     updateProfile
 } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js';
 import {
@@ -555,6 +555,20 @@ export default class FirebaseClass {
         //console.log(allData);
         return allData;
 
+    }
+
+    async updatePropListDetails(arg){
+        const propRef = doc(db,"CSIT314/PropertyListings/createdPLs",arg.propIDValue.toString());
+        await updateDoc(propRef,{
+            propertyName:arg.propName,
+            propertyLocation: arg.propLocation,
+            propertyType: arg.propType,
+            propertyYearBuilt: arg.yearBuilt,
+            propAgent: arg.agentName,
+            propertyAGTID: arg.agentLN,
+            propertyAgentEmail: arg.agentEmail,
+            propertySeller: arg.sellerEmail 
+        });
     }
 }
 // Your web app's Firebase configuration

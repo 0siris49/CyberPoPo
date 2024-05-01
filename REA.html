@@ -121,7 +121,7 @@
         <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
       </div>
       <div class="header-right">
-        <a id="create-PL-button" style="cursor: pointer" href="createPL.html">Create New Property Lisings</a>
+        <a id="create-PL-button" style="cursor: pointer" href="createPL.html">Create New Property Listings</a>
       </div>
       <div class="header-right">
         <a id="rea-viewProperties-button" style="cursor: pointer">Fetch Listed Properties</a>
@@ -145,7 +145,7 @@
       <h2 class="view-title">In-Charged Properties</h2>
       <div class="utility-bar">
         <input type="text" name="rea-search-properties" id="search-id"
-          placeholder="ID / Property Name / Rating / Status / REA">
+          placeholder="ID / Property Name / Location / Rating / Status ">
         <button id="rea-search-button" name="rea-search-button" style="cursor: pointer">Search</button>
 
       </div>
@@ -312,16 +312,17 @@
       <i class="arrow-up"></i>
     </button>
 
-
-
-    <script> // search fn script
+    <script>// logout script
       document.getElementById('logout').addEventListener('click', function () {
         console.log("Logout link clicked");
         window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
       });
+    </script>
 
-      document.getElementById('seller-search-button').addEventListener('click', function () {
-        var input, filter, table, tr, td_id, td_name, td_avail, td_rea, td_rating, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_rea, txtValue_rating;
+    <script> // search fn script
+
+      document.getElementById('rea-search-button').addEventListener('click', function () {
+        var input, filter, table, tr, td_id, td_name, td_avail, td_rating,td_location, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_location, txtValue_rating;
         input = document.getElementById("search-id");
         filter = input.value.toUpperCase();
         table = document.getElementById("table");
@@ -330,17 +331,17 @@
         for (i = 0; i < tr.length; i++) {
           td_id = tr[i].getElementsByTagName("td")[0]; // Assuming ID is in the first column
           td_name = tr[i].getElementsByTagName("td")[1]; // Assuming Property Name is in the second column
-          td_rating = tr[i].getElementsByTagName("td")[2]; // rating
-          td_avail = tr[i].getElementsByTagName("td")[4]; // Status
-          td_rea = tr[i].getElementsByTagName("td")[5]; // Assuming REA is in the sixth column
+          td_location = tr[i].getElementsByTagName("td")[2]; // location
+          td_rating = tr[i].getElementsByTagName("td")[3]; // rating
+          td_avail = tr[i].getElementsByTagName("td")[5]; // Status
 
-          if (td_id && td_name && td_avail && td_rea && td_rating) {
+          if (td_id && td_name && td_avail && td_location && td_rating) {
             txtValue_id = td_id.textContent || td_id.innerText;
             txtValue_name = td_name.textContent || td_name.innerText;
+            txtValue_location = td_location.textContent || td_location.innerText;
             txtValue_avail = td_avail.textContent || td_avail.innerText;
-            txtValue_rea = td_rea.textContent || td_rea.innerText;
             txtValue_rating = td_rating.textContent || td_rating.innerText;
-            if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_rea.toUpperCase().indexOf(filter) > -1 || txtValue_avail.toUpperCase().indexOf(filter) > -1 || txtValue_rating.toUpperCase().indexOf(filter) > -1) {
+            if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_location.toUpperCase().indexOf(filter) > -1 || txtValue_avail.toUpperCase().indexOf(filter) > -1 || txtValue_rating.toUpperCase().indexOf(filter) > -1) {
               tr[i].style.display = "";
             } else {
               tr[i].style.display = "none";

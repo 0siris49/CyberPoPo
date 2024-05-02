@@ -8,7 +8,7 @@ import { createPropertyListingObject } from "./createPLPageController.js";
 import { fullPropertyDetailsController } from "./fullPropertyDetailsController.js";
 import { reaController } from "./reaController.js";
 
-  
+
 export class registrationEntity{
  
     constructor(arg){
@@ -75,7 +75,7 @@ export class sellerEntity{
 
     getSellerPropList(propList){
         let initSellerController = new sellerController();
-        initSellerController.setSellerPropList(propList);
+        initSellerController.holdSellerPropList(propList);
         
     }
 }
@@ -102,7 +102,7 @@ export class buyerEntity{
 
     retrieveSearchResultsEntity(searchResult){
         let initBuyerController = new buyerController();
-        initBuyerController.retrieveSearchResultsController(searchResult);
+        initBuyerController.displaySearchResultsController(searchResult);
     }
 
     propDetailsSearchParamEntity(propertyID){
@@ -118,6 +118,16 @@ export class buyerEntity{
     updateClickCount(propertyID){
         let firebaseObj = new FirebaseClass();
         firebaseObj.updateClickCount(propertyID);
+    }
+    
+    shortlistProp(propID){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.shortlistProp(propID);
+    }
+
+    setEntityMessage(messageFromFirebase){
+        let initBuyerController = new buyerController();
+        initBuyerController.setControllerMessage(messageFromFirebase);
     }
 
     
@@ -156,6 +166,16 @@ export class reaEntity{
     updatePropListDetails(arg){
         let firebaseObj = new FirebaseClass();
         firebaseObj.updatePropListDetails(arg);
+    }
+
+    markPropAsDeleted(propIDValue){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.markPropAsDeleted(propIDValue);
+    }
+
+    submitRating(arg){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.submitRating(arg);
     }
 
 

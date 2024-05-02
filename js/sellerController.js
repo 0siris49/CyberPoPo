@@ -1,9 +1,27 @@
 import { sellerEntity } from "./userEntity.js";
-
+var sellerProps = "";
 window.onload = function() {
     let initSellerController = new sellerController();
     initSellerController.getUserToController();
+    var fetchButton = document.getElementById('viewProperties');
+    
+    fetchButton.addEventListener("click", function(e){
+        e.preventDefault();
+        
+        var table = document.getElementById('table');
+        var tableRows = document.getElementsByTagName('tr');
+        var rowCount = tableRows.length;
+    
+        for(let i = rowCount-1; i>0; i--){
+            table.removeChild(tableRows[i]);
+        }
+
+        let initSellerController = new sellerController();
+        initSellerController.setSellerPropList(sellerProps);
+});
   }; 
+
+
 
 export class sellerController{
     //Actually calls for Firebase to check whether there's a user logged in, and if it does, return their displayName
@@ -17,6 +35,10 @@ export class sellerController{
         document.getElementById('sellerName').innerHTML=displayUserName;
     }
 
+    holdSellerPropList(propList){
+        sellerProps = propList;
+    }
+
     setSellerPropList(string){
         //console.log(string,"From seller controller");
         var stringArr = string.split("---");
@@ -27,6 +49,8 @@ export class sellerController{
         var cleanAgent = [];
         var cleanStatus = [];
         var cleanAvgRating = [];
+        var cleanREAEmail = [];
+        var sellerEmail = [];
         var resultRating = 0;
         var ratingCount = 0;
 
@@ -64,10 +88,20 @@ export class sellerController{
                     ///console.log(result);
                     cleanStatus.push(result);
                 }
+                if(removeEtc.search("propertySeller") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    console.log(result, "Push push push");
+                    sellerEmail.push(result);
+                }
 
                 if(removeEtc.search("propRating") != -1){
                     resultRating = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
                     
+                    
+                }
+                if(removeEtc.search("propertyAgentEmail") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    cleanREAEmail.push(result);
                     
                 }
                 if(removeEtc.search("propRTC") != -1){
@@ -82,13 +116,6 @@ export class sellerController{
         }
 
 
-        for(let x=0; x<totalPropList; x++){
-            //console.log(cleanID[x]);
-            ///console.log(cleanPropName[x]);
-            ///console.log(cleanAgent[x]);
-            
-        }
-
         for(let i=0; i<totalPropList;i++){
             const row = document.createElement('tr');
             row.innerHTML = `<td>${cleanID[i]}</td>
@@ -96,12 +123,13 @@ export class sellerController{
             <td>${cleanAvgRating[i]}</td>
             <td></td>
             <td>${cleanStatus[i]}</td>
-            <td>${cleanAgent[i]}</td>`;
+            <td><a href="rateNreview.html?reaEmail=${cleanREAEmail[i]}&sellerEmail=${sellerEmail[i]}"> <div>${cleanAgent[i]}</div>  </a></td>`;
             table.appendChild(row);
         }
 
 
     }
+
 
 
  

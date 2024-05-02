@@ -1,5 +1,4 @@
 import { buyerEntity } from "./userEntity.js";
-import FirebaseClass from './firebase.js';
 
 export class buyerController {
     //Actually calls for Firebase to check whether there's a user logged in, and if it does, return their displayName
@@ -7,7 +6,7 @@ export class buyerController {
         let initBuyerEntity = new buyerEntity();
         initBuyerEntity.getUserToEntity();
     }
-
+ 
 
     setBuyerControllerDisplayName(displayNameFromEntity) {
         var displayUserName = displayNameFromEntity;
@@ -20,7 +19,7 @@ export class buyerController {
     
     }
 
-    retrieveSearchResultsController(searchResult){
+    displaySearchResultsController(searchResult){
         var stringArr = searchResult.split("---");
         var totalPropList = stringArr.length - 1;
         const container = document.getElementById('property-listings-container');
@@ -111,12 +110,12 @@ export class buyerController {
                 <p><strong>Type:</strong> ${cleanType[x]}</p>
                 <p><strong>Description:</strong> ${cleanDesc[x]}</p>
                 <p><strong>Price: SGD </strong> ${cleanPrice[x]}</p>
-                <button class="shortlisted-button">Shortlist this Property</button>
+                <button class="shortlist-button" value="${cleanID[x]}">Shortlist this Property</button>
                 <a href="fullPropertyDetails.html?propertyId=${cleanID[x]}" class="view-details-button" id="viewDetails" value="${cleanID[x]}">View Details</a>
             ` + `
             <div class="rea-info">
             <h4>Real Estate Agent Information</h4>
-            <p><strong>Name:</strong> ${cleanREAName[x]}</p>
+            <p><strong>Name:</strong> <a href="rateNreview.html?reaEmail=${cleanREAEmail[x]}" class="view-details-button" id="viewDetails" value="${cleanREAEmail[x]}">${cleanREAName[x]}</a> </p>
             <p><strong>Contact:</strong> ${cleanREAEmail[x]}</p>
             </div>
             `;
@@ -124,6 +123,10 @@ export class buyerController {
 
         }
 
+    }
+
+    setControllerMessage(messageFromEntity){
+        alert(messageFromEntity);
     }
 
 }
@@ -134,7 +137,7 @@ window.onload = function () {
     let initBuyerController = new buyerController();
     initBuyerController.getUserToController();
 };
-
+ 
 class searchParams{
     constructor(propLocation,propPriceRange,propType,propBedrooms){
         this.propLocation = propLocation;
@@ -149,6 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (searchButton) {
         searchButton.addEventListener("click", function (event) {
             event.preventDefault();
+
+            var listingElement = document.getElementsByClassName("property-listing");
+            while(listingElement.length > 0){
+                listingElement[0].parentNode.removeChild(listingElement[0])
+            }
+
             const propLocation = document.getElementById('property_location').value;
             const propPriceRange = document.getElementById('property_range').value;
             const propType = document.getElementById('property_type').value;
@@ -163,3 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+document.body.addEventListener("click", function(e){
+    if(e.target.classList.contains("shortlist-button")){
+        var propID = e.target.value;
+
+        let initBuyerEntity = new buyerEntity();
+        initBuyerEntity.shortlistProp(propID);
+        
+    }
+})

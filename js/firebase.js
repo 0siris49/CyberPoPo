@@ -5,7 +5,7 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged, 
+    onAuthStateChanged,
     updateProfile
 } from 'https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js';
 import {
@@ -471,11 +471,11 @@ export default class FirebaseClass {
                 var splitDocLength = splitDoc.length;
                 var userType = '';
 
-                for(let i=0; i<splitDocLength; i++){
+                for (let i = 0; i < splitDocLength; i++) {
                     var currentAttri = splitDoc[i].toString();
                     var removeEtc = currentAttri.replace(/['"{}]+/g, '');
                     //console.log(removeEtc);
-                    if(removeEtc.search("userType") != -1){
+                    if (removeEtc.search("userType") != -1) {
                         var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
                         userType = result;
                     }
@@ -483,8 +483,8 @@ export default class FirebaseClass {
 
                 let initCurrentUserEntity = new currentUserEntity();
                 initCurrentUserEntity.setCurrentUserType(userType);
-                
-                
+
+
                 // ...
             } else {
                 // User is signed out
@@ -494,20 +494,20 @@ export default class FirebaseClass {
 
     }
 
-    async updateClickCount(propertyID){
+    async updateClickCount(propertyID) {
         //console.log(propertyID,"From Firebase about property ID to update clicks")
-        const propRef = doc(db,"CSIT314/PropertyListings/createdPLs",propertyID.toString());
+        const propRef = doc(db, "CSIT314/PropertyListings/createdPLs", propertyID.toString());
         const propSnap = await getDoc(propRef);
         var docStringify = JSON.stringify(propSnap.data());
         var splitDoc = docStringify.split(",");
         var splitDocLength = splitDoc.length;
         var currentClickCount = '';
 
-        for(let i=0; i<splitDocLength; i++){
+        for (let i = 0; i < splitDocLength; i++) {
             var currentAttri = splitDoc[i].toString();
             var removeEtc = currentAttri.replace(/['"{}]+/g, '');
             //console.log(removeEtc);
-            if(removeEtc.search("propViewCount") != -1){
+            if (removeEtc.search("propViewCount") != -1) {
                 var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
                 currentClickCount = result;
             }
@@ -515,16 +515,16 @@ export default class FirebaseClass {
 
         currentClickCount = +currentClickCount + +1;
 
-        await updateDoc(propRef,{
+        await updateDoc(propRef, {
             propViewCount: currentClickCount
         });
 
-        
+
 
 
     }
 
-    getCurrentUserREA(){
+    getCurrentUserREA() {
         auth.onAuthStateChanged(async user => {
             //console.log(user);
             //console.log("From getCurrentUser");
@@ -544,7 +544,7 @@ export default class FirebaseClass {
         })
     }
 
-    async getREAPropListing(currentREAEmail){
+    async getREAPropListing(currentREAEmail) {
         const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyAgentEmail", "==", currentREAEmail));
         const querySnapshot = await getDocs(q);
         var allData = '';
@@ -557,18 +557,28 @@ export default class FirebaseClass {
 
     }
 
-    async updatePropListDetails(arg){
-        const propRef = doc(db,"CSIT314/PropertyListings/createdPLs",arg.propIDValue.toString());
-        await updateDoc(propRef,{
-            propertyName:arg.propName,
+    async updatePropListDetails(arg) {
+        const propRef = doc(db, "CSIT314/PropertyListings/createdPLs", arg.propIDValue.toString());
+        await updateDoc(propRef, {
+            propertyName: arg.propName,
             propertyLocation: arg.propLocation,
             propertyType: arg.propType,
             propertyYearBuilt: arg.yearBuilt,
             propAgent: arg.agentName,
             propertyAGTID: arg.agentLN,
             propertyAgentEmail: arg.agentEmail,
-            propertySeller: arg.sellerEmail 
+            propertySeller: arg.sellerEmail
         });
     }
+
+
+    async getREAByEmail(email) {
+        const reviewsCollection = collection(db, 'REA_Reviews');
+        const q = query(reviewsCollection, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+        return querySnapshot.docs.map(doc => doc.data());
+    }
+
+
 }
 // Your web app's Firebase configuration

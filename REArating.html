@@ -1,26 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REA ratings</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<header>
+  <header>
     <div id="root">
-        <div class="headerLogin">
-          <a href="Login.html" class="logo" >
-            <img src="cyberpopo_logo.png" alt="CyberpopoLogo" class="CyberpopoLogo">
-          </a>
-          <div class="header-right">
-            <a href="">possible page for seller and buyer to view REAs ratings/review by searching their email</a>
-          </div>
+      <div class="headerLogin">
+        <a href="Login.html" class="logo">
+          <img src="cyberpopo_logo.png" alt="CyberpopoLogo" class="CyberpopoLogo">
+        </a>
+        <div class="header-right">
+          <a href="">possible page for seller and buyer to view REAs ratings/review by searching their email</a>
         </div>
       </div>
-</header>
+    </div>
+    <style>
+      .search-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+      }
+      
+      #searchEmail {
+        padding: 10px;
+        margin-right: 8px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 300px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      
+      #searchEmail:focus {
+        border-color: #007BFF;
+      }
+      
+      #searchButton {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007BFF;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      
+      #searchButton:hover {
+        background-color: #0056b3;
+      }
+      
+      #searchResults {
+        margin-top: 20px;
+        text-align: center;
+      }</style>
+  </header>
 
+  <div class="search-container">
+    <input type="email" id="searchEmail" placeholder="Search REA by email">
+    <button id="searchButton">Search</button>
+  </div>
+  <div id="searchResults">
+
+  </div>
+
+  <script type="module" src="./js/reaController.js"></script>
 
 </body>
+
 </html>

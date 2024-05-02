@@ -124,7 +124,7 @@
         <a id="create-PL-button" style="cursor: pointer" href="createPL.html">Create New Property Listings</a>
       </div>
       <div class="header-right">
-        <a id="rea-viewProperties-button" style="cursor: pointer">Fetch Listed Properties</a>
+        <a id="rea-viewProperties" style="cursor: pointer">Fetch Listed Properties</a>
       </div>
       <div class="header-right">
         <a id="rea-review-page" style="cursor: pointer">View My Ratings</a>
@@ -306,6 +306,12 @@
           <label for="property_seller">Seller(email):</label>
           <input type="text" id="property_seller" name="property_seller" placeholder="email" required>
           <br>
+          <br>
+          <label for="propAvail">Availability:</label>
+          <select id="propAvail" name="propAvail" required>
+            <option value="Available">Available</option>
+            <option value="Unavailable">Unavailable</option>
+          </select>
 
           <button id="submitUpdateForm" >Update</button>
         </form>

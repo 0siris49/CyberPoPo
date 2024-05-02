@@ -39,17 +39,17 @@
                 <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
             </div>
             <div class="header-right">
-                <a id="seller-viewshortlistcount" style="cursor: pointer" href="buyer.html">Back To Listings(only visible to buyers)</a>
+                <a id="buyer-viewlisting" style="cursor: pointer" href="buyer.html">Back To Listings(only visible to buyers)</a>
             </div>
             <div class="header-right">
-                <a id="seller-viewshortlistcount" style="cursor: pointer" href="seller.html">View My Properties(only visible to sellers)</a>
+                <a id="seller-viewproperties" style="cursor: pointer" href="seller.html">View My Properties(only visible to sellers)</a>
             </div>
            
 
         </div>
     </div>
 
-    <div class="sellerwelcome">Welcome to your Rate and Review Page, &nbsp;<div id="sellerName/ buyerName"></div>
+    <div class="sellerwelcome">Welcome to your Rate and Review Page, &nbsp;<div id="sellerName/buyerName"></div>
     </div>
 
     <div class="review-container">
@@ -57,25 +57,23 @@
             <b class="reviewAgent-Title">Review Agent</b><br><br>
             <label for="agent_name">Name:</label>
             <input type="text" id="agent_name" name="agent_name" required><br><br>
-            <label for="agent_email">Agent Email:</label>
-            <input type="text" id="agent_email" name="agent_email" required><br><br>
 
 
-            <label for="review">Review:</label><br>
+            <label for="review">Review For: <span id="revFor"></span></label><br>
             <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
 
             <div>Rate your REA:</div>
             <div class="stars">
-                <input class="star star-5" id="star-5" type="radio" name="star" />
-                <label class="star star-5" for="star-5"></label>
-                <input class="star star-4" id="star-4" type="radio" name="star" />
-                <label class="star star-4" for="star-4"></label>
-                <input class="star star-3" id="star-3" type="radio" name="star" />
-                <label class="star star-3" for="star-3"></label>
-                <input class="star star-2" id="star-2" type="radio" name="star" />
-                <label class="star star-2" for="star-2"></label>
-                <input class="star star-1" id="star-1" type="radio" name="star" />
-                <label class="star star-1" for="star-1"></label>
+                <input class="star starRating" id="star-5" value="5" type="radio" name="star" />
+                <label class="star" for="star-5" value="5"></label>
+                <input class="star starRating" id="star-4" value="4" type="radio" name="star" />
+                <label class="star" for="star-4" value="4"></label>
+                <input class="star starRating" id="star-3" value="3" type="radio" name="star" />
+                <label class="star" for="star-3" value="3"></label>
+                <input class="star starRating" id="star-2" value="2" type="radio" name="star" />
+                <label class="star" for="star-2" value="2"></label>
+                <input class="star starRating" id="star-1" value="1" type="radio" name="star" />
+                <label class="star" for="star-1" value="1"></label>
             </div>
             <button type="submit" id="submit-review-button" style="cursor: pointer">Submit Review</button>
         </form>
@@ -83,7 +81,7 @@
     </div>
 
     <script>
-        document.getElementById('logout').addEventListener('click', function () {
+        document.getElementById('logout').addEventListener('click', function logOut () {
             console.log("Logout link clicked");
             window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
@@ -92,7 +90,7 @@
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="module" src="./js/sellerController.js"></script>
+    <script type="module" src="./js/rateReviewController.js"></script>
 
 
 </body>

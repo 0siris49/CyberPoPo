@@ -95,6 +95,10 @@ export class fullPropertyDetailsController {
                 var result = removeStuff.substring(removeStuff.lastIndexOf(":") + 1);
                 document.getElementById('paraViewCount').innerHTML=result;
             }
+            if (removeStuff.search("propSLC") != -1) {
+                var result = removeStuff.substring(removeStuff.lastIndexOf(":") + 1);
+                document.getElementById('shortlistCount').innerHTML=result;
+            }
         }
 
 

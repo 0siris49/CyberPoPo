@@ -7,7 +7,7 @@
     <title>Admin Header</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
- 
+
 <body>
 
     <header>
@@ -141,7 +141,8 @@
                     <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
                 </div>
                 <div class="header-right">
-                    <a id="seller-rate-and-review-button" style="cursor: pointer" href="rateNreview.html">Rate and Review an
+                    <a id="seller-rate-and-review-button" style="cursor: pointer" href="rateNreview.html">Rate and
+                        Review an
                         Agent</a>
                 </div>
                 <div class="header-right">
@@ -157,11 +158,21 @@
     <div class="view-container" id="view-container">
         <div class="search-bar">
             <form id="property-search-form">
-                <input type="text" name="location" placeholder="Enter location..." id="property_location" required>
+                <select name="location" id="property_location" required>
+                    <option disabled selected>Enter location...</option>
+                    <option value="north">North</option>
+                    <option value="north-east">North-East</option>
+                    <option value="east">East</option>
+                    <option value="south-east">South-East</option>
+                    <option value="south">South</option>
+                    <option value="south-west">South-West</option>
+                    <option value="west">West</option>
+                    <option value="north-west">North-West</option>
+                </select>
                 <select name="price-range" id="property_range" required>
                     <option disabled selected>Price Range</option>
                     <option value="1">$0 - $100,000</option>
-                    <option value="2">$100,001 - $200,000</option>
+                    <option value="2">$100,0019 - $200,000</option>
                     <option value="3">$200,001 - $300,000</option>
                     <option value="4">$300,001 - $400,000</option>
                     <option value="5">$400,001 - $500,000</option>
@@ -185,6 +196,7 @@
             </form>
         </div>
     </div>
+
 
     <div id="property-listings-container"></div>
 
@@ -221,7 +233,7 @@
             });
         });
     </script>
-    
+
     <script type="module" src="./js/buyerController.js"></script>
 
 </body>

@@ -129,6 +129,8 @@ export class buyerController {
         alert(messageFromEntity);
     }
 
+    
+
 }
 
 

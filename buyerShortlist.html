@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Shortlist</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div id="root">
+            <div class="headerLogin">
+                <a href="Login.html" class="logo">
+                    <img src="cyberpopo_logo.png" alt="CyberpopoLogo" class="CyberpopoLogo">
+                </a>
+                <div class="header-right">
+                    <a href="buyer.html">Search Property</a>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            #welcomeMessage {
+                text-align: center;
+                font-size: 24px;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .property-listing {
+                width: 1000px;
+                margin: 10px auto;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+                transition: background-color 0.3s, border-color 0.3s;
+                border: 2px solid transparent;
+            }
+
+            .property-listing:hover {
+                background-color: #f0f0f0;
+                border-color: gold;
+                border-width: 4px;
+            }
+
+            .view-details-button {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+            }
+        </style>
+    </header>
+
+    <div id="welcomeMessage">Welcome to your Buyer Shortlist Page</div>
+
+    <div id="shortlistings-container">
+
+        <div class="property-listing">
+            <h4>Modern Family Home</h4>
+            <p>Location: 123 Maple Avenue, Suburbia</p>
+            <p>Price: $350,000</p>
+            <p>Description: A stunning four-bedroom family home with large garden and garage in a sought after neighborhood.</p>
+            <a class="view-details-button" href="viewDetails.html">View Details</a>
+
+        </div>
+    </div>
+
+    <script type="module" src="./js/buyerSlController.js"></script>
+
+</body>

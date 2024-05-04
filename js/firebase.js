@@ -16,6 +16,7 @@ import {
     getDocs,
     getDoc,
     updateDoc,
+    deleteDoc,
     query,
     where,
     doc,
@@ -50,7 +51,7 @@ export const auth = getAuth(app);
 export default class FirebaseClass {
 
     constructor() {
-        console.log("Created Firebase Object");
+        //console.log("Created Firebase Object");
     }
     //Just an async function to write to Firestore
     async storeToDatabase(type, email, dayDOB, monthDOB, yearDOB, firstName, lastName, phoneNum) {
@@ -733,6 +734,82 @@ export default class FirebaseClass {
                     initBuyerEntity.setEntityMessage("You have already shortlisted this property before!");
                 }
 
+            } else {
+                console.log("No one");
+            }
+        })
+    };
+
+    async fetchBuyerSL(){
+        auth.onAuthStateChanged(async user => {    
+            if (user) {
+                var SLPropArray = [];
+                var currentBuyerEmail = user.email;
+                const q = query(collection(db, "CSIT314/All-Users/UserData/"+currentBuyerEmail+"/shortlistedPLs"));
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                  var propID = doc.id;
+                  SLPropArray.push(propID);
+                });
+                var SLCount = SLPropArray.length;
+                var allData = "";
+                
+                for(let i=0; i<SLCount; i++){
+                    var qx = doc(db,"CSIT314/PropertyListings/createdPLs",SLPropArray[i].toString());
+                    
+                    const queryAns = await getDoc(qx);
+                    if (queryAns.exists()) {
+                        //console.log("Document data:", queryAns.data());
+                        var docStringify = JSON.stringify(queryAns.data());
+                        allData += docStringify + "---";
+                      } else {
+                        // docSnap.data() will be undefined in this case
+                        console.log("No such document!");
+                      }
+                }
+                //console.log(allData);
+                let initBuyerEntity = new buyerEntity();
+                initBuyerEntity.retrieveSL(allData);
+
+                
+                
+
+            } else {
+                console.log("No one");
+            }
+        })
+    }
+
+    async unSLProp(propID){
+        auth.onAuthStateChanged(async user => {    
+            if (user) {
+                var currentBuyerEmail = user.email;
+                await deleteDoc(doc(db,"CSIT314/All-Users/UserData/"+currentBuyerEmail+"/shortlistedPLs",propID));
+                //----------------------------------------------------------
+                const propRef = doc(db,"CSIT314/PropertyListings/createdPLs",propID.toString());
+                    const propSnap = await getDoc(propRef);
+                    var docStringify = JSON.stringify(propSnap.data());
+                    var splitDoc = docStringify.split(",");
+                    var splitDocLength = splitDoc.length;
+                    var currentShortlistCount = '';
+            
+                    for(let i=0; i<splitDocLength; i++){
+                        var currentAttri = splitDoc[i].toString();
+                        var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+                        //console.log(removeEtc);
+                        if(removeEtc.search("propSLC") != -1){
+                            var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                            currentShortlistCount = result;
+                        }
+                    }
+            
+                    currentShortlistCount = +currentShortlistCount - +1;
+            
+                    await updateDoc(propRef,{
+                        propSLC: currentShortlistCount
+                    });
+
+                
             } else {
                 console.log("No one");
             }

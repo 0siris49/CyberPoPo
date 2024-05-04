@@ -7,6 +7,7 @@ import { buyerController } from "./buyerController.js";
 import { createPropertyListingObject } from "./createPLPageController.js";
 import { fullPropertyDetailsController } from "./fullPropertyDetailsController.js";
 import { reaController } from "./reaController.js";
+import { buyerSLController } from "./buyerSLController.js";
 
 
 export class registrationEntity{
@@ -128,6 +129,22 @@ export class buyerEntity{
     setEntityMessage(messageFromFirebase){
         let initBuyerController = new buyerController();
         initBuyerController.setControllerMessage(messageFromFirebase);
+    }
+
+    fetchBuyerSL(){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.fetchBuyerSL();
+        
+    }
+
+    retrieveSL(allData){
+        let initBuyerSLController = new buyerSLController();
+        initBuyerSLController.displaySL(allData);
+    }
+
+    unSLProp(propID){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.unSLProp(propID);
     }
 
     

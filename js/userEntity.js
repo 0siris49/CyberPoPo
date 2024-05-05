@@ -195,6 +195,16 @@ export class reaEntity{
         firebaseObj.submitRating(arg);
     }
 
+    reqRatings(){
+        let firebaseObj = new FirebaseClass();
+        firebaseObj.reqRatings();
+    }
+
+    retrieveRating(avgRating, countRating, allData){
+        let initREAController = new reaController();
+        initREAController.displayREARating(avgRating, countRating, allData);
+    }
+
 
 
     

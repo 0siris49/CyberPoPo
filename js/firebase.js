@@ -815,5 +815,51 @@ export default class FirebaseClass {
             }
         })
     }
+
+    async reqRatings(){
+        auth.onAuthStateChanged(async user => {    
+            if (user) {
+                var currentREAEmail = user.email;
+                const reaRef = doc(db,"CSIT314/All-Users/UserData",currentREAEmail);
+                const reaSnap = await getDoc(reaRef);
+                var docStringify = JSON.stringify(reaSnap.data());
+                var splitDoc = docStringify.split(",");
+                var splitDocLength = splitDoc.length;
+                var avgRating = 0;
+                var countRating = 0;
+                var allData = '';
+        
+                for(let i=0; i<splitDocLength; i++){
+                    var currentAttri = splitDoc[i].toString();
+                    var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+                    //console.log(removeEtc);
+                    if(removeEtc.search("reaRatingAverage") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        avgRating = result;
+                        console.log("Average ",avgRating)
+                    }
+                    if(removeEtc.search("reaRatingCount") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        countRating = result;
+                        console.log("Total ratings ",countRating)
+                    }
+                }
+
+                const querySnapshot = await getDocs(collection(db, "CSIT314/All-Users/UserData",currentREAEmail,"/createdRatings"));
+                querySnapshot.forEach((doc) => {
+                    var docStringify = JSON.stringify(doc.data());
+                    allData += docStringify + "---";
+                });
+
+                console.log(allData);
+
+                let initREAEntity = new reaEntity();
+                initREAEntity.retrieveRating(avgRating, countRating, allData);
+
+            } else {
+                console.log("No one");
+            }
+        })
+    }
 }
 // Your web app's Firebase configuration

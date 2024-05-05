@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     let initReaController = new reaController();
     initReaController.getUserToController();
-})
+});
+    let initReaController = new reaController();
+    initReaController.reqRatings();
+
 }); 
 
 document.body.addEventListener("click", function(e){
@@ -163,6 +166,68 @@ export class reaController{
             table.appendChild(row);
             
         }
+
+    }
+
+    reqRatings(){
+        let initREAEntity = new reaEntity();
+        initREAEntity.reqRatings();
+    }
+
+    displayREARating(avgRating, countRating, allData){
+        var stringArr = allData.split("---");
+        var totalRevCount = stringArr.length - 1;
+        var revName = [];
+        var revText = [];
+        var revStar = [];
+        const container = document.getElementById('displayRating');
+
+        for(let i=0; i<totalRevCount;i++){
+            var splitToAttri = stringArr[i].split(",");
+            var splitToAttriCount = splitToAttri.length;
+
+
+            for(let x=0; x<splitToAttriCount;x++){
+                var attriString = splitToAttri[x].toString();
+                var removeEtc = attriString.replace(/['"{}]+/g, '');
+                //console.log(attriString);
+                
+                if(removeEtc.search("reviewOverview") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    revText.push(result);
+                }
+
+                if(removeEtc.search("reviewerName") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    revName.push(result);
+                }
+
+
+                if(removeEtc.search("starRating") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    revStar.push(result);
+                }
+                
+                
+            }
+        }
+
+        document.getElementById('ratingPlusCount').innerHTML=avgRating+ "🌟 average based on " + countRating + " reviews";
+
+        for(let x=0; x<totalRevCount; x++){
+            
+            const listingElement = document.createElement('div');
+            listingElement.classList.add('reviewSlide');
+            listingElement.innerHTML = `
+                <h2>Review From: ${revName[x]}</h2>
+                <p><strong>Overview: </strong> ${revText[x]}</p>
+                <p><strong>Stars: </strong> ${revStar[x]}🌟</p>
+                
+            `;
+            container.appendChild(listingElement);
+
+        }
+
 
     }
 

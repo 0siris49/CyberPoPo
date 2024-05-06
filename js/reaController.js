@@ -249,5 +249,36 @@ class updateDetails{
 
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const upBtn = document.getElementById('submitUpdateForm');
+    const pTitle = document.getElementById('property_title');
+    const pLoc = document.getElementById('property_location');
+    const pType = document.getElementById('property_type');
+    const yBuilt = document.getElementById('year_built');
+    const pAgent = document.getElementById('property_agent');
+    const pEmail = document.getElementById('property_email');
+    const aId = document.getElementById('agent_id');
+    const pSeller = document.getElementById('property_seller');
+    const propAvail = document.getElementById('propAvail');
+
+    upBtn.addEventListener('click', function(event) {
+        let hasEmptyFields = false;
+        let fields = [pTitle, pLoc, pType, yBuilt, pAgent, pEmail, aId, pSeller, propAvail];
+
+        fields.forEach(field => {
+            if (field.value.trim() === "") {
+                field.style.border = "2px solid red";
+                hasEmptyFields = true;
+            } else {
+                field.style.border = "";
+            }
+        });
+
+        if (hasEmptyFields) {
+            event.preventDefault(); // Prevent form submission
+            alert('Please fill out all required fields.');
+        }
+    });
+});
 
 

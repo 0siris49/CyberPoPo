@@ -315,7 +315,7 @@
           <label for="propAvail">Availability:</label>
           <select id="propAvail" name="propAvail" required>
             <option value="Available">Available</option>
-            <option value="Unavailable">Unavailable</option>
+            <option value="Unavailable">sold</option>
           </select>
 
           <button id="submitUpdateForm">Update</button>
@@ -428,32 +428,25 @@
       }
     </script>
 
-    <script> //update pop-up modal script
-      // Get the modal
-      var updateModal = document.getElementById('updateModal');
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var updateModal = document.getElementById('updateModal');
+        var updSpan = document.querySelector(".close");
 
-      // Get the button that opens the modal
-      var updButton = document.getElementById("rea-update-button");
-
-      // Get the <span> element that closes the modal
-      var updSpan = document.getElementsByClassName("close")[0];
-
-      // When the user clicks the button, open the modal 
-      updButton.onclick = function () {
-        updateModal.style.display = "block";
-      }
-
-      // When the user clicks on <span> (x), close the modal
-      updSpan.onclick = function () {
-        updateModal.style.display = "none";
-      }
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function (event) {
-        if (event.target == updateModal) {
+        // Close modal when clicking on the 'X'
+        updSpan.onclick = function (event) {
           updateModal.style.display = "none";
-        }
-      }
+          event.stopPropagation(); // Prevents the click from propagating to higher-level elements
+        };
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function (event) {
+          if (event.target == updateModal) {
+            updateModal.style.display = "none";
+          }
+        };
+      });
+
     </script>
 
     <script>

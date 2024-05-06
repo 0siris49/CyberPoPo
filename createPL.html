@@ -120,9 +120,9 @@
             <div>
                 <a id="reaPage-button" href="REA.html">View My Listings</a>
                 <a id="logout" href="Login.html">Logout</a>
-                
+
             </div>
-            
+
         </div>
     </header>
 
@@ -221,6 +221,45 @@
                 } else {
                     extraFields.classList.add("hidden");
                     toggleButton.textContent = "Show More Property Fields";
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const subBtn = document.getElementById('submitForm');
+            const pTitle = document.getElementById('property_title');
+            const pLoc = document.getElementById('property_location');
+            const pType = document.getElementById('property_type');
+            const pDesc = document.getElementById('property_description');
+            const pPrice = document.getElementById('property_price');
+            const pBed = document.getElementById('property_bedroom');
+            const pBath = document.getElementById('property_bathroom');
+            const pSize = document.getElementById('property_size');    
+            const yBuilt = document.getElementById('year_built');
+            const pAgent = document.getElementById('property_agent');
+            const pEmail = document.getElementById('property_email');
+            const aId = document.getElementById('agent_id');
+            const pSeller = document.getElementById('property_seller');
+
+            subBtn.addEventListener('click', function (event) {
+                let hasEmptyFields = false;
+                let fields = [pTitle, pLoc, pType, pDesc, pPrice, pBed, pBath, pSize, yBuilt, pAgent, pEmail, aId, pSeller];
+
+                fields.forEach(field => {
+                    if (field.value.trim() === "") {
+                        field.style.border = "2px solid red";
+                        hasEmptyFields = true;
+                    } else {
+                        field.style.border = "";
+                    }
+                });
+
+                if (hasEmptyFields) {
+                    event.preventDefault(); // Prevent form submission
+                    alert('Please fill out all required fields.');
                 }
             });
         });

@@ -412,7 +412,7 @@ export default class FirebaseClass {
         }
     }
 
-    async getBuyerSearchListings(arg) {
+    async getBuyerSearchListings(arg) { 
         const priceRangeOpt = arg.propPriceRange;
         var priceUpperString = 0;
         var priceLowerString = 0;
@@ -436,14 +436,20 @@ export default class FirebaseClass {
         } else if (priceRangeOpt == 6) {
             priceLowerString = 500001;
         }
-        //console.log(priceLowerString, priceUpperString, propTypeOpt, propBedrooms);
-        const q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyPrice", ">=", priceLowerString.toString()), where("propertyPrice", "<=", priceUpperString.toString()), where("propertyType", "==", propTypeOpt.toString()), where("propertyBedroom", "==", propBedrooms.toString()),where("propStatus", "==", "Available"));
-        const queryAns = await getDocs(q);
-        var allData = '';
-        queryAns.forEach((doc) => {
-            var docStringify = JSON.stringify(doc.data());
-            allData += docStringify + "---";
-        });
+        
+        
+           var q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyPrice", ">=", priceLowerString.toString()), where("propertyPrice", "<=", priceUpperString.toString()), where("propertyType", "==", propTypeOpt.toString()), where("propertyBedroom", "==", propBedrooms.toString()));
+        if(priceRangeOpt == 6){
+            q = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyPrice", ">=", priceLowerString.toString()),where("propertyType", "==", propTypeOpt.toString()), where("propertyBedroom", "==", propBedrooms.toString()));
+        }
+           const queryAns = await getDocs(q);
+           var allData = '';
+           queryAns.forEach((doc) => {
+               var docStringify = JSON.stringify(doc.data());
+               allData += docStringify + "---";
+           });
+        
+        
         //console.log(allData);
         let initBuyerEntity = new buyerEntity();
         initBuyerEntity.retrieveSearchResultsEntity(allData);
@@ -561,10 +567,11 @@ export default class FirebaseClass {
     }
 
     async updatePropListDetails(arg){
+        console.log("HELP MAN", arg.agentEmail);
         const propRef = doc(db,"CSIT314/PropertyListings/createdPLs",arg.propIDValue.toString());
         const q1 = query(collection(db, "CSIT314/User-Profiles/Seller-Profile"), where("Email", "==", arg.sellerEmail));
         const q2 = query(collection(db, "CSIT314/User-Profiles/REA-Profile"), where("Email", "==", arg.agentEmail));
-
+        
         var responseToStringq1 = "";
         var responseToStringq2 = "";
         const queryAns = await getDocs(q1);
@@ -579,17 +586,58 @@ export default class FirebaseClass {
         if(responseToStringq2 != ""){
 
             if(responseToStringq1 != ""){
-                await updateDoc(propRef,{
-                    propertyName:arg.propName,
-                    propertyLocation: arg.propLocation,
-                    propertyType: arg.propType,
-                    propertyYearBuilt: arg.yearBuilt,
-                    propAgent: arg.agentName,
-                    propertyAGTID: arg.agentLN,
-                    propertyAgentEmail: arg.agentEmail,
-                    propertySeller: arg.sellerEmail,
-                    propStatus: arg.propAvail
-                });
+                if(arg.propName !=""){
+                    await updateDoc(propRef,{
+                        propertyName:arg.propName,
+                    });
+                }
+                if(arg.propLocation !=""){
+                    await updateDoc(propRef,{
+                        propertyLocation:arg.propLocation,
+                    });
+                }
+                if(arg.propPrice !=""){
+                    await updateDoc(propRef,{
+                        propertyPrice:arg.propPrice,
+                    });
+                }
+                if(arg.propType !=""){
+                    await updateDoc(propRef,{
+                        propertyType:arg.propType,
+                    });
+                }
+                if(arg.yearBuilt !=""){
+                    await updateDoc(propRef,{
+                        propertyYearBuilt:arg.yearBuilt,
+                    });
+                }
+                if(arg.agentName !=""){
+                    await updateDoc(propRef,{
+                        propAgent:arg.agentName,
+                    });
+                }
+                if(arg.agentLN !=""){
+                    await updateDoc(propRef,{
+                        propertyAGTID:arg.agentLN,
+                    });
+                }
+                if(arg.agentEmail !=""){
+                    await updateDoc(propRef,{
+                        propertyAgentEmail:arg.agentEmail,
+                    });
+                }
+                if(arg.sellerEmail !=""){
+                    await updateDoc(propRef,{
+                        propertySeller:arg.sellerEmail,
+                    });
+                }
+                if(arg.propAvail !=""){
+                    await updateDoc(propRef,{
+                        propStatus:arg.propAvail,
+                    });
+                }
+
+                location.reload();
             }else{
                 let initREAEntity = new reaEntity();
                 initREAEntity.setEntityMessage("This Seller Email does not exist");
@@ -616,70 +664,121 @@ export default class FirebaseClass {
         var existingEmail = "";
         
 
-        if(buyerEmail == null){
+        if(sellerEmail != null){
             existingEmail = sellerEmail;
-            console.log(existingEmail,"Existing Seller Email From Firebase");
-        }else{
-            existingEmail = buyerEmail;
-            console.log(existingEmail,"Existing Buyer Email From Firebase");
-        }
-
-        const q1 = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertySeller", "==",existingEmail.toString()), where("propertyAgentEmail","==",arg.revAgentEmail.toString()));
-        let storeRatingsToREA = collection(db,"CSIT314/All-Users/UserData/" + arg.revAgentEmail + "/createdRatings");
-        let updateREARatings = doc(db,"CSIT314/All-Users/UserData/", arg.revAgentEmail.toString());
-        var responseToStringq1 = "";
-        
-        const queryAns = await getDocs(q1);
-        queryAns.forEach((doc) => {
-            responseToStringq1 = doc.id;
-        });
-        
-        if(responseToStringq1 != ""){
-            await setDoc(doc(storeRatingsToREA, arg.revName), {
-                reviewerName: arg.revName,
-                reviewOverview: arg.revText,
-                starRating: arg.starRating,
-
-            });
-
-            const reaRef = doc(db,"CSIT314/All-Users/UserData/", arg.revAgentEmail.toString());
-            const reaSnap = await getDoc(reaRef);
-            var docStringify = JSON.stringify(reaSnap.data());
-            var splitDoc = docStringify.split(",");
-            var splitDocLength = splitDoc.length;
-            var currentRatingTotal = '';
-            var currentRatingCount = '';
-            var currentRatingAverage = '';
-    
-            for(let i=0; i<splitDocLength; i++){
-                var currentAttri = splitDoc[i].toString();
-                var removeEtc = currentAttri.replace(/['"{}]+/g, '');
-                //console.log(removeEtc);
-                if(removeEtc.search("reaRatingTotal") != -1){
-                    var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
-                    currentRatingTotal = result;
-                }
-                if(removeEtc.search("reaRatingCount") != -1){
-                    var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
-                    currentRatingCount = result;
-                }
-            }
-    
-            currentRatingTotal = +currentRatingTotal + +arg.starRating;
-            currentRatingCount = +currentRatingCount + +1;
-            currentRatingAverage = currentRatingTotal/currentRatingCount;
-
-            await updateDoc(reaRef,{
-                reaRatingCount: currentRatingCount,
-                reaRatingTotal: currentRatingTotal,
-                reaRatingAverage: currentRatingAverage
-            });
-
+            const q1 = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertySeller", "==",existingEmail.toString()), where("propertyAgentEmail","==",arg.revAgentEmail.toString()));
+            let storeRatingsToREA = collection(db,"CSIT314/All-Users/UserData/" + arg.revAgentEmail + "/createdRatings");
+            let updateREARatings = doc(db,"CSIT314/All-Users/UserData/", arg.revAgentEmail.toString());
+            var responseToStringq1 = "";
             
+            const queryAns = await getDocs(q1);
+            queryAns.forEach((doc) => {
+                responseToStringq1 = doc.id;
+            });
+            
+            if(responseToStringq1 != ""){
+                await setDoc(doc(storeRatingsToREA, arg.revName), {
+                    reviewerName: arg.revName,
+                    reviewOverview: arg.revText,
+                    starRating: arg.starRating,
+                    revFrom: existingEmail
+    
+                });
+    
+                const reaRef = doc(db,"CSIT314/All-Users/UserData/", arg.revAgentEmail.toString());
+                const reaSnap = await getDoc(reaRef);
+                var docStringify = JSON.stringify(reaSnap.data());
+                var splitDoc = docStringify.split(",");
+                var splitDocLength = splitDoc.length;
+                var currentRatingTotal = '';
+                var currentRatingCount = '';
+                var currentRatingAverage = '';
+        
+                for(let i=0; i<splitDocLength; i++){
+                    var currentAttri = splitDoc[i].toString();
+                    var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+                    //console.log(removeEtc);
+                    if(removeEtc.search("reaRatingTotal") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        currentRatingTotal = result;
+                    }
+                    if(removeEtc.search("reaRatingCount") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        currentRatingCount = result;
+                    }
+                }
+        
+                currentRatingTotal = +currentRatingTotal + +arg.starRating;
+                currentRatingCount = +currentRatingCount + +1;
+                currentRatingAverage = currentRatingTotal/currentRatingCount;
+    
+                await updateDoc(reaRef,{
+                    reaRatingCount: currentRatingCount,
+                    reaRatingTotal: currentRatingTotal,
+                    reaRatingAverage: currentRatingAverage
+                });
+    
+                
+            }else{
+                let initREAEntity = new reaEntity();
+                initREAEntity.setEntityMessage("You cannot review an REA you have not worked with before!!! U N E T H I C A L");
+            }
+           
         }else{
-            let initREAEntity = new reaEntity();
-            initREAEntity.setEntityMessage("You cannot review an REA you have not worked with before!!! U N E T H I C A L");
+           //This is for Buyer leaving review
+            auth.onAuthStateChanged(async user => {
+                if (user) {
+                   existingEmail = user.email;
+                   let storeRatingsToREA = collection(db,"CSIT314/All-Users/UserData/" + arg.revAgentEmail + "/createdRatings");
+                   await setDoc(doc(storeRatingsToREA, arg.revName), {
+                    reviewerName: arg.revName,
+                    reviewOverview: arg.revText,
+                    starRating: arg.starRating,
+                    revFrom: existingEmail
+    
+                });
+
+                const reaRef = doc(db,"CSIT314/All-Users/UserData/", arg.revAgentEmail.toString());
+                const reaSnap = await getDoc(reaRef);
+                var docStringify = JSON.stringify(reaSnap.data());
+                var splitDoc = docStringify.split(",");
+                var splitDocLength = splitDoc.length;
+                var currentRatingTotal = '';
+                var currentRatingCount = '';
+                var currentRatingAverage = '';
+        
+                for(let i=0; i<splitDocLength; i++){
+                    var currentAttri = splitDoc[i].toString();
+                    var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+                    //console.log(removeEtc);
+                    if(removeEtc.search("reaRatingTotal") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        currentRatingTotal = result;
+                    }
+                    if(removeEtc.search("reaRatingCount") != -1){
+                        var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                        currentRatingCount = result;
+                    }
+                }
+        
+                currentRatingTotal = +currentRatingTotal + +arg.starRating;
+                currentRatingCount = +currentRatingCount + +1;
+                currentRatingAverage = currentRatingTotal/currentRatingCount;
+    
+                await updateDoc(reaRef,{
+                    reaRatingCount: currentRatingCount,
+                    reaRatingTotal: currentRatingTotal,
+                    reaRatingAverage: currentRatingAverage
+                });
+                    
+                } else {
+                    console.log("No one");
+                }
+            })
+            
         }
+
+ 
 
 
 
@@ -809,7 +908,7 @@ export default class FirebaseClass {
                         propSLC: currentShortlistCount
                     });
 
-                
+                location.reload();
             } else {
                 console.log("No one");
             }

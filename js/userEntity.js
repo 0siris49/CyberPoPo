@@ -8,7 +8,7 @@ import { createPropertyListingObject } from "./createPLPageController.js";
 import { fullPropertyDetailsController } from "./fullPropertyDetailsController.js";
 import { reaController } from "./reaController.js";
 import { buyerSLController } from "./buyerSLController.js";
-
+ 
 
 export class registrationEntity{
  
@@ -109,13 +109,13 @@ export class buyerEntity{
     propDetailsSearchParamEntity(propertyID){
         let firebaseObj = new FirebaseClass();
         firebaseObj.retrieveDocWithID(propertyID);
-    }
+    } 
     
     retrievePropDetailsEntity(details){
         let initFPDC = new fullPropertyDetailsController();
         initFPDC.receivePropDetails(details);
     }
-
+ 
     updateClickCount(propertyID){
         let firebaseObj = new FirebaseClass();
         firebaseObj.updateClickCount(propertyID);
@@ -181,6 +181,7 @@ export class reaEntity{
     }
 
     updatePropListDetails(arg){
+        console.log("From entity rea", arg.sellerEmail);
         let firebaseObj = new FirebaseClass();
         firebaseObj.updatePropListDetails(arg);
     }

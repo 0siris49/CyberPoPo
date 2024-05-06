@@ -34,6 +34,7 @@ document.body.addEventListener("click", function(e){
 
             var propName = document.getElementById("property_title").value;
             var propLocation = document.getElementById('property_location').value;
+            var propPrice = document.getElementById('property_price').value;
             var propType = document.getElementById('property_type').value;
             var yearBuilt = document.getElementById('year_built').value;
             var propAgent = document.getElementById('property_agent').value;
@@ -42,11 +43,34 @@ document.body.addEventListener("click", function(e){
             var sellerEmail = document.getElementById('property_seller').value;
             var propAvail = document.getElementById('propAvail').value;
 
-            //console.log(propName, propLocation, propType, yearBuilt, propAgent, agentEmail, agentLN, sellerEmail, propIDValue);
 
-            let newUpdateObj = new updateDetails(propName,propLocation, propType, yearBuilt, propAgent, agentEmail, agentLN, sellerEmail, propIDValue, propAvail);
-            let initReaEntity = new reaEntity();
-            initReaEntity.updatePropListDetails(newUpdateObj);
+            const pEmail = document.getElementById('property_email');
+            const aId = document.getElementById('agent_id');
+            const pSeller = document.getElementById('property_seller');
+            let hasEmptyFields = false;
+            let fields = [pEmail, aId, pSeller];
+
+            fields.forEach(field => {
+                if (field.value.trim() === "") {
+                    field.style.border = "2px solid red";
+                    hasEmptyFields = true;
+                } else {
+                    field.style.border = "";
+                }
+            });
+
+            if (hasEmptyFields) {
+                e.preventDefault(); // Prevent form submission
+                alert('Please fill out all required fields.');
+            }else{
+                console.log("Bro wtf why", agentEmail);
+                let newUpdateObj = new updateDetails(propName,propLocation, propPrice,propType, yearBuilt, propAgent, agentEmail, agentLN, sellerEmail, propIDValue, propAvail);
+                let initReaEntity = new reaEntity();
+                initReaEntity.updatePropListDetails(newUpdateObj);
+            }
+            
+        
+            
         })
 
     }
@@ -180,6 +204,7 @@ export class reaController{
         var revName = [];
         var revText = [];
         var revStar = [];
+        var revFrom = [];
         const container = document.getElementById('displayRating');
 
         for(let i=0; i<totalRevCount;i++){
@@ -207,6 +232,11 @@ export class reaController{
                     var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
                     revStar.push(result);
                 }
+
+                if(removeEtc.search("revFrom") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    revFrom.push(result);
+                }
                 
                 
             }
@@ -219,7 +249,8 @@ export class reaController{
             const listingElement = document.createElement('div');
             listingElement.classList.add('reviewSlide');
             listingElement.innerHTML = `
-                <h2>Review From: ${revName[x]}</h2>
+                <h2>${revName[x]}</h2>
+                <p><strong>Review From: </strong> ${revFrom[x]}</p>
                 <p><strong>Overview: </strong> ${revText[x]}</p>
                 <p><strong>Stars: </strong> ${revStar[x]}🌟</p>
                 
@@ -234,12 +265,13 @@ export class reaController{
 }
 
 class updateDetails{
-    constructor(propName, propLocation, propType, yearBuilt, agentName, agentEmail, agentLN, sellerEmail, propIDValue,propAvail){
+    constructor(propName,propLocation, propPrice,propType, yearBuilt, propAgent, agentEmail, agentLN, sellerEmail, propIDValue, propAvail){
         this.propName = propName;
         this.propLocation = propLocation;
+        this.propPrice = propPrice;
         this.propType = propType;
         this.yearBuilt = yearBuilt;
-        this.agentName = agentName;
+        this.agentName = propAgent;
         this.agentEmail = agentEmail;
         this.agentLN = agentLN;
         this.sellerEmail = sellerEmail;
@@ -249,36 +281,6 @@ class updateDetails{
 
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const upBtn = document.getElementById('submitUpdateForm');
-    const pTitle = document.getElementById('property_title');
-    const pLoc = document.getElementById('property_location');
-    const pType = document.getElementById('property_type');
-    const yBuilt = document.getElementById('year_built');
-    const pAgent = document.getElementById('property_agent');
-    const pEmail = document.getElementById('property_email');
-    const aId = document.getElementById('agent_id');
-    const pSeller = document.getElementById('property_seller');
-    const propAvail = document.getElementById('propAvail');
 
-    upBtn.addEventListener('click', function(event) {
-        let hasEmptyFields = false;
-        let fields = [pTitle, pLoc, pType, yBuilt, pAgent, pEmail, aId, pSeller, propAvail];
-
-        fields.forEach(field => {
-            if (field.value.trim() === "") {
-                field.style.border = "2px solid red";
-                hasEmptyFields = true;
-            } else {
-                field.style.border = "";
-            }
-        });
-
-        if (hasEmptyFields) {
-            event.preventDefault(); // Prevent form submission
-            alert('Please fill out all required fields.');
-        }
-    });
-});
 
 

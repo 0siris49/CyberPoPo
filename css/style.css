@@ -260,10 +260,31 @@ input[name="search-user"], input[name="search-profile"] {
  
 }
 
-.suspend-apply-cancel {
-    margin-top: 1%;
-    text-align: right;
-    display: none;
+.suspend-profile-icon{
+  margin-left: 10px;
+  margin-right: 30px;
+  background-color:  #E9C874;
+  
+ }
+
+ .update-account-icon {
+  width: 10%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+  
+}
+
+.update-profile-icon {
+  width: 10%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+  
 }
 
 /* Define styles for table header */
@@ -708,6 +729,8 @@ button#rea-update-button {
   background-color: #E9C874;
   
 }
+
+
 
 button#rea-delete-button {
   width: 10%;

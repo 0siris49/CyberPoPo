@@ -16,26 +16,26 @@
                 Cyber Property
             </a>
             <div class="header-right">
-                <a id="createAccount" style="cursor: pointer">Create Account</a>
-                <a id="viewAccounts" style="cursor: pointer">View Accounts</a>
-                <a id="viewProfiles" style="cursor: pointer" href="AdminPageProfiles.html">View Profiles</a>
+                <a id="createAccount" style="cursor: pointer">Create Profile</a>
+                <a id="viewProfiles" style="cursor: pointer">View Profiles</a>
+                <a id="viewAccounts" style="cursor: pointer" href="AdminPage.html">Back to User Account Page</a>
                 <a id="logout" style="cursor: pointer">Logout</a>
             </div>
         </div>
     </div>
 
-    <div class="adminwelcome">Welcome to System Administrator Page</div>
+    <div class="adminwelcome">Welcome to System Administrator User Profile Page</div>
 
     <!--View User Account-->
     <div class="view-container" id="view-container">
         <div class="view-container-header">
-            <h2 class="view-title">View User Account</h2>
+            <h2 class="view-title">View User Profile</h2>
             <div class="utility-bar">
-                <button class="suspend-account-icon" style="cursor: pointer">
-                    <span class="suspend-icon">suspend account</span>
+                <button class="suspend-profile-icon" style="cursor: pointer">
+                    <span class="suspend-icon">suspend profile</span>
                 </button>
-                <button class="update-account-icon" style="cursor: pointer">
-                    <span class="update-icon">update account</span>
+                <button class="update-profile-icon" style="cursor: pointer">
+                    <span class="update-icon">update profile</span>
                 </button>
                 <input type="text" name="search-user" id="search-id" placeholder="Name">
                 <button id="search-button" style="cursor: pointer">Search</button>
@@ -48,7 +48,8 @@
                         <th>UserID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Status(Active/Suspended/Deleted;deleted not part of user story)</th>
+                        <th>Profile Type(buyer/seller/rea)</th>
+                        <th>Status(Active/Suspended/Deleted; deleted not part of user story)</th>
                         <th>Options(same with REA page suspend button leads to modal)</th>
                     </tr>
                 </thead>

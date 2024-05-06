@@ -32,6 +32,7 @@ export class buyerController {
         const cleanREAEmail= [];
         const cleanREAName = [];
         const cleanID = [];
+        const cleanAvail = [];
 
         for(let i=0; i<totalPropList;i++){
             var splitToAttri = stringArr[i].split(",");
@@ -47,7 +48,7 @@ export class buyerController {
                     var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
                     //console.log(result);
                     cleanPrice.push(result);
-                }
+                } 
                 
                 if(removeEtc.search("propertyName") != -1){
                     var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
@@ -95,6 +96,11 @@ export class buyerController {
                     ///console.log(result);
                     cleanID.push(result);
                 }
+                if(removeEtc.search("propStatus") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    ///console.log(result);
+                    cleanAvail.push(result);
+                }
 
                 
             }
@@ -110,6 +116,7 @@ export class buyerController {
                 <p><strong>Type:</strong> ${cleanType[x]}</p>
                 <p><strong>Description:</strong> ${cleanDesc[x]}</p>
                 <p><strong>Price: SGD </strong> ${cleanPrice[x]}</p>
+                <p><strong>Availibility: </strong> ${cleanAvail[x]}</p>
                 <button class="shortlist-button" value="${cleanID[x]}">Shortlist this Property</button>
                 <a href="fullPropertyDetails.html?propertyId=${cleanID[x]}" class="view-details-button" id="viewDetails" value="${cleanID[x]}">View Details</a>
             ` + `

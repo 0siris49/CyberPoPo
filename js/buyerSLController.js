@@ -38,6 +38,7 @@ export class buyerSLController{
         const cleanREAEmail= [];
         const cleanREAName = [];
         const cleanID = [];
+        const cleanAvail = [];
 
         for(let i=0; i<totalPropList;i++){
             var splitToAttri = stringArr[i].split(",");
@@ -101,6 +102,11 @@ export class buyerSLController{
                     ///console.log(result);
                     cleanID.push(result);
                 }
+                if(removeEtc.search("propStatus") != -1){
+                    var result = removeEtc.substring(removeEtc.lastIndexOf(":")+1);
+                    ///console.log(result);
+                    cleanAvail.push(result);
+                }
 
                 
             }
@@ -116,8 +122,13 @@ export class buyerSLController{
                 <p><strong>Type:</strong> ${cleanType[x]}</p>
                 <p><strong>Description:</strong> ${cleanDesc[x]}</p>
                 <p><strong>Price: SGD </strong> ${cleanPrice[x]}</p>
-                <button class="unshortlist-button" value="${cleanID[x]}">Remove from Shortlist</button>
-                <a href="fullPropertyDetails.html?propertyId=${cleanID[x]}" class="view-details-button" id="viewDetails" value="${cleanID[x]}">View Details</a>
+                <p><strong>Availibility: </strong> ${cleanAvail[x]}</p>
+                <tr>
+                <td><button class="unshortlist-button" value="${cleanID[x]}">Remove from Shortlist</button></td>
+                <td><a href="rateNreview.html?reaEmail=${cleanREAEmail[x]}" class="view-details-button"> Leave a review for ${cleanREAName[x]}</a></td>
+                <td><a href="fullPropertyDetails.html?propertyId=${cleanID[x]}" class="view-details-button" id="viewDetails" value="${cleanID[x]}">View Details</a></td>
+                </tr>
+                
             `;
             container.appendChild(listingElement);
 

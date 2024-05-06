@@ -19,20 +19,27 @@
                 background-color: #f0f0f0;
                 border-radius: 5px;
                 margin-bottom: 20px;
-                max-width: 1000px;
+                max-width: 100%;
+                /* Ensure it takes full available width */
                 width: 100%;
+                /* Use the full width */
+                flex-wrap: nowrap;
+                /* Prevent wrapping of elements */
             }
 
             .search-bar input[type="text"],
             .search-bar select {
+                flex: 1;
+                /* Each select/input takes equal width */
                 padding: 8px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
-                font-size: 16px;
                 margin-right: 10px;
+                /* Adjust space between elements */
+                min-width: 100px;
+                /* Minimum width to ensure visibility */
             }
 
-            .shortlisted-button,
             button {
                 padding: 10px 20px;
                 background-color: #4CAF50;
@@ -42,6 +49,8 @@
                 cursor: pointer;
                 font-size: 16px;
                 transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+                white-space: nowrap;
+                /* Prevent button text from wrapping */
             }
 
             .shortlisted-button {

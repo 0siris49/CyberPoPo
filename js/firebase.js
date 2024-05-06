@@ -718,7 +718,7 @@ export default class FirebaseClass {
                     reaRatingAverage: currentRatingAverage
                 });
     
-                
+                location.reload();
             }else{
                 let initREAEntity = new reaEntity();
                 initREAEntity.setEntityMessage("You cannot review an REA you have not worked with before!!! U N E T H I C A L");
@@ -770,7 +770,7 @@ export default class FirebaseClass {
                     reaRatingTotal: currentRatingTotal,
                     reaRatingAverage: currentRatingAverage
                 });
-                    
+                    location.reload();
                 } else {
                     console.log("No one");
                 }

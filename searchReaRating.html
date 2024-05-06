@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REA ratings</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -13,7 +19,7 @@
   <header>
     <div id="root">
       <div class="headerLogin">
-        <a href="Login.html" class="logo">
+        <a href="#Login.html" class="logo">
           <img src="cyberpopo_logo.png" alt="CyberpopoLogo" class="CyberpopoLogo">
         </a>
         <div class="header-right">
@@ -27,7 +33,7 @@
         justify-content: center;
         padding: 20px;
       }
-      
+
       #searchEmail {
         padding: 10px;
         margin-right: 8px;
@@ -38,11 +44,11 @@
         outline: none;
         transition: border-color 0.3s;
       }
-      
+
       #searchEmail:focus {
         border-color: #007BFF;
       }
-      
+
       #searchButton {
         padding: 10px 20px;
         border: none;
@@ -53,15 +59,16 @@
         cursor: pointer;
         transition: background-color 0.3s;
       }
-      
+
       #searchButton:hover {
         background-color: #0056b3;
       }
-      
+
       #searchResults {
         margin-top: 20px;
         text-align: center;
-      }</style>
+      }
+    </style>
   </header>
 
   <div class="search-container">

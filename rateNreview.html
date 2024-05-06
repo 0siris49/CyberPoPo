@@ -24,27 +24,33 @@
             width: 600px;
         }
 
-        .reviewAgent-Title{
+        .reviewAgent-Title {
             text-align: center;
+        }
 
+        .logo img {
+            width: 200px;
+            height: auto;
         }
     </style>
 
     <div>
         <div class="headerSeller">
-            <a href="Login.html" class="logo">
-                Cyber Property
+            <a href="#Login.html" class="logo">
+                <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
             </a>
             <div class="header-right">
                 <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
             </div>
             <div class="header-right">
-                <a id="buyer-viewlisting" style="cursor: pointer" href="buyer.html">Back To Listings(only visible to buyers)</a>
+                <a id="buyer-viewlisting" style="cursor: pointer" href="buyer.html">Back To Listings(only visible to
+                    buyers)</a>
             </div>
             <div class="header-right">
-                <a id="seller-viewproperties" style="cursor: pointer" href="seller.html">View My Properties(only visible to sellers)</a>
+                <a id="seller-viewproperties" style="cursor: pointer" href="seller.html">View My Properties(only visible
+                    to sellers)</a>
             </div>
-           
+
 
         </div>
     </div>
@@ -81,7 +87,7 @@
     </div>
 
     <script>
-        document.getElementById('logout').addEventListener('click', function logOut () {
+        document.getElementById('logout').addEventListener('click', function logOut() {
             console.log("Logout link clicked");
             window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 

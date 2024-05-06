@@ -107,6 +107,11 @@
       text-decoration: none;
       cursor: pointer;
     }
+
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
   </style>
 
 
@@ -114,8 +119,8 @@
 
   <div>
     <div class="headerSeller">
-      <a href="#Login.html" class="logo">
-        Cyber Property
+      <a href="REA.html" class="logo">
+        <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
       </a>
       <div class="header-right">
         <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
@@ -313,7 +318,7 @@
             <option value="Unavailable">Unavailable</option>
           </select>
 
-          <button id="submitUpdateForm" >Update</button>
+          <button id="submitUpdateForm">Update</button>
         </form>
       </div>
     </div>
@@ -340,7 +345,7 @@
     <script> // search fn script
 
       document.getElementById('rea-search-button').addEventListener('click', function () {
-        var input, filter, table, tr, td_id, td_name, td_avail, td_rating,td_location, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_location, txtValue_rating;
+        var input, filter, table, tr, td_id, td_name, td_avail, td_rating, td_location, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_location, txtValue_rating;
         input = document.getElementById("search-id");
         filter = input.value.toUpperCase();
         table = document.getElementById("table");

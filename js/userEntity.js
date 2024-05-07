@@ -68,16 +68,18 @@ export class sellerEntity{
     getUserToEntity(){
         let firebaseObj = new FirebaseClass();
         firebaseObj.getCurrentUserSeller();
+        
     }
 
-    setEntityDisplayName(displayNameFromFirebase){
+    setEntityDisplayName(displayNameFromFirebase,emailFromFirebase){
         let initSellerController = new sellerController();
-        initSellerController.setSellerControllerDisplayName(displayNameFromFirebase);
+        initSellerController.setSellerControllerDisplayName(displayNameFromFirebase,emailFromFirebase);
     }
 
-    getSellerPropList(propList){
-        let initSellerController = new sellerController();
-        initSellerController.holdSellerPropList(propList);
+    async getSellerProps(currentEmail){
+        let firebaseObj = new FirebaseClass();
+        var allSellerProps = await firebaseObj.getSellerProperties(currentEmail);
+        return allSellerProps;
         
     }
 }
@@ -92,19 +94,15 @@ export class buyerEntity{
         firebaseObj.getCurrentUserBuyer();
     }
 
-    setEntityDisplayName(displayNameFromFirebase){
+    setEntityDisplayName(displayNameFromFirebase,currentEmail){
         let initBuyerController = new buyerController();
-        initBuyerController.setBuyerControllerDisplayName(displayNameFromFirebase);
+        initBuyerController.setBuyerControllerDisplayName(displayNameFromFirebase,currentEmail);
     }
 
     passSearchParamsToEntity(arg){
         let firebaseObj = new FirebaseClass();
-        firebaseObj.getBuyerSearchListings(arg);
-    }
-
-    retrieveSearchResultsEntity(searchResult){
-        let initBuyerController = new buyerController();
-        initBuyerController.displaySearchResultsController(searchResult);
+        var searchResults = firebaseObj.getBuyerSearchListings(arg);
+        return searchResults;
     }
 
     propDetailsSearchParamEntity(propertyID){
@@ -132,9 +130,11 @@ export class buyerEntity{
         initBuyerController.setControllerMessage(messageFromFirebase);
     }
 
-    fetchBuyerSL(){
+    fetchBuyerSL(buyerEmail){
         let firebaseObj = new FirebaseClass();
-        firebaseObj.fetchBuyerSL();
+        var allData = firebaseObj.fetchBuyerSL(buyerEmail);
+        console.log(allData);
+        return allData;
         
     }
 
@@ -166,14 +166,15 @@ export class reaEntity{
         initCreatePLPageController.setControllerMessage(messageFromFirebase);
     }
 
-    getUserToEntity(){
+    getREAProps(currentEmail){
         let firebaseObj = new FirebaseClass();
-        firebaseObj.getCurrentUserREA();
+        var allProps = firebaseObj.getREAPropListing(currentEmail);
+        return allProps;
     }
 
-    setEntityDisplayName(displayNameFromFirebase){
+    setEntityDisplayName(displayNameFromFirebase,currentREAEmail){
         let initREAController = new reaController();
-        initREAController.setREAControllerDisplayName(displayNameFromFirebase);
+        initREAController.setREAControllerDisplayName(displayNameFromFirebase,currentREAEmail);
     }
 
     getREAPropListEntity(allPropList){
@@ -197,9 +198,10 @@ export class reaEntity{
         firebaseObj.submitRating(arg);
     }
 
-    reqRatings(){
+    reqRatings(currentREA){
         let firebaseObj = new FirebaseClass();
-        firebaseObj.reqRatings();
+        let ratings =  firebaseObj.reqRatings(currentREA);
+        return ratings;
     }
 
     retrieveRating(avgRating, countRating, allData){
@@ -231,6 +233,14 @@ export class currentUserEntity{
     setCurrentUserType(userType){
         let initFPDC = new fullPropertyDetailsController();
         initFPDC.setCurrentUserTypeController(userType);
+    }
+}
+
+export class propertyDetailsEntity{
+    searchPropWithID(propertyID){
+        let firebaseObj = new FirebaseClass();
+        var propDetails = firebaseObj.retrieveDocWithID(propertyID);
+        return propDetails;
     }
 }
 

@@ -1,5 +1,5 @@
 import { buyerEntity } from "./userEntity.js";
-
+var currentBuyer = '';
 export class buyerController {
     //Actually calls for Firebase to check whether there's a user logged in, and if it does, return their displayName
     getUserToController() {
@@ -8,9 +8,9 @@ export class buyerController {
     }
  
 
-    setBuyerControllerDisplayName(displayNameFromEntity) {
+    setBuyerControllerDisplayName(displayNameFromEntity,currentEmail) {
         var displayUserName = displayNameFromEntity;
-        
+        currentBuyer = currentEmail;
         
         const buyerNameTag = document.getElementById('buyerName');
             if(buyerNameTag){
@@ -162,9 +162,10 @@ class searchParams{
 document.addEventListener("DOMContentLoaded", () => {
 
     if(window.location.href.indexOf('buyer.html') > -1){
+        const shortlistPage = document.getElementById('shortlistPage');
         const searchButton = document.getElementById("searchBtn");
         if (searchButton) {
-            searchButton.addEventListener("click", function (event) {
+            searchButton.addEventListener("click", async function (event) {
                 event.preventDefault();
     
                 var listingElement = document.getElementsByClassName("property-listing");
@@ -179,12 +180,17 @@ document.addEventListener("DOMContentLoaded", () => {
     
                 let searchParamsObj = new searchParams(propLocation,propPriceRange,propType,propBedrooms);
                 let initBuyerEntity = new buyerEntity();
-                initBuyerEntity.passSearchParamsToEntity(searchParamsObj);
-    
+                var FinalSearchResult= await initBuyerEntity.passSearchParamsToEntity(searchParamsObj);
                 
+                let initBuyerController = new buyerController();
+                initBuyerController.displaySearchResultsController(FinalSearchResult);
                 
             });
         }
+
+        shortlistPage.addEventListener("click",function redirect(){
+            document.location.href = `buyerShortlist.html?buyer=${currentBuyer}`;
+        })
     }
     
 });

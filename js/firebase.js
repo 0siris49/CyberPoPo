@@ -721,7 +721,7 @@ export default class FirebaseClass {
                 location.reload();
             }else{
                 let initREAEntity = new reaEntity();
-                initREAEntity.setEntityMessage("You cannot review an REA you have not worked with before!!! U N E T H I C A L");
+                initREAEntity.setRREntityMessage("You cannot review an REA you have not worked with before!!! U N E T H I C A L");
             }
            
         }else{

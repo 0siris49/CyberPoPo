@@ -143,8 +143,11 @@ export class buyerController {
 
 
 window.onload = function () {
-    let initBuyerController = new buyerController();
-    initBuyerController.getUserToController();
+    if(window.location.href.indexOf('buyer.html') > -1){
+        let initBuyerController = new buyerController();
+        initBuyerController.getUserToController();
+    }
+    
 };
  
 class searchParams{
@@ -157,37 +160,44 @@ class searchParams{
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const searchButton = document.getElementById("searchBtn");
-    if (searchButton) {
-        searchButton.addEventListener("click", function (event) {
-            event.preventDefault();
 
-            var listingElement = document.getElementsByClassName("property-listing");
-            while(listingElement.length > 0){
-                listingElement[0].parentNode.removeChild(listingElement[0])
-            }
-
-            const propLocation = document.getElementById('property_location').value;
-            const propPriceRange = document.getElementById('property_range').value;
-            const propType = document.getElementById('property_type').value;
-            const propBedrooms  = document.getElementById('property_bedroom').value;
-
-            let searchParamsObj = new searchParams(propLocation,propPriceRange,propType,propBedrooms);
-            let initBuyerEntity = new buyerEntity();
-            initBuyerEntity.passSearchParamsToEntity(searchParamsObj);
-
-            
-            
-        });
+    if(window.location.href.indexOf('buyer.html') > -1){
+        const searchButton = document.getElementById("searchBtn");
+        if (searchButton) {
+            searchButton.addEventListener("click", function (event) {
+                event.preventDefault();
+    
+                var listingElement = document.getElementsByClassName("property-listing");
+                while(listingElement.length > 0){
+                    listingElement[0].parentNode.removeChild(listingElement[0])
+                }
+    
+                const propLocation = document.getElementById('property_location').value;
+                const propPriceRange = document.getElementById('property_range').value;
+                const propType = document.getElementById('property_type').value;
+                const propBedrooms  = document.getElementById('property_bedroom').value;
+    
+                let searchParamsObj = new searchParams(propLocation,propPriceRange,propType,propBedrooms);
+                let initBuyerEntity = new buyerEntity();
+                initBuyerEntity.passSearchParamsToEntity(searchParamsObj);
+    
+                
+                
+            });
+        }
     }
+    
 });
 
 document.body.addEventListener("click", function(e){
-    if(e.target.classList.contains("shortlist-button")){
-        var propID = e.target.value;
-
-        let initBuyerEntity = new buyerEntity();
-        initBuyerEntity.shortlistProp(propID);
-        
+    if(window.location.href.indexOf('buyer.html') > -1){
+        if(e.target.classList.contains("shortlist-button")){
+            var propID = e.target.value;
+    
+            let initBuyerEntity = new buyerEntity();
+            initBuyerEntity.shortlistProp(propID);
+            
+        }
     }
+    
 })

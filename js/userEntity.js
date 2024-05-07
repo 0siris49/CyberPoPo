@@ -8,6 +8,7 @@ import { createPropertyListingObject } from "./createPLPageController.js";
 import { fullPropertyDetailsController } from "./fullPropertyDetailsController.js";
 import { reaController } from "./reaController.js";
 import { buyerSLController } from "./buyerSLController.js";
+import { rateReviewController } from "./rateReviewController.js";
  
 
 export class registrationEntity{
@@ -204,6 +205,11 @@ export class reaEntity{
     retrieveRating(avgRating, countRating, allData){
         let initREAController = new reaController();
         initREAController.displayREARating(avgRating, countRating, allData);
+    }
+
+    setRREntityMessage(message){
+        let initRRController = new rateReviewController();
+        initRRController.setControllerMessage(message);
     }
 
 

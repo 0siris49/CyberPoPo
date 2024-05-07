@@ -6,10 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Header</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <style>
         .logo img {
             width: 200px;
             height: auto;
+        }
+
+        /* Modal style */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .modal-buttons {
+            text-align: right;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -32,21 +59,24 @@
 
     <div class="adminwelcome">Welcome to System Administrator Page</div>
 
-    <!--View User Account-->
     <div class="view-container" id="view-container">
         <div class="view-container-header">
-            <h2 class="view-title">View User Account</h2>
+            <h2 class="view-title">View User Accounts</h2>
             <div class="utility-bar">
                 <button class="suspend-account-icon" style="cursor: pointer">
-                    <span class="suspend-icon">suspend account</span>
+                    <span class="suspend-icon" id="admin-suspend-button">suspend account</span>
                 </button>
                 <button class="update-account-icon" style="cursor: pointer">
-                    <span class="update-icon">update account</span>
+                    <span class="update-icon" id="admin-update-button">update account</span>
+                </button>
+                <button class="delete-account-icon" style="cursor: pointer">
+                    <span class="delete-icon" id="admin-delete-button">delete account</span>
                 </button>
                 <input type="text" name="search-user" id="search-id" placeholder="Name">
                 <button id="search-button" style="cursor: pointer">Search</button>
             </div>
         </div>
+
         <div class="admin view-table" id="view-table">
             <table>
                 <thead id="table-header">
@@ -63,6 +93,74 @@
         </div>
     </div>
 
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this user account (Account ID)?</p>
+            <div class="modal-buttons">
+                <button id="delete-confirm">Yes</button>
+                <button id="delete-cancel">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <form method="POST" class="update-ua-form">
+                <div class="updateUAheader">Update User Account Details *ID(auto fetched when click-on update)*</div>
+
+                <div id="extraFields" class="hidden">
+                    <div id="ua-id"></div>
+                </div>
+                <br>
+                <label for="account_fname">First Name:</label>
+                <input type="text" id="account_fname" name="account_fname" required>
+                <label for="account_lname">Last Name:</label>
+                <input type="text" id="account_lname" name="account_lname" required>
+                <br>
+                <br>
+                <label for="account_email">Email:</label>
+                <input type="text" id="account_email" name="account_email" required>
+                <br>
+                <br>
+                <label for="account_phone">Phone Number:</label>
+                <input type="text" class="account_phone" id="account_phone" pattern="[89]\d{7}"
+                    title="Please enter a valid phone number starting with 8 or 9 and consisting of 8 digits"
+                    maxlength="8">
+                <br>
+                <br>
+                <label for="account_password">Password:</label>
+                <input type="password" class="account_password" id="account_password">
+                <br>
+                <br>
+                <label for="account_dob">Date-Of-Birth:</label>
+                <div style="display: flex; justify-content: space-between;">
+                    <input type="text" class="account_dob" id="regDobDay" placeholder="Day"
+                        style="flex: 1; margin-right: 10px;">
+                    <input type="text" class="account_dob" id="regDobMonth" placeholder="Month"
+                        style="flex: 1; margin-right: 10px;">
+                    <input type="text" class="account_dob" id="regDobYear" placeholder="Year" style="flex: 1;">
+                </div>
+                <br>
+                <br>
+
+                <button id="submitUpdateForm">Update</button>
+                <button id="update-cancel">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!--Suspend Modal -->
+    <div id="suspendModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to suspend this user account (Account ID)?</p>
+            <div class="modal-buttons">
+                <button id="suspend-confirm">Yes</button>
+                <button id="suspend-cancel">No</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.getElementById('viewAccounts').addEventListener('click', function () {
@@ -84,6 +182,182 @@
         });
 
     </script>
+
+    <script> // suspend pop-up confirmation modal (sysadmin ua)
+        // Get the modal
+        var suspendModal = document.getElementById('suspendModal');
+
+        // Get the button that opens the modal
+        var suspendButton = document.getElementById('admin-suspend-button');
+
+        // Get the button elements inside the modal
+        var confirmButton = document.getElementById('suspend-confirm');
+        var cancelButton = document.getElementById('suspend-cancel');
+
+        // Function to open the modal
+        suspendButton.onclick = function () {
+            deleteModal.style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            suspendModal.style.display = 'none';
+        }
+
+        // Event listener for the Yes button (to suspend)
+        confirmButton.onclick = function () {
+            // Place your delete code here
+            console.log('Account Suspended');
+            closeModal();
+        }
+
+        // Event listener for the No button (to cancel)
+        cancelButton.onclick = function () {
+            console.log('Suspend fn cancelled');
+            closeModal();
+        }
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function (event) {
+            if (event.target == suspendModal) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <script> // delete pop-up confirmation modal (sysadmin ua)
+        // Get the modal
+        var deleteModal = document.getElementById('deleteModal');
+
+        // Get the button that opens the modal
+        var deleteButton = document.getElementById('admin-delete-button');
+
+        // Get the button elements inside the modal
+        var confirmButton = document.getElementById('delete-confirm');
+        var cancelButton = document.getElementById('delete-cancel');
+
+        // Function to open the modal
+        deleteButton.onclick = function () {
+            deleteModal.style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            deleteModal.style.display = 'none';
+        }
+
+        // Event listener for the Yes button (to delete)
+        confirmButton.onclick = function () {
+            // Place your delete code here
+            console.log('Account Deleted');
+            closeModal();
+        }
+
+        // Event listener for the No button (to cancel)
+        cancelButton.onclick = function () {
+            console.log('Deletion canceled');
+            closeModal();
+        }
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function (event) {
+            if (event.target == deleteModal) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <script> //update pop-up confirmation modal (sysadmin ua)
+        // Get the update modal
+        var updateModal = document.getElementById('updateModal');
+
+        // Get the button that opens the update modal
+        var updateButton = document.getElementById('admin-update-button');
+
+        // Get the button elements inside the update modal
+        var updateConfirmButton = document.getElementById('submitUpdateForm');
+        var updateCancelButton = document.getElementById('update-cancel');
+
+        // Function to open the update modal
+        updateButton.onclick = function () {
+            updateModal.style.display = 'block';
+        }
+
+        // Function to close the update modal
+        function closeUpdateModal() {
+            updateModal.style.display = 'none';
+        }
+
+        // Event listener for the Update button
+        updateConfirmButton.onclick = function () {
+            var newValue = document.getElementById('updateInput').value;
+            // Place your update code here, using newValue
+            console.log('Information updated to: ' + newValue);
+            closeUpdateModal();
+        }
+
+        // Event listener for the Cancel button
+        updateCancelButton.onclick = function () {
+            console.log('Update canceled');
+            closeUpdateModal();
+        }
+
+        // Close the update modal if the user clicks anywhere outside of it
+        window.onclick = function (event) {
+            if (event.target == updateModal) {
+                closeUpdateModal();
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+
+    <script> //script for password validation 
+        document.getElementById("account_password").addEventListener("input", validatePassword);
+        function validatePassword() {
+            var password = document.getElementById("account_password").value;
+            var uppercaseRegex = /[A-Z]/;
+            var numberRegex = /[0-9]/;
+            var symbolRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+            var hasUppercase = uppercaseRegex.test(password);
+            var hasNumber = numberRegex.test(password);
+            var hasSymbol = symbolRegex.test(password);
+
+            var isValid = hasUppercase && hasNumber && hasSymbol;
+
+            if (!isValid) {
+                document.getElementById("account_password").setCustomValidity("Password must contain at least one uppercase letter, one number, and one symbol.");
+                document.getElementById("passwordValidationMessage").innerText = "Password must contain at least one uppercase letter, one number, and one symbol.";
+            } else {
+                document.getElementById("account_password").setCustomValidity("");
+                document.getElementById("passwordValidationMessage").innerText = "";
+            }
+        }
+    </script>
+    <script> //script for date 
+        $(function () {
+            $("#regDobDay, #regDobMonth, #regDobYear").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeYear: true,
+                yearRange: "c-100:c",
+                changeMonth: true,
+                showButtonPanel: true,
+                onSelect: function (dateText, inst) {
+                    var date = $(this).datepicker("getDate");
+                    if (date) {
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1;
+                        var year = date.getFullYear();
+                        $("#regDobDay").val(day);
+                        $("#regDobMonth").val(month);
+                        $("#regDobYear").val(year);
+                    }
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

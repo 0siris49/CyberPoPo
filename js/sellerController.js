@@ -1,16 +1,20 @@
 import {
     sellerEntity
 } from "./userEntity.js";
-var sellerProps = "";
-window.onload = function () {
+var currentEmail = "";
+window.onload = async function () {
     if (window.location.href.indexOf('seller.html') > -1) {
         let initSellerController = new sellerController();
         initSellerController.getUserToController();
+    
+        
+        
         var fetchButton = document.getElementById('viewProperties');
     
-        fetchButton.addEventListener("click", function (e) {
+        fetchButton.addEventListener("click", async function (e) {
             e.preventDefault();
-    
+            let initSellerController = new sellerController();
+            var sellerProps = await initSellerController.getSellerProps(currentEmail);
             var table = document.getElementById('table');
             var tableRows = document.getElementsByTagName('tr');
             var rowCount = tableRows.length;
@@ -19,7 +23,7 @@ window.onload = function () {
                 table.removeChild(tableRows[i]);
             }
     
-            let initSellerController = new sellerController();
+            
             initSellerController.setSellerPropList(sellerProps);
         });
     }
@@ -30,18 +34,23 @@ window.onload = function () {
 
 export class sellerController {
     //Actually calls for Firebase to check whether there's a user logged in, and if it does, return their displayName
-    getUserToController() {
+     getUserToController() {
         let initSellerEntity = new sellerEntity();
         initSellerEntity.getUserToEntity();
+        
     }
 
-    setSellerControllerDisplayName(displayNameFromEntity) {
+    setSellerControllerDisplayName(displayNameFromEntity,emailFromFirebase) {
         var displayUserName = displayNameFromEntity;
+        currentEmail = emailFromFirebase;
         document.getElementById('sellerName').innerHTML = displayUserName;
     }
 
-    holdSellerPropList(propList) {
-        sellerProps = propList;
+    getSellerProps(currentEmail){
+        let initSellerEntity = new sellerEntity();
+        var allSellerProps = initSellerEntity.getSellerProps(currentEmail);
+        return allSellerProps;
+
     }
 
     setSellerPropList(string) {

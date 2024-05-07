@@ -8,31 +8,36 @@ document.body.addEventListener("click",function setStarRating(e){
 })
 
 document.addEventListener("DOMContentLoaded", function(){
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const reaToRate = urlParams.get('reaEmail');
-    document.getElementById('revFor').innerHTML = reaToRate;
-})
+    if(window.location.href.indexOf('rateNreview.html') > -1){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const reaToRate = urlParams.get('reaEmail');
+        document.getElementById('revFor').innerHTML = reaToRate;
 
-submitReviewBtn.addEventListener("click", function createReview(e){
-    e.preventDefault();
+        submitReviewBtn.addEventListener("click", function createReview(e){
+            e.preventDefault();
+            
+        
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const reaToRate = urlParams.get('reaEmail');
+            var buyerEmail = " ";
+            var sellerEmail = " ";
+            buyerEmail = urlParams.get("buyerEmail");
+            sellerEmail = urlParams.get("sellerEmail");
+            const revName = document.getElementById('agent_name').value;
+            const revAgentEmail = reaToRate;
+            const revText = document.getElementById('review').value;
+        
+            let rateReviewObj = new rateReviewDetails(revName,revText,starRating,revAgentEmail,buyerEmail,sellerEmail);
+            let initRRController = new rateReviewController();
+            initRRController.submitRating(rateReviewObj);
+        })
+    }
     
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const reaToRate = urlParams.get('reaEmail');
-    var buyerEmail = " ";
-    var sellerEmail = " ";
-    buyerEmail = urlParams.get("buyerEmail");
-    sellerEmail = urlParams.get("sellerEmail");
-    const revName = document.getElementById('agent_name').value;
-    const revAgentEmail = reaToRate;
-    const revText = document.getElementById('review').value;
-
-    let rateReviewObj = new rateReviewDetails(revName,revText,starRating,revAgentEmail,buyerEmail,sellerEmail);
-    let initRRController = new rateReviewController();
-    initRRController.submitRating(rateReviewObj);
 })
+
+
 
 
 
@@ -41,6 +46,10 @@ export class rateReviewController{
     submitRating(arg){
         let initREAEntity = new reaEntity();
         initREAEntity.submitRating(arg);
+    }
+
+    setControllerMessage(message){
+        alert(message);
     }
 }
 

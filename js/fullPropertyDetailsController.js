@@ -1,11 +1,12 @@
 import {
     buyerEntity,
-    currentUserEntity
+    currentUserEntity,
+    propertyDetailsEntity
 } from "./userEntity.js";
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     if(window.location.href.indexOf('fullPropertyDetails.html') > -1){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -13,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
         //console.log(propertyID);
         let initFPDC = new fullPropertyDetailsController();
         initFPDC.getCurrentUserTypeController();
-        initFPDC.passSearchParamPropDetails(propertyID);
+        var propDetails = await initFPDC.passSearchParamPropDetails(propertyID);
+        initFPDC.receivePropDetails(propDetails);
         initFPDC.updateClickCount(propertyID);
 
     }
@@ -26,8 +28,11 @@ document.addEventListener("DOMContentLoaded", function() {
 export class fullPropertyDetailsController {
 
     passSearchParamPropDetails(propertyID) {
-        let initBuyerEntity = new buyerEntity();
-        initBuyerEntity.propDetailsSearchParamEntity(propertyID);
+        //let initBuyerEntity = new buyerEntity();
+        //initBuyerEntity.propDetailsSearchParamEntity(propertyID);
+        let initPDEntity = new propertyDetailsEntity();
+        var propDetails =  initPDEntity.searchPropWithID(propertyID);
+        return propDetails;
     }
 
     receivePropDetails(details) {

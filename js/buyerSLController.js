@@ -1,20 +1,26 @@
 import { buyerEntity } from "./userEntity.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    let initBuyerSLController = new buyerSLController();
-    initBuyerSLController.fetchSL();
+    if(window.location.href.indexOf('buyerShortlist.html') > -1){
+        let initBuyerSLController = new buyerSLController();
+        initBuyerSLController.fetchSL();
+    }   
+    
 });
 
 document.body.addEventListener("click", function(e){
-    if(e.target.classList.contains("unshortlist-button")){
-        var propID = e.target.value;
-        //console.log("Unshortlisting ",propID);
-        var option = confirm("Are you sure you want to remove this property from your shortlist?");
-        if(option == true){
-            let initBuyerEntity = new buyerEntity();
-            initBuyerEntity.unSLProp(propID);
+    if(window.location.href.indexOf('buyerShortlist.html') > -1){
+        if(e.target.classList.contains("unshortlist-button")){
+            var propID = e.target.value;
+            //console.log("Unshortlisting ",propID);
+            var option = confirm("Are you sure you want to remove this property from your shortlist?");
+            if(option == true){
+                let initBuyerEntity = new buyerEntity();
+                initBuyerEntity.unSLProp(propID);
+            }
         }
     }
+    
 
 })
 

@@ -42,34 +42,37 @@ document.getElementById('regBtn').addEventListener('click', function (event) {
 })
 
 document.addEventListener("DOMContentLoaded", function() {
-    const regBtn = document.getElementById('regBtn');
-    const fName = document.getElementById('regFName');
-    const lName = document.getElementById('regLName');
-    const email = document.getElementById('regEmail');
-    const phone = document.getElementById('regNum');
-    const password = document.getElementById('regPassword');
-    const dobDay = document.getElementById('regDobDay');
-    const dobMonth = document.getElementById('regDobMonth');
-    const dobYear = document.getElementById('regDobYear');
-
-    regBtn.addEventListener('click', function(event) {
-        let hasEmptyFields = false;
-        let fields = [fName, lName, email, phone, password, dobDay, dobMonth, dobYear];
-
-        fields.forEach(field => {
-            if (field.value.trim() === "") {
-                field.style.border = "2px solid red";
-                hasEmptyFields = true;
-            } else {
-                field.style.border = "";
+    if(window.location.href.indexOf('register.html') > -1){
+        const regBtn = document.getElementById('regBtn');
+        const fName = document.getElementById('regFName');
+        const lName = document.getElementById('regLName');
+        const email = document.getElementById('regEmail');
+        const phone = document.getElementById('regNum');
+        const password = document.getElementById('regPassword');
+        const dobDay = document.getElementById('regDobDay');
+        const dobMonth = document.getElementById('regDobMonth');
+        const dobYear = document.getElementById('regDobYear');
+    
+        regBtn.addEventListener('click', function(event) {
+            let hasEmptyFields = false;
+            let fields = [fName, lName, email, phone, password, dobDay, dobMonth, dobYear];
+    
+            fields.forEach(field => {
+                if (field.value.trim() === "") {
+                    field.style.border = "2px solid red";
+                    hasEmptyFields = true;
+                } else {
+                    field.style.border = "";
+                }
+            });
+    
+            if (hasEmptyFields) {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill out all required fields.');
             }
         });
-
-        if (hasEmptyFields) {
-            event.preventDefault(); // Prevent form submission
-            alert('Please fill out all required fields.');
-        }
-    });
+    }
+    
 });
 
 //Registers user to Firebase

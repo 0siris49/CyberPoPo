@@ -6,14 +6,18 @@ import {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const propertyID = urlParams.get('propertyId');
-    //console.log(propertyID);
-    let initFPDC = new fullPropertyDetailsController();
-    initFPDC.getCurrentUserTypeController();
-    initFPDC.passSearchParamPropDetails(propertyID);
-    initFPDC.updateClickCount(propertyID);
+    if(window.location.href.indexOf('fullPropertyDetails.html') > -1){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const propertyID = urlParams.get('propertyId');
+        //console.log(propertyID);
+        let initFPDC = new fullPropertyDetailsController();
+        initFPDC.getCurrentUserTypeController();
+        initFPDC.passSearchParamPropDetails(propertyID);
+        initFPDC.updateClickCount(propertyID);
+
+    }
+    
     
 });
 

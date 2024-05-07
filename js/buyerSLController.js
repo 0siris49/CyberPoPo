@@ -1,9 +1,13 @@
 import { buyerEntity } from "./userEntity.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     if(window.location.href.indexOf('buyerShortlist.html') > -1){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const buyerEmail = urlParams.get('buyer');
         let initBuyerSLController = new buyerSLController();
-        initBuyerSLController.fetchSL();
+        var allSL = await initBuyerSLController.fetchSL(buyerEmail);
+        initBuyerSLController.displaySL(allSL);
     }   
     
 });
@@ -25,10 +29,15 @@ document.body.addEventListener("click", function(e){
 })
 
 export class buyerSLController{
+
+    setCurrentBuyerEmail(currentEmail){
+        currentBuyer = currentEmail;
+    }
     
-    fetchSL(){
+    fetchSL(buyerEmail){
         let initBuyerEntity = new buyerEntity();
-        initBuyerEntity.fetchBuyerSL();
+        var allSL = initBuyerEntity.fetchBuyerSL(buyerEmail);
+        return allSL;
     }
 
     displaySL(allData){

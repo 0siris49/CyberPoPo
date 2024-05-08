@@ -224,29 +224,33 @@ body {
     width: 100%;
 }
 
-.utility-bar {
-    display:flex;
-    width: 100%;
-    align-items: center;
+.admin-utility-bar {
+  display:flex;
+  width: 80%;
+  
+  }
+
+input[name="admin-search-user"]{
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-left: 60px;
 }
 
-button#search-button, button#search-profile-button {
-    width: 40%;
-    height: 37.6px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    background-color:  #E9C874;
+button#admin-search-button {
+  width: 20%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+  
 }
 
-input[name="search-user"], input[name="search-profile"] {
-    width: 50%;
-    padding: 10px;
-    margin: 16px 0;
-    border: 1px solid #ccc;
-    border-radius: 50px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
+
 
 .create-account-icon {
   padding: 0px;
@@ -522,9 +526,15 @@ body {
       margin-top: 30px;
       margin-bottom: 0px;
     }
+
+    .seller-utility-bar {
+      display:flex;
+      width: 120%;
+      
+    }
   
     input[name="seller-search-properties"]{
-        width: 50%;
+        width: 62%;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 50px;
@@ -534,7 +544,7 @@ body {
     }
 
     button#seller-search-button {
-        width: 40%;
+        width: 30%;
         height: 37.6px;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
@@ -637,10 +647,9 @@ body {
   width: 100%;
 }
 
-.utility-bar {
+.rea-utility-bar {
   display:flex;
-  width: 100%;
-  align-items: center;
+  width: 120%;
 }
 
 .ratingBox {
@@ -724,6 +733,17 @@ button#rea-search-button {
   
 }
 
+input[name="rea-search-properties"]{
+  width: 55%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-left: 52px;
+}
+
+
 button#rea-update-button {
   width: 10%;
   height: 37.6px;
@@ -747,7 +767,7 @@ button#rea-delete-button {
 }
 
 input[name="rea-search-properties"]{
-  width: 70%;
+  width: 62%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 50px;

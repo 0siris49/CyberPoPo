@@ -38,6 +38,11 @@
             text-align: right;
             margin-top: 10px;
         }
+
+        #admin-utility-bar {
+            display: none;
+            
+        }
     </style>
 </head>
 
@@ -62,27 +67,20 @@
     <div class="view-container" id="view-container">
         <div class="view-container-header">
             <h2 class="view-title">View User Accounts</h2>
-            <div class="utility-bar">
-                <button class="suspend-account-icon" style="cursor: pointer">
-                    <span class="suspend-icon" id="admin-suspend-button">suspend account</span>
-                </button>
-                <button class="update-account-icon" style="cursor: pointer">
-                    <span class="update-icon" id="admin-update-button">update account</span>
-                </button>
-                <button class="delete-account-icon" style="cursor: pointer">
-                    <span class="delete-icon" id="admin-delete-button">delete account</span>
-                </button>
-                <input type="text" name="search-user" id="search-id" placeholder="Name">
-                <button id="search-button" style="cursor: pointer">Search</button>
+            <div class="admin-utility-bar" id="admin-utility-bar">
+                <input type="text" name="admin-search-user" id="search-id" placeholder="Name">
+                <button id="admin-search-button" style="cursor: pointer">Search</button>
             </div>
         </div>
+        
 
         <div class="admin view-table" id="view-table">
             <table>
                 <thead id="table-header">
                     <tr id="row-header">
                         <th>UserID</th>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
                         <th>Status(Active/Suspended/Deleted;deleted not part of user story)</th>
                         <th>Options(same with REA page suspend button leads to modal)</th>
@@ -161,6 +159,16 @@
             </div>
         </div>
     </div>
+
+    <script> // script to unhide utility bar initially until click on 'View Accounts'
+        var utilityBar = document.getElementById('admin-utility-bar');
+        document.getElementById('viewAccounts').addEventListener('click', function displayUtilityBar() {
+            console.log("fetch Listing Button clicked");
+            utilityBar.style.display = 'inline-block'; 
+            
+        });
+
+    </script>
 
     <script>
         document.getElementById('viewAccounts').addEventListener('click', function () {

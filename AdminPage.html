@@ -41,7 +41,7 @@
 
         #admin-utility-bar {
             display: none;
-            
+
         }
     </style>
 </head>
@@ -72,8 +72,17 @@
                 <button id="admin-search-button" style="cursor: pointer">Search</button>
             </div>
         </div>
-        
 
+        <button class="update-account-icon" style="cursor: pointer">
+            <span class="update-icon" id="admin-update-button">update account</span>
+        </button>
+        <button class="delete-account-icon" style="cursor: pointer">
+            <span class="delete-icon" id="admin-delete-button">delete account</span>
+        </button>
+        <button class="suspend-account-icon" style="cursor: pointer">
+            <span class="suspend-icon" id="admin-suspend-button">suspend account</span>
+        </button>
+        
         <div class="admin view-table" id="view-table">
             <table>
                 <thead id="table-header">
@@ -82,7 +91,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
-                        <th>Status(Active/Suspended/Deleted;deleted not part of user story)</th>
+                        <th>Status(Active/Suspended/Deleted)</th>
                         <th>Options(same with REA page suspend button leads to modal)</th>
                     </tr>
                 </thead>
@@ -164,8 +173,8 @@
         var utilityBar = document.getElementById('admin-utility-bar');
         document.getElementById('viewAccounts').addEventListener('click', function displayUtilityBar() {
             console.log("fetch Listing Button clicked");
-            utilityBar.style.display = 'inline-block'; 
-            
+            utilityBar.style.display = 'inline-block';
+
         });
 
     </script>
@@ -199,36 +208,36 @@
         var suspendButton = document.getElementById('admin-suspend-button');
 
         // Get the button elements inside the modal
-        var confirmButton = document.getElementById('suspend-confirm');
-        var cancelButton = document.getElementById('suspend-cancel');
+        var suspendConfirmButton = document.getElementById('suspend-confirm');
+        var suspendCancelButton = document.getElementById('suspend-cancel');
 
         // Function to open the modal
         suspendButton.onclick = function () {
-            deleteModal.style.display = 'block';
+            suspendModal.style.display = 'block';
         }
 
         // Function to close the modal
-        function closeModal() {
+        function closeSuspendModal() {
             suspendModal.style.display = 'none';
         }
 
         // Event listener for the Yes button (to suspend)
-        confirmButton.onclick = function () {
+        suspendConfirmButton.onclick = function () {
             // Place your delete code here
             console.log('Account Suspended');
-            closeModal();
+            closeSuspendModal();
         }
 
         // Event listener for the No button (to cancel)
-        cancelButton.onclick = function () {
+        suspendCancelButton.onclick = function () {
             console.log('Suspend fn cancelled');
-            closeModal();
+            closeSuspendModal();
         }
 
         // Close the modal if the user clicks anywhere outside of it
         window.onclick = function (event) {
             if (event.target == suspendModal) {
-                closeModal();
+                closeSuspendModal();
             }
         }
     </script>
@@ -241,8 +250,8 @@
         var deleteButton = document.getElementById('admin-delete-button');
 
         // Get the button elements inside the modal
-        var confirmButton = document.getElementById('delete-confirm');
-        var cancelButton = document.getElementById('delete-cancel');
+        var deleteConfirmButton = document.getElementById('delete-confirm');
+        var deleteCancelButton = document.getElementById('delete-cancel');
 
         // Function to open the modal
         deleteButton.onclick = function () {
@@ -250,27 +259,27 @@
         }
 
         // Function to close the modal
-        function closeModal() {
+        function closeDeleteModal() {
             deleteModal.style.display = 'none';
         }
 
         // Event listener for the Yes button (to delete)
-        confirmButton.onclick = function () {
+        deleteConfirmButton.onclick = function () {
             // Place your delete code here
             console.log('Account Deleted');
-            closeModal();
+            closeDeleteModal();
         }
 
         // Event listener for the No button (to cancel)
-        cancelButton.onclick = function () {
+        deleteCancelButton.onclick = function () {
             console.log('Deletion canceled');
-            closeModal();
+            closeDeleteModal();
         }
 
         // Close the modal if the user clicks anywhere outside of it
         window.onclick = function (event) {
             if (event.target == deleteModal) {
-                closeModal();
+                closeDeleteModal();
             }
         }
     </script>

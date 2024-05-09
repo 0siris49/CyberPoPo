@@ -43,6 +43,12 @@
     }
 
 
+    .required::after {
+        content: " *required";
+        color: red;
+        
+    }
+
 
     /* Delete Modal style */
     .modal {
@@ -272,7 +278,7 @@
     <div id="updateModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form method="POST" class="update-PL-form">
+        <form method="POST" class="update-PL-form" onsubmit="return validateForm()">
           <div class="updatePLheader">Update Property details for Listing *ID(auto fetched when click-on update)*</div>
 
           <div id="extraFields" class="hidden">
@@ -300,7 +306,7 @@
           <br>
           <br>
           <label for="year_built">Year Built:</label>
-          <input type="number" id="year_built" name="year_built" required min="0" pattern="\d{4,}">
+          <input type="number" id="year_built" name="year_built" required min="0" pattern="\d{4,}" required>
           <br>
           <br>
           <label for="property_agent">Agent Name:</label>
@@ -325,7 +331,7 @@
             <option value="Unavailable">sold</option>
           </select>
 
-          <button id="submitUpdateForm">Update</button>
+          <button id="submitUpdateForm" type="submit">Update</button>
         </form>
       </div>
     </div>
@@ -445,7 +451,7 @@
       }
     </script>
 
-    <script>
+    <script> // whats left of update modal
       document.addEventListener("DOMContentLoaded", function () {
         var updateModal = document.getElementById('updateModal');
         var updSpan = document.querySelector(".close");
@@ -464,6 +470,24 @@
         };
       });
 
+    </script>
+
+    <script> //empty fields form validation
+      function validateForm() {
+        var property_location = document.getElementById('property_location');
+        var fieldValue = property_location.value.trim();
+
+        if (fieldValue === '') {
+          property_location.classList.add('required');
+          alert('Please fill out the text field.');
+          property_location.focus();
+          return false;
+        } else {
+          property_location.classList.remove('required');
+        }
+
+        return true;
+      }
     </script>
 
     <script>

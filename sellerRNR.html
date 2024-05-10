@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Header</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <style>
+        .review-form input[type="text"],
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .review-container {
+            width: 600px;
+        }
+
+        .reviewAgent-Title {
+            text-align: center;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+
+    <div>
+        <div class="headerSeller">
+            <a href="seller.html" class="logo">
+                <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+            </a>
+            <div class="header-right">
+                <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+            </div>
+            <div class="header-right">
+                <a id="seller-viewproperties" style="cursor: pointer" href="seller.html">View My Properties(only visible
+                    to sellers)</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="sellerwelcome">Welcome to your Rate and Review Page, &nbsp;<div id="sellerName/buyerName"></div>
+    </div>
+
+    <div class="review-container">
+        <form id="review-form" class="review-form">
+            <b class="reviewAgent-Title">Review Agent</b><br><br>
+            <label for="agent_name">Name:</label>
+            <input type="text" id="agent_name" name="agent_name" required><br><br>
+
+
+            <label for="review">Review For: <span id="revFor"></span></label><br>
+            <textarea id="review" name="review" rows="4" cols="60" required></textarea><br><br>
+
+            <div>Rate your REA:</div>
+            <div class="stars">
+                <input class="star starRating" id="star-5" value="5" type="radio" name="star" />
+                <label class="star" for="star-5" value="5"></label>
+                <input class="star starRating" id="star-4" value="4" type="radio" name="star" />
+                <label class="star" for="star-4" value="4"></label>
+                <input class="star starRating" id="star-3" value="3" type="radio" name="star" />
+                <label class="star" for="star-3" value="3"></label>
+                <input class="star starRating" id="star-2" value="2" type="radio" name="star" />
+                <label class="star" for="star-2" value="2"></label>
+                <input class="star starRating" id="star-1" value="1" type="radio" name="star" />
+                <label class="star" for="star-1" value="1"></label>
+            </div>
+            <button type="submit" id="submit-review-button" style="cursor: pointer">Submit Review</button>
+        </form>
+    </div>
+    </div>
+
+    <script>
+        document.getElementById('logout').addEventListener('click', function logOut() {
+            console.log("Logout link clicked");
+            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+
+        });
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- to be change controller naming -->
+    <!-- <script type="module" src="./js/rateReviewController.js"></script> -->
+
+
+</body>
+
+</html>

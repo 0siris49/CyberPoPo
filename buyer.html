@@ -149,7 +149,7 @@
                     <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
                 </div>
                 <div class="header-right">
-                    <a style="cursor: pointer" href="buyerRNR.html">Rate and
+                    <a style="cursor: pointer" href="rateNreview.html">Rate and
                         Review an
                         Agent</a>
                 </div>
@@ -171,7 +171,7 @@
     <div class="view-container" id="view-container">
         <div class="search-bar">
             <form id="property-search-form">
-                <select name="location" id="property_location" required>
+                <select name="location" id="property_location" >
                     <option disabled selected>Enter location...</option>
                     <option value="north">North</option>
                     <option value="north-east">North-East</option>
@@ -210,10 +210,10 @@
                     <option value="9">9 Bedrooms</option>
                     <option value="10">10 Bedrooms</option>
                 </select>
-                <select name="avail" id="property_avail" required>
+                <select name="avail" id="property_avail" >
                     <option disabled selected></option>
-                    <option value="1">Available</option>
-                    <option value="2">Unavailable</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
                     
                 </select>
                 <button id="searchBtn">Search</button>
@@ -258,8 +258,12 @@
         });
     </script>
 
-    <script type="module" src="./js/buyerController.js"></script>
-
+    <!--<script type="module" src="./js/buyerController.js"></script>-->
+    <script type="module" src="./js/buyerSearchNewPropsController.js"></script>
+    <script type="module" src="./js/buyerSearchOldPropsController.js"></script>
+    <script type="module" src="./js/buyerShortlistAvailPropController.js"></script>
+    <script type="module" src="./js/buyerShortlistUnavailPropController.js"></script>
+    
 </body>
 
 </html>

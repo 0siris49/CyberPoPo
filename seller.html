@@ -45,6 +45,10 @@
             width: 200px;
             height: auto;
         }
+
+        #seller-utility-bar {
+            display: none;
+        }
     </style>
 
     <div>
@@ -74,8 +78,8 @@
     <div class="view-container" id="view-container">
         <div class="view-container-header">
             <h2 class="view-title">View My Properties</h2>
-            <div class="utility-bar">
-                <input type="text" name="rea-search-properties" id="search-id"
+            <div class="seller-utility-bar" id="seller-utility-bar">
+                <input type="text" name="seller-search-properties" id="search-id"
                     placeholder="ID / Property Name / Rating / Status / REA">
                 <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
             </div>
@@ -152,6 +156,16 @@
                     behavior: "smooth",
                 });
             });
+        </script>
+
+        <script> // script to unhide utility bar initially until click on 'Fetch My Listings'
+            var utilityBar = document.getElementById('seller-utility-bar');
+            document.getElementById('viewProperties').addEventListener('click', function displayUtilityBar() {
+                console.log("fetch Listing Button clicked");
+                utilityBar.style.display = 'inline-block';
+
+            });
+
         </script>
 
 

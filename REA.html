@@ -112,6 +112,11 @@
       width: 200px;
       height: auto;
     }
+
+    #rea-utility-bar {
+      display: none;
+
+    }
   </style>
 
 
@@ -148,7 +153,7 @@
   <div class="rea-view-container" id="rea-view-container">
     <div class="view-container-header">
       <h2 class="view-title">In-Charged Properties</h2>
-      <div class="utility-bar">
+      <div class="rea-utility-bar" id="rea-utility-bar">
         <input type="text" name="rea-search-properties" id="search-id"
           placeholder="ID / Property Name / Location / Rating / Status ">
         <button id="rea-search-button" name="rea-search-button" style="cursor: pointer">Search</button>
@@ -449,6 +454,16 @@
             updateModal.style.display = "none";
           }
         };
+      });
+
+    </script>
+
+    <script> // script to unhide utility bar initially until click on 'fetch Listed Properties'
+      var utilityBar = document.getElementById('rea-utility-bar');
+      document.getElementById('rea-viewProperties').addEventListener('click', function displayUtilityBar() {
+        console.log("fetch Listing Button clicked");
+        utilityBar.style.display = 'inline-block';
+
       });
 
     </script>

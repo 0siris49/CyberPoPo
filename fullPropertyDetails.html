@@ -114,12 +114,12 @@
 
         <div id="propertyView" style="display:none">Your property is viewed <span id="paraViewCount"></span> times</div>
         <br />
-        <div id="propertyShortlisted" style="display:none">Your property is shortlisted <span id="shortlistCount"></span> times</div>
+        <div id="propertyShortlisted" style="display:none">Your property is shortlisted <span id="shortlistCount">0</span> times</div>
         <br><br>
         <button id="propertyShortlisted-button" data-count="0" style="display:none">Shortlist this property</button>
     </div>
 
-    <div class="container">
+    <div class="container" id="mortgageCalc" style="display:none"">
         <h2>Mortgage Calculator</h2>
         <p>The formula for calculating your monthly mortgage payment \( M \) is given by:</p>
         <p>$$ M = P \cdot \frac{r(1+r)^n}{(1+r)^n - 1} $$</p>
@@ -136,7 +136,7 @@
             <input type="number" id="years" required min="0" style="margin-bottom: 10px;"><br>
             <!-- Added margin-bottom for spacing -->
 
-            <button type="submit">Calculate</button>
+            <button type="submit" id="calculateMort">Calculate</button>
         </form>
         <div id="monthlyPayment">Monthly Payment: $0</div>
     </div>
@@ -187,7 +187,12 @@
     </script>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
-    <script type="module" src="./js/fullPropertyDetailsController.js"></script>
+    <script type="module" src="./js/buyerViewNewPropController.js"></script>
+    <script type="module" src="./js/buyerViewOldPropController.js"></script>
+    <script type="module" src="./js/sellerFullPropertyDetailsController.js"></script>
+    <script type="module" src="./js/sellerViewViewCountController.js"></script>
+    <script type="module" src="./js/sellerViewShortlistCountController.js"></script>
+    <script type="module" src="./js/reaViewPropListController.js"></script>
 
 
 </body>

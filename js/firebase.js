@@ -1184,7 +1184,7 @@ export default class FirebaseClass {
                     //This is Buyer
                     const userData = collection(db, "CSIT314/All-Users/UserData");
                     const updateRef = doc(db, "CSIT314/All-Users/UserData", userObj.email);
-                    const shortlistRef = collection(db,"CSIT314/All-Users/UserData",userObj.userToUpdate,"/shortlistedPLs")
+                    
                     await setDoc(doc(userData, userObj.email), {
                         FirstName: ogFN,
                         LastName: ogLN,
@@ -1243,6 +1243,7 @@ export default class FirebaseClass {
                     await deleteDoc(doc(db, "CSIT314/All-Users/UserData", userObj.userToUpdate));
                     //--------------------------------------------
                     //Get the shortlists, transfer to new doc
+                    const shortlistRef = collection(db,"CSIT314/All-Users/UserData",userObj.userToUpdate,"/shortlistedPLs")
                     const slAns = await getDocs(shortlistRef);
                     var slArray = [];
                     slAns.forEach((doc) => {
@@ -1343,18 +1344,86 @@ export default class FirebaseClass {
                     var currentPL = propIDList[i].toString()
                     var updateThisDoc = doc(db, "CSIT314/PropertyListings/createdPLs", currentPL);
                     await updateDoc(updateThisDoc, {
-                        propertyAgentEmail: userObj.email.toString()
+                        propertyAgentEmail: userObj.email.toString(),
+                        propAgent:userObj.firstName.toString()
                     })
                 }
+                //-------------------------------------------------------------------
+                const reviewsRef = collection(db,"CSIT314/All-Users/UserData",userObj.userToUpdate,"/Reviews")
+                    const reviewAns = await getDocs(reviewsRef);
+                    var allDataA = ""
+                    reviewAns.forEach((doc) => {
+                        var docStringify = JSON.stringify(doc.data());
+                        allDataA += docStringify + "---";
+                    });
+                    var revFrom = [];
+                    var reviewOverview = [];
+                    var reviewerTitle = [];
+                    var allData = allDataA.split("---");
+                    var splitDoc = allData.split(",");
+                    var splitDocLength = splitDoc.length;
+                    
+                    for (let i = 0; i < splitDocLength; i++) {
+                        var currentAttri = splitDoc[i].toString();
+                        var removeEtc = currentAttri.replace(/['"{}]+/g, '');
+                        //console.log(removeEtc);
+                        if (removeEtc.search("revFrom") != -1) {
+                            var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                            revFrom.push(result);
+                        }
+                        if (removeEtc.search("reviewOverview") != -1) {
+                            var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                            reviewOverview.push(result);
+                        }
+                        if (removeEtc.search("reviewerTitle") != -1) {
+                            var result = removeEtc.substring(removeEtc.lastIndexOf(":") + 1);
+                           reviewerTitle.push(result);
+                        }
+                    }
+
+                    const newReviewRef = collection(db,"CSIT314/All-Users/UserData",userObj.email,"/Reviews")
+                    for(var x=0; x<revFrom.length; x++){
+                        await setDoc(doc(newReviewRef, reviewerTitle[x]), {
+                            revFrom:revFrom[x],
+                            reviewOverview:reviewOverview[x],
+                            reviewerTitle:reviewerTitle[x]
+                        });
+                    }
                 console.log("REA updated");
                 return true;
             }
         } else {
+            //Without updating email
             const updateRef = doc(db, "CSIT314/All-Users/UserData", userObj.userToUpdate);
             if (userObj.firstName != "") {
-                await updateDoc(updateRef, {
-                    FirstName: userObj.firstName
-                })
+                const q = query(collection(db, "CSIT314/All-Users/UserData"), where("Email", "==", userObj.userToUpdate), where("userType", "==", "REA"));
+                const queryAns = await getDocs(q);
+                var response = "";
+                queryAns.forEach((doc) => {
+                    response += doc.id;
+                });
+                if(response == ""){
+                    await updateDoc(updateRef, {
+                        FirstName: userObj.firstName
+                    })
+                }else{
+                    const qx = query(collection(db, "CSIT314/PropertyListings/createdPLs"), where("propertyAgentEmail", "==", userObj.userToUpdate));
+                    const queryAns = await getDocs(qx);
+                    var propIDList = [];
+                    queryAns.forEach(async (doc) => {
+    
+                        var id = doc.id;
+                        propIDList.push(id);
+                    });
+                    for (var i = 0; i < propIDList.length; i++) {
+                        var currentPL = propIDList[i].toString()
+                        var updateThisDoc = doc(db, "CSIT314/PropertyListings/createdPLs", currentPL);
+                        await updateDoc(updateThisDoc, {
+                            propAgent:userObj.firstName.toString()
+                        })
+                    }
+                }
+                
             }
             if (userObj.lastName != "") {
                 await updateDoc(updateRef, {

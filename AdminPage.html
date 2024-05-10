@@ -54,7 +54,7 @@
                 <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
             </a>
             <div class="header-right">
-                <a id="createAccount" style="cursor: pointer" href="createProfile.html">Create Account</a>
+                <a id="createAccount" style="cursor: pointer" href="createAccount.html">Create Account</a>
                 <a id="viewAccounts" style="cursor: pointer">View Accounts</a>
                 <a id="viewProfiles" style="cursor: pointer" href="AdminPageProfiles.html">View Profiles</a>
                 <a id="logout" style="cursor: pointer">Logout</a>
@@ -180,7 +180,7 @@
     </script>
 
     <script>
-        document.getElementById('viewAccounts').addEventListener('click', function () {
+       /* document.getElementById('viewAccounts').addEventListener('click', function () {
             console.log("View Accounts link clicked");
             // Add logic here to handle viewAccounts functionality
             window.open(c, "_self");
@@ -196,7 +196,7 @@
             // Add logic here to handle logout functionality
             window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
-        });
+        });*/
 
     </script>
 
@@ -243,7 +243,7 @@
     </script>
 
     <script> // delete pop-up confirmation modal (sysadmin ua)
-        // Get the modal
+       /* // Get the modal
         var deleteModal = document.getElementById('deleteModal');
 
         // Get the button that opens the modal
@@ -281,11 +281,11 @@
             if (event.target == deleteModal) {
                 closeDeleteModal();
             }
-        }
+        }*/
     </script>
 
     <script> //update pop-up confirmation modal (sysadmin ua)
-        // Get the update modal
+       /* // Get the update modal
         var updateModal = document.getElementById('updateModal');
 
         // Get the button that opens the update modal
@@ -324,7 +324,7 @@
             if (event.target == updateModal) {
                 closeUpdateModal();
             }
-        }
+        }*/
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
@@ -374,6 +374,9 @@
             });
         });
     </script>
+
+    <script type="module" src="./js/adminViewAllAccountsController.js"></script>
+    <script type="module" src="./js/adminUpdateUserController.js"></script>
 
 
 </body>

@@ -45,11 +45,6 @@
             width: 200px;
             height: auto;
         }
-
-        #seller-utility-bar {
-            display: none;
-            
-        }
     </style>
 
     <div>
@@ -61,24 +56,26 @@
                 <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
             </div>
             <div class="header-right">
-                <a id="seller-rate-and-review-button" style="cursor: pointer" href="sellerRNR.html">Rate and Review an
+                <a id="seller-rate-and-review-button" style="cursor: pointer" href="rateNreview.html">Rate and Review an
                     Agent</a>
             </div>
-            <div class="header-right" id="fetchListingButton">
-                <a id="viewProperties" style="cursor: pointer">Fetch My Listings</a>
+            <div class="header-right">
+                <a id="viewProperties" style="cursor: pointer" href="seller.html">Fetch My Listings</a>
             </div>
         </div>
     </div>
 
     <div class="sellerwelcome">Welcome to your Seller Page, &nbsp;<div id="sellerName"></div>
     </div>
+    <div class="sellerwelcome">Idea: under the REA table column has a link to the respective REA page, then seller can
+        rate/review him under respective REA's page</div>
 
 
     <div class="view-container" id="view-container">
         <div class="view-container-header">
             <h2 class="view-title">View My Properties</h2>
-            <div class="seller-utility-bar" id="seller-utility-bar">
-                <input type="text" name="seller-search-properties" id="search-id"
+            <div class="utility-bar">
+                <input type="text" name="rea-search-properties" id="search-id"
                     placeholder="ID / Property Name / Rating / Status / REA">
                 <button id="seller-search-button" name="seller-search-button" style="cursor: pointer">Search</button>
             </div>
@@ -156,19 +153,12 @@
                 });
             });
         </script>
-        <script> // script to unhide utility bar initially until click on 'fetch my Listings'
-            var utilityBar = document.getElementById('seller-utility-bar');
-            document.getElementById('fetchListingButton').addEventListener('click', function displayUtilityBar() {
-                console.log("fetch Listing Button clicked");
-                utilityBar.style.display = 'inline-block'; 
-            });
-
-        </script>
 
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="module" src="./js/sellerController.js"></script>
+        <script type="module" src="./js/sellerRetrievePropListController.js"></script>
 
 
 </body>

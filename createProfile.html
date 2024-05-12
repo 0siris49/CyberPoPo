@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +11,40 @@
             width: 200px;
             height: auto;
         }
+        #createProfileForm {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .input-container {
+            margin-bottom: 10px;
+        }
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-container input,
+        .input-container select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
-
 </head>
-
 <body>
     <div class="headerSeller">
         <a href="AdminPage.html" class="logo">
@@ -25,40 +54,33 @@
             <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
         </div>
     </div>
-    <div class="sellerwelcome">Welcome to your Create User Profile Page, &nbsp;<div id="adminName"></div>
-    </div>
+    <div class="sellerwelcome">Welcome to your Create User Profile Page, &nbsp;<div id="adminName"></div></div>
 
-    <div class="input-container">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
-    </div>
-    <div class="input-container">
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
-    </div>
-    <div class="input-container">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div class="input-container">
-        <label for="phone">Contact Number:</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-    </div>
-    <div class="input-container">
-        <label for="role">Role:</label>
-        <select id="role" name="role">
-            <option value="user">Buyer</option>
-            <option value="admin">Seller</option>
-            <option value="moderator">REA</option>
-        </select>
-    </div>
-    <div class="input-container">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit">Create Profile</button>
+    <form id="createProfileForm">
+        <div class="input-container">
+            <label for="pf">New Profile Name:</label>
+            <input type="text" id="pf" name="profileName" required>
+        </div>
 
-    <script type="module" src="./js/createPController.js"></script>
+        <button type="submit">Create Profile</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('createProfileForm');
+            const profileNameInput = document.getElementById('pf');
+            form.addEventListener('submit', function (event) {
+                if (profileNameInput.value.trim() === "") {
+                    alert('Please enter a profile name.');
+                    profileNameInput.style.border = '2px solid red';
+                    event.preventDefault(); // Prevent form submission
+                } else {
+                    profileNameInput.style.border = '1px solid #ccc'; // Reset to default style
+                }
+            });
+        });
+    </script>
+
+    <script type="module" src="./js/adminCreateProfileController.js"></script>
 </body>
-
 </html>

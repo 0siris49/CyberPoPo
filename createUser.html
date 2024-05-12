@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Header</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <style>
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        #createProfileForm {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-container input,
+        .input-container select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="headerSeller">
+        <a href="AdminPage.html" class="logo">
+            <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+        </a>
+        <div class="header-right">
+            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+        </div>
+    </div>
+    <div class="sellerwelcome">Welcome to your Create User account Page, &nbsp;<div id="adminName"></div>
+    </div>
+
+    <form id="createProfileForm">
+        <div class="input-container">
+            <label for="firstName">First name:</label>
+            <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="input-container">
+            <label for="lastName">Last name:</label>
+            <input type="text" id="lname" name="lname" required>
+        </div>
+        <div class="input-container">
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" required>
+        </div>
+        <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-container">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Create User Account</button>
+    </form>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('createProfileForm');
+            const firstName = document.getElementById('fname');
+            const lastName = document.getElementById('lname');
+            const role = document.getElementById('role');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            submitButton.addEventListener('click', function (event) {
+                let hasEmptyFields = false;
+                let fields = [firstName, lastName, role, email, password];
+
+                fields.forEach(field => {
+                    if (field.value.trim() === "") {
+                        field.style.border = "2px solid red";
+                        hasEmptyFields = true;
+                    } else {
+                        field.style.border = "1px solid #ccc"; // Reset to default style
+                    }
+                });
+
+                if (hasEmptyFields) {
+                    event.preventDefault(); // Prevent form submission
+                    alert('Please fill out all required fields.');
+                }
+            });
+        });
+    </script>
+
+
+    <script type="module" src="./js/adminCreateUserController.js"></script>
+</body>
+
+</html>

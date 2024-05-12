@@ -56,14 +56,13 @@
             </a>
             <div class="header-right">
                 <a id="createAccount" style="cursor: pointer" href="createProfile.html">Create Profile</a>
-                <a id="viewProfiles" style="cursor: pointer">View Profiles</a>
                 <a id="viewAccounts" style="cursor: pointer" href="AdminPage.html">Back to User Account Page</a>
                 <a id="logout" style="cursor: pointer">Logout</a>
             </div>
         </div>
     </div>
 
-    <div class="adminwelcome">Welcome to System Administrator User Profile Page</div>
+    <div class="adminwelcome"></div>
 
 
     <div class="view-container" id="view-container">
@@ -74,26 +73,13 @@
                 <button id="admin-search-button" style="cursor: pointer">Search</button>
             </div>
         </div>
-        <button class="suspend-profile-icon" style="cursor: pointer">
-            <span class="suspend-icon" id="UP-suspend-button">suspend profile</span>
-        </button>
-        <button class="update-profile-icon" style="cursor: pointer">
-            <span class="update-icon" id="UP-update-button">update profile</span>
-        </button>
-        <button class="delete-profile-icon" style="cursor: pointer">
-            <span class="delete-icon" id="UP-delete-button">delete profile</span>
-        </button>
         <div class="admin view-table" id="view-table">
             <table>
                 <thead id="table-header">
                     <tr id="row-header">
-                        <th>UserID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Profile Type(buyer/seller/rea)</th>
-                        <th>Status(Active/Suspended/Deleted; deleted not part of user story)</th>
-                        <th>Options(same with REA page suspend button leads to modal)</th>
+                        <th>Profile</th>
+                        <th>Status</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody id="data-table"></tbody>
@@ -101,10 +87,22 @@
         </div>
     </div>
 
+    <div id="tableDiv">
+        <table>
+            <thead id="table-header">
+                <tr id="row-header">
+                    <th>Profile</th>
+                    <th>Status</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody id="profileSearchTable"></tbody>
+    </div>
+
     <!-- Delete Modal -->
     <div id="deleteModal" class="modal">
         <div class="modal-content">
-            <p>Are you sure you want to delete this user Profile (Profile ID)?</p>
+            <p>Are you sure you want to delete this profile?</p>
             <div class="modal-buttons">
                 <button id="delete-confirm">Yes</button>
                 <button id="delete-cancel">No</button>
@@ -115,7 +113,7 @@
     <!--Suspend Modal -->
     <div id="suspendModal" class="modal">
         <div class="modal-content">
-            <p>Are you sure you want to suspend this user account (Profile ID)?</p>
+            <p>Are you sure you want to suspend this profile?</p>
             <div class="modal-buttons">
                 <button id="suspend-confirm">Yes</button>
                 <button id="suspend-cancel">No</button>
@@ -164,43 +162,9 @@
         </div>
     </div>
 
-
-
-
-    <script>
-        document.getElementById('viewAccounts').addEventListener('click', function () {
-            console.log("View Accounts link clicked");
-            // Add logic here to handle viewAccounts functionality
-            window.open(c, "_self");
-        });
-
-        document.getElementById('viewProfiles').addEventListener('click', function () {
-            console.log("View Profiles link clicked");
-            // Add logic here to handle viewProfiles functionality
-        });
-
-        document.getElementById('logout').addEventListener('click', function () {
-            console.log("Logout link clicked");
-            // Add logic here to handle logout functionality
-            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-
-        });
-
-    </script>
-
-    <script> // script to unhide utility bar initially until click on 'View Profiles'
-        var utilityBar = document.getElementById('admin-utility-bar');
-        document.getElementById('viewProfiles').addEventListener('click', function displayUtilityBar() {
-            console.log("fetch Listing Button clicked");
-            utilityBar.style.display = 'inline-block';
-
-        });
-
-    </script>
-
     <script> // suspend pop-up confirmation modal (sysadmin UP)
-        // Get the modal
-        var suspendModal = document.getElementById('suspendModal');
+        /// Get the modal
+       /* var suspendModal = document.getElementById('suspendModal');
 
         // Get the button that opens the modal
         var suspendButton = document.getElementById('UP-suspend-button');
@@ -237,12 +201,13 @@
             if (event.target == suspendModal) {
                 closeSuspendModal();
             }
-        }
+        }*/
     </script>
+    
 
     <script> // delete pop-up confirmation modal (sysadmin UP)
         // Get the modal
-        var deleteModal = document.getElementById('deleteModal');
+      /*  var deleteModal = document.getElementById('deleteModal');
 
         // Get the button that opens the modal
         var deleteButton = document.getElementById('UP-delete-button');
@@ -279,13 +244,13 @@
             if (event.target == deleteModal) {
                 closeModal();
             }
-        }
+        }*/
     </script>
 
 
     <script> //update pop-up confirmation modal (sysadmin ua)
         // Get the update modal
-        var updateModal = document.getElementById('updateModal');
+     /*   var updateModal = document.getElementById('updateModal');
 
         // Get the button that opens the update modal
         var updateButton = document.getElementById('UP-update-button');
@@ -323,8 +288,12 @@
             if (event.target == updateModal) {
                 closeUPUpdateModal();
             }
-        }
+        }*/
     </script>
+    <script type="module" src="./js/adminViewProfilesController.js"></script>
+    <script type="module" src="./js/adminSuspendProfileController.js"></script>
+    <script type="module" src="./js/adminDeleteProfileController.js"></script>
+    <script type="module" src="./js/adminSearchProfileController.js"></script>
 
 </body>
 

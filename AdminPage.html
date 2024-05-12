@@ -68,26 +68,16 @@
         <div class="view-container-header">
             <h2 class="view-title">View User Accounts</h2>
             <div class="admin-utility-bar" id="admin-utility-bar">
-                <input type="text" name="admin-search-user" id="search-id" placeholder="Name">
+                <input type="text" name="admin-search-user" id="search-id" placeholder="Email">
                 <button id="admin-search-button" style="cursor: pointer">Search</button>
             </div>
         </div>
-
-        <button class="update-account-icon" style="cursor: pointer">
-            <span class="update-icon" id="admin-update-button">update account</span>
-        </button>
-        <button class="delete-account-icon" style="cursor: pointer">
-            <span class="delete-icon" id="admin-delete-button">delete account</span>
-        </button>
-        <button class="suspend-account-icon" style="cursor: pointer">
-            <span class="suspend-icon" id="admin-suspend-button">suspend account</span>
-        </button>
         
         <div class="admin view-table" id="view-table">
             <table>
                 <thead id="table-header">
                     <tr id="row-header">
-                        <th>UserID</th>
+                        <th>User Type</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -377,6 +367,10 @@
 
     <script type="module" src="./js/adminViewAllAccountsController.js"></script>
     <script type="module" src="./js/adminUpdateUserController.js"></script>
+    <script type="module" src="./js/adminUpdateProfileController.js"></script>
+    <script type="module" src="./js/adminSuspendUserController.js"></script>
+    <script type="module" src="./js/adminDeleteUserController.js"></script>
+    <script type="module" src="./js/adminSearchUserController.js"></script>
 
 
 </body>

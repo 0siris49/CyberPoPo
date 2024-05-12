@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Listing Details</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        dl {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        dt {
+            font-weight: bold;
+            color: #555;
+        }
+
+        dd {
+            color: #333;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="headerSeller">
+        <a href="seller.html" class="logo">
+            <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+        </a>
+        <div class="header-right">
+            <a id="logout" href="Login.html">Logout</a>
+        </div>
+        <div class="header-right">
+            <a id="seller-rate-and-review-button" href="rateNreview.html">Rate and Review an Agent</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>User Details</h2>
+        <dl>
+            <dt>First Name:</dt>
+            <dd id="user_FN"></dd>
+
+            <dt>Last Name:</dt>
+            <dd id="user_LN"></dd>
+
+            <dt>Email:</dt>
+            <dd id="user_Email"></dd>
+
+            <dt>Date Of Birth:</dt>
+            <dd id="user_DOB"></dd>
+
+            <dt>Phone Number:</dt>
+            <dd id="user_Phone"></dd>
+
+            <dt>User Status:</dt>
+            <dd id="user_Status"></dd>
+
+            <dt>User Profile:</dt>
+            <dd id="user_Profile"></dd>
+
+            <dt>Average Rating:</dt>
+            <dd id="user_Rating"></dd>
+        </dl>
+
+    </div>
+
+    <script type="module" src="./js/adminViewSpecificUserController.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Header</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <style>
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="headerSeller">
+        <a href="AdminPage.html" class="logo">
+            <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
+        </a>
+        <div class="header-right">
+            <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
+        </div>
+    </div>
+    <div class="sellerwelcome">Welcome to your Create User Account Page, &nbsp;<div id="adminName"></div>
+    </div>
+
+    <div class="input-container">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+    </div>
+    <div class="input-container">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+    </div>
+    <div class="input-container">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div class="input-container">
+        <label for="phone">Contact Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+    </div>
+    <div class="input-container">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+            <option value="REA">REA</option>
+        </select>
+    </div>
+    <div class="input-container">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" id="createBtn">Create Account</button>
+
+    <script type="module" src="./js/adminCreateUserController.js"></script>
+</body>
+
+</html>

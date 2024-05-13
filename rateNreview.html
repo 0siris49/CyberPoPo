@@ -36,20 +36,16 @@
 
     <div>
         <div class="headerSeller">
-            <a href="#Login.html" class="logo">
+            <a href="" class="logo">
                 <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
             </a>
             <div class="header-right">
                 <a id="logout" style="cursor: pointer" href="Login.html">Logout</a>
             </div>
             <div class="header-right">
-                <a id="buyer-viewlisting" style="cursor: pointer" href="buyer.html">Back To Listings(only visible to
-                    buyers)</a>
+                <a style="cursor: pointer" onclick="goBack()">Back</a>
             </div>
-            <div class="header-right">
-                <a id="seller-viewproperties" style="cursor: pointer" href="seller.html">View My Properties(only visible
-                    to sellers)</a>
-            </div>
+
 
 
         </div>
@@ -93,6 +89,12 @@
 
         });
 
+    </script>
+    
+    <script> //script to go back to previous page
+        function goBack() {
+            window.history.back();
+        }
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

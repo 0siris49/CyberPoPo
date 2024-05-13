@@ -279,7 +279,7 @@ button#admin-search-button {
 }
 
 .suspend-account-icon {
-  width: 10%;
+  width: 25%;
   height: 37.6px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -296,8 +296,18 @@ button#admin-search-button {
   background-color: #E9C874;
 }
 
-.update-account-icon {
+.search-profile-icon{
   width: 10%;
+  height: 37.6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 5px;
+  background-color: #E9C874;
+
+}
+
+.update-account-icon {
+  width: 25%;
   height: 37.6px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -317,7 +327,7 @@ button#admin-search-button {
 }
 
 .delete-account-icon {
-  width: 10%;
+  width: 25%;
   height: 37.6px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

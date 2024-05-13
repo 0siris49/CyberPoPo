@@ -44,6 +44,10 @@
             display: none;
 
         }
+
+        #retrieved-profile {
+            display: none;
+        }
     </style>
 </head>
 
@@ -86,17 +90,20 @@
             </table>
         </div>
     </div>
-
-    <div id="tableDiv">
-        <table>
-            <thead id="table-header">
-                <tr id="row-header">
-                    <th>Profile</th>
-                    <th>Status</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-            <tbody id="profileSearchTable"></tbody>
+    <br><br><br><br>
+    <div class="view-container" id="retrieved-profile">
+        <h2 class="view-title">Retrieved Profiles</h2>
+        <div id="tableDiv">
+            <table>
+                <thead id="table-header">
+                    <tr id="row-header">
+                        <th>Profile</th>
+                        <th>Status</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody id="profileSearchTable"></tbody>
+        </div>
     </div>
 
     <!-- Delete Modal -->
@@ -148,12 +155,12 @@
                 <br>
                 <label class="profileType">Change Profile type to:
                     <select name="role" id="role" class="role">
-                      <option value="buyer">Buyer</option>
-                      <option value="seller">Seller</option>
-                      <option value="REA">REA</option>
-                      <option value="sysadmin">System Admin</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                        <option value="REA">REA</option>
+                        <option value="sysadmin">System Admin</option>
                     </select>
-                  </label>
+                </label>
                 <br>
                 <br>
                 <button id="submitUpdateForm">Update</button>
@@ -164,141 +171,142 @@
 
     <script> // suspend pop-up confirmation modal (sysadmin UP)
         /// Get the modal
-       /* var suspendModal = document.getElementById('suspendModal');
-
-        // Get the button that opens the modal
-        var suspendButton = document.getElementById('UP-suspend-button');
-
-        // Get the button elements inside the modal
-        var UPsuspendConfirmButton = document.getElementById('suspend-confirm');
-        var UPsuspendCancelButton = document.getElementById('suspend-cancel');
-
-        // Function to open the modal
-        suspendButton.onclick = function () {
-            suspendModal.style.display = 'block';
-        }
-
-        // Function to close the modal
-        function closeSuspendModal() {
-            suspendModal.style.display = 'none';
-        }
-
-        // Event listener for the Yes button (to suspend)
-        UPsuspendConfirmButton.onclick = function () {
-            // Place your delete code here
-            console.log('Account Suspended');
-            closeSuspendModal();
-        }
-
-        // Event listener for the No button (to cancel)
-        UPsuspendCancelButton.onclick = function () {
-            console.log('Suspend fn cancelled');
-            closeSuspendModal();
-        }
-
-        // Close the modal if the user clicks anywhere outside of it
-        window.onclick = function (event) {
-            if (event.target == suspendModal) {
-                closeSuspendModal();
-            }
-        }*/
+        /* var suspendModal = document.getElementById('suspendModal');
+ 
+         // Get the button that opens the modal
+         var suspendButton = document.getElementById('UP-suspend-button');
+ 
+         // Get the button elements inside the modal
+         var UPsuspendConfirmButton = document.getElementById('suspend-confirm');
+         var UPsuspendCancelButton = document.getElementById('suspend-cancel');
+ 
+         // Function to open the modal
+         suspendButton.onclick = function () {
+             suspendModal.style.display = 'block';
+         }
+ 
+         // Function to close the modal
+         function closeSuspendModal() {
+             suspendModal.style.display = 'none';
+         }
+ 
+         // Event listener for the Yes button (to suspend)
+         UPsuspendConfirmButton.onclick = function () {
+             // Place your delete code here
+             console.log('Account Suspended');
+             closeSuspendModal();
+         }
+ 
+         // Event listener for the No button (to cancel)
+         UPsuspendCancelButton.onclick = function () {
+             console.log('Suspend fn cancelled');
+             closeSuspendModal();
+         }
+ 
+         // Close the modal if the user clicks anywhere outside of it
+         window.onclick = function (event) {
+             if (event.target == suspendModal) {
+                 closeSuspendModal();
+             }
+         }*/
     </script>
-    
+
 
     <script> // delete pop-up confirmation modal (sysadmin UP)
         // Get the modal
-      /*  var deleteModal = document.getElementById('deleteModal');
-
-        // Get the button that opens the modal
-        var deleteButton = document.getElementById('UP-delete-button');
-
-        // Get the button elements inside the modal
-        var confirmButton = document.getElementById('delete-confirm');
-        var cancelButton = document.getElementById('delete-cancel');
-
-        // Function to open the modal
-        deleteButton.onclick = function () {
-            deleteModal.style.display = 'block';
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            deleteModal.style.display = 'none';
-        }
-
-        // Event listener for the Yes button (to delete)
-        confirmButton.onclick = function () {
-            // Place your delete code here
-            console.log('Account Deleted');
-            closeModal();
-        }
-
-        // Event listener for the No button (to cancel)
-        cancelButton.onclick = function () {
-            console.log('Deletion canceled');
-            closeModal();
-        }
-
-        // Close the modal if the user clicks anywhere outside of it
-        window.onclick = function (event) {
-            if (event.target == deleteModal) {
-                closeModal();
-            }
-        }*/
+        /*  var deleteModal = document.getElementById('deleteModal');
+  
+          // Get the button that opens the modal
+          var deleteButton = document.getElementById('UP-delete-button');
+  
+          // Get the button elements inside the modal
+          var confirmButton = document.getElementById('delete-confirm');
+          var cancelButton = document.getElementById('delete-cancel');
+  
+          // Function to open the modal
+          deleteButton.onclick = function () {
+              deleteModal.style.display = 'block';
+          }
+  
+          // Function to close the modal
+          function closeModal() {
+              deleteModal.style.display = 'none';
+          }
+  
+          // Event listener for the Yes button (to delete)
+          confirmButton.onclick = function () {
+              // Place your delete code here
+              console.log('Account Deleted');
+              closeModal();
+          }
+  
+          // Event listener for the No button (to cancel)
+          cancelButton.onclick = function () {
+              console.log('Deletion canceled');
+              closeModal();
+          }
+  
+          // Close the modal if the user clicks anywhere outside of it
+          window.onclick = function (event) {
+              if (event.target == deleteModal) {
+                  closeModal();
+              }
+          }*/
     </script>
 
 
     <script> //update pop-up confirmation modal (sysadmin ua)
         // Get the update modal
-     /*   var updateModal = document.getElementById('updateModal');
-
-        // Get the button that opens the update modal
-        var updateButton = document.getElementById('UP-update-button');
-
-        // Get the button elements inside the update modal
-        var UPupdateConfirmButton = document.getElementById('submitUpdateForm');
-        var UPupdateCancelButton = document.getElementById('update-cancel');
-
-        // Function to open the update modal
-        updateButton.onclick = function () {
-            updateModal.style.display = 'block';
-        }
-
-        // Function to close the update modal
-        function closeUPUpdateModal() {
-            updateModal.style.display = 'none';
-        }
-
-        // Event listener for the Update button
-        UPupdateConfirmButton.onclick = function () {
-            var newValue = document.getElementById('updateInput').value;
-            // Place your update code here, using newValue
-            console.log('Information updated to: ' + newValue);
-            closeUPUpdateModal();
-        }
-
-        // Event listener for the Cancel button
-        UPupdateCancelButton.onclick = function () {
-            console.log('Update canceled');
-            closeUPUpdateModal();
-        }
-
-        // Close the update modal if the user clicks anywhere outside of it
-        window.onclick = function (event) {
-            if (event.target == updateModal) {
-                closeUPUpdateModal();
-            }
-        }*/
+        /*   var updateModal = document.getElementById('updateModal');
+   
+           // Get the button that opens the update modal
+           var updateButton = document.getElementById('UP-update-button');
+   
+           // Get the button elements inside the update modal
+           var UPupdateConfirmButton = document.getElementById('submitUpdateForm');
+           var UPupdateCancelButton = document.getElementById('update-cancel');
+   
+           // Function to open the update modal
+           updateButton.onclick = function () {
+               updateModal.style.display = 'block';
+           }
+   
+           // Function to close the update modal
+           function closeUPUpdateModal() {
+               updateModal.style.display = 'none';
+           }
+   
+           // Event listener for the Update button
+           UPupdateConfirmButton.onclick = function () {
+               var newValue = document.getElementById('updateInput').value;
+               // Place your update code here, using newValue
+               console.log('Information updated to: ' + newValue);
+               closeUPUpdateModal();
+           }
+   
+           // Event listener for the Cancel button
+           UPupdateCancelButton.onclick = function () {
+               console.log('Update canceled');
+               closeUPUpdateModal();
+           }
+   
+           // Close the update modal if the user clicks anywhere outside of it
+           window.onclick = function (event) {
+               if (event.target == updateModal) {
+                   closeUPUpdateModal();
+               }
+           }*/
     </script>
 
-<script>
-    document.getElementById('logout').addEventListener('click', function () {
-        console.log("Logout link clicked");
-        // Add logic here to handle logout functionality
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+    <script>
+        document.getElementById('logout').addEventListener('click', function () {
+            console.log("Logout link clicked");
+            // Add logic here to handle logout functionality
+            window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
 
-    });
-</script>
+        });
+    </script>
+
     <script type="module" src="./js/adminViewProfilesController.js"></script>
     <script type="module" src="./js/adminSuspendProfileController.js"></script>
     <script type="module" src="./js/adminDeleteProfileController.js"></script>

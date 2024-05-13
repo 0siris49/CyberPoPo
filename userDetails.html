@@ -66,8 +66,8 @@
         <div class="header-right">
             <a id="logout" href="Login.html">Logout</a>
         </div>
-        <div class="header-right">
-            <a id="seller-rate-and-review-button" href="rateNreview.html">Rate and Review an Agent</a>
+        <div class="header-right">  
+            <a style="cursor: pointer" onclick="goBack()">Back</a>
         </div>
     </div>
 
@@ -105,5 +105,10 @@
 
 
 </body>
+<script> //script to go back to previous page
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </html>

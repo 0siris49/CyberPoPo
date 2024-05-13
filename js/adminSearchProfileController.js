@@ -9,6 +9,8 @@ export class adminSearchProfileController {
     }
 
     displayProfileUserList(userList) {
+        var ProfileTable = document.getElementById('retrieved-profile');
+        ProfileTable.style.display = 'inline-block';
         var stringArr = userList.split("---");
         var totalUserList = stringArr.length - 1;
         const tableDiv = document.getElementById('profileSearchTable');

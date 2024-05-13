@@ -118,7 +118,7 @@
                 <img src="cyberpopo_logo.png" alt="Cyberpopo Logo">
             </a>
             <div>
-                <a id="reaPage-button" href="REA.html">View My Listings</a>
+                <a style="cursor: pointer" onclick="goBack()">Back</a>
                 <a id="logout" href="Login.html">Logout</a>
 
             </div>
@@ -208,6 +208,12 @@
 
         </form>
     </div>
+    
+    <script> //script to go back to previous page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -225,6 +231,7 @@
             });
         });
     </script>
+    
 
 
     <script>

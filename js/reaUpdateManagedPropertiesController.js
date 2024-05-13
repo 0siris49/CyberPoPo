@@ -41,6 +41,9 @@ document.body.addEventListener("click", function (e) {
         var updateModal = document.getElementById('updateModal');
         updateModal.style.display = "block";
         var propIDValue = e.target.value;  // Storing the property ID when the update button is clicked
+
+        // Reset fields when the update button is clicked
+        resetInputFields();
     }
 });
 
@@ -83,24 +86,28 @@ submitButton.addEventListener("click", async function (e) {
         var error = await initReaUpdateManagedPropertiesController.updateProperty(newUpdateObj);
         if (error != null) {
             alert(error);
+        } else {
+            // Clear fields on successful update
+            resetInputFields();
         }
     } else {
         // If there are empty fields, prevent form submission and alert the user
-        e.preventDefault(); // This is redundant as 'preventDefault' is already called at the beginning
         alert('Please fill out all required fields.');
     }
-
-
-
-    /*if (e.target.classList.contains("rea-delete-button")) {
-        var propIDValue = e.target.value;
-        console.log(propIDValue);
-        let initReaEntity = new reaEntity();
-        initReaEntity.markPropAsDeleted(propIDValue);
-
-    }*/
-
-
 });
+
+function resetInputFields() {
+    document.getElementById("property_title").value = '';
+    document.getElementById('property_location').value = '';
+    document.getElementById('property_price').value = '';
+    document.getElementById('property_type').value = '';
+    document.getElementById('year_built').value = '';
+    document.getElementById('property_agent').value = '';
+    document.getElementById('property_email').value = '';
+    document.getElementById('agent_id').value = '';
+    document.getElementById('property_seller').value = '';
+    document.getElementById('propAvail').value = '';
+}
+
 
 

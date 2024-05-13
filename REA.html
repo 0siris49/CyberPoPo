@@ -117,6 +117,18 @@
       display: none;
 
     }
+
+    #displayRating {
+      display: none;
+      border: 5px solid #ccc;
+      padding: 20px;
+      margin-left: 120px;
+      width: 900px;
+      background-color: #FBF8DD;
+    }
+    #rea-table-header, #rea-view-table{
+      display: none;
+    }
   </style>
 
 
@@ -137,27 +149,24 @@
         <a id="rea-viewProperties" style="cursor: pointer">Fetch Listed Properties</a>
       </div>
       <div class="header-right">
-        <a id="rea-review-page" href="" style="cursor: pointer">View My Ratings</a>
+        <a id="rea-review-page" style="cursor: pointer">View My Ratings</a>
       </div>
-
-
     </div>
   </div>
 
   <div class="sellerwelcome">Welcome to your REA Page, &nbsp;<div id="reaName"> </div>
   </div>
-  </div>
+
 
 
 
   <div class="rea-view-container" id="rea-view-container">
-    <div class="view-container-header">
-      <h2 class="view-title">In-Charged Properties</h2>
+    <div class="view-container-header" id="rea-table-header">
+      <h2 class="view-title" id="inchargedH2">In-Charged Properties</h2>
       <div class="rea-utility-bar" id="rea-utility-bar">
         <input type="text" name="rea-search-properties" id="search-id"
           placeholder="ID / Property Name / Location / Rating / Status ">
         <button id="rea-search-button" name="rea-search-button" style="cursor: pointer">Search</button>
-
       </div>
     </div>
     <div class="rea-view-table" id="rea-view-table">
@@ -176,328 +185,293 @@
         </thead>
         <!--<button id="rea-update-button" name="rea-update-button" style="cursor: pointer">Update</button>-->
         <!--<button id="rea-delete-button" name="rea-delete-button" style="cursor: pointer">Delete</button>-->
-      <!---  <tbody id="data-table">when listing comes out each listing got a update and delete button under option header,
+        <!---  <tbody id="data-table">when listing comes out each listing got a update and delete button under option header,
           if delete,
           a modal pops out and ask to confirm deletion(modal is done). Then, controller passes alerts whether
           successful or not</tbody> -->
 
       </table>
-      <br /><br />
+      <br><br><br><br><br><br><br><br>
 
     </div>
-
-    <!-- Ratings -->
-    <!--<div class="ratingbox">
-      <span class="heading">My Average Rating</span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star"></span>
-      <p id="avgRating">4.1 average based on 254 reviews.</p>
-      <hr style="border:3px solid #f1f1f1">
-
-      <div class="row">
-        <div class="side">
-          <div>5 star</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-5"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>150</div>
-        </div>
-        <div class="side">
-          <div>4 star</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-4"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>63</div>
-        </div>
-        <div class="side">
-          <div>3 star</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-3"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>15</div>
-        </div>
-        <div class="side">
-          <div>2 star</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-2"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>6</div>
-        </div>
-        <div class="side">
-          <div>1 star</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-1"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>20</div>
-        </div>
-      </div>
-    </div>-->
-
-
-
-    <!-- Delete Modal -->
-    <div id="deleteModal" class="modal">
-      <div class="modal-content">
-        <p>Are you sure you want to delete this listing (listing ID)?</p>
-        <div class="modal-buttons">
-          <button id="delete-confirm">Yes</button>
-          <button id="delete-cancel">No</button>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Update Modal -->
-    <div id="updateModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form method="POST" class="update-PL-form">
-          <div class="updatePLheader">Update Property details for Listing *ID(auto fetched when click-on update)*</div>
-
-          <div id="extraFields" class="hidden">
-            <div id="rea-property-id"></div>
-          </div>
-          <br>
-          <label for="property_title">Property Name:</label>
-          <input type="text" id="property_title" name="property_title" required>
-          <br>
-          <br>
-          <label for="property_location">Property Location:</label>
-          <input type="text" id="property_location" name="property_location" required>
-          <br>
-          <br>
-          <label for="property_price">Property Price:</label>
-          <input type="text" id="property_price" name="property_price" required>
-          <br>
-          <br>
-          <label for="property_type">Property Type:</label>
-          <select id="property_type" name="property_type" required>
-            <option value="house">House</option>
-            <option value="apartment">Apartment</option>
-            <option value="condo">Condo</option>
-          </select>
-          <br>
-          <br>
-          <label for="year_built">Year Built:</label>
-          <input type="number" id="year_built" name="year_built" required min="0" pattern="\d{4,}">
-          <br>
-          <br>
-          <label for="property_agent">Agent Name:</label>
-          <input type="text" id="property_agent" name="property_agent" required>
-          <br>
-          <br>
-          <label for="property_email">Agent Email:</label>
-          <input type="text" id="property_email" name="property_email" required>
-          <br>
-          <br>
-          <label for="Agent_id">Agent License Number:</label>
-          <input type="number" id="agent_id" name="Agent_id" required>
-          <br>
-          <br>
-          <label for="property_seller">Seller(email):</label>
-          <input type="text" id="property_seller" name="property_seller" placeholder="email" required>
-          <br>
-          <br>
-          <label for="propAvail">Availability:</label>
-          <select id="propAvail" name="propAvail" required>
-            <option value="Available">Available</option>
-            <option value="Unavailable">sold</option>
-          </select>
-
-          <button id="submitUpdateForm">Update</button>
-        </form>
-      </div>
-    </div>
-
     <div id="displayRating">
-      <p>My Average Rating: <span id="ratingPlusCount"></span></p>
-
+      <h2 style="text-align: center;"><u>My Feedbacks Section</u></h2>
+      <br>
+      <p style="text-align: center;">My Average Rating: <span id="ratingPlusCount"></span></p>
     </div>
+    <br><br>
+  </div>
 
 
 
 
-    <button class="scroll-up-btn">
-      <i class="arrow-up"></i>
-    </button>
 
-    <script>// logout script
-      document.getElementById('logout').addEventListener('click', function () {
-        console.log("Logout link clicked");
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
-      });
-    </script>
+  <!-- Delete Modal -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to delete this listing (listing ID)?</p>
+      <div class="modal-buttons">
+        <button id="delete-confirm">Yes</button>
+        <button id="delete-cancel">No</button>
+      </div>
+    </div>
+  </div>
 
-    <script> // search fn script
 
-      document.getElementById('rea-search-button').addEventListener('click', function () {
-        var input, filter, table, tr, td_id, td_name, td_avail, td_rating, td_location, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_location, txtValue_rating;
-        input = document.getElementById("search-id");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("table");
-        tr = table.getElementsByTagName("tr");
+  <!-- Update Modal -->
+  <div id="updateModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form method="POST" class="update-PL-form">
+        <div class="updatePLheader">Update Property details for Listing *ID(auto fetched when click-on update)*</div>
 
-        for (i = 0; i < tr.length; i++) {
-          td_id = tr[i].getElementsByTagName("td")[0]; // Assuming ID is in the first column
-          td_name = tr[i].getElementsByTagName("td")[1]; // Assuming Property Name is in the second column
-          td_location = tr[i].getElementsByTagName("td")[2]; // location
-          td_rating = tr[i].getElementsByTagName("td")[3]; // rating
-          td_avail = tr[i].getElementsByTagName("td")[5]; // Status
+        <div id="extraFields" class="hidden">
+          <div id="rea-property-id"></div>
+        </div>
+        <br>
+        <label for="property_title">Property Name:</label>
+        <input type="text" id="property_title" name="property_title" required>
+        <br>
+        <br>
+        <label for="property_location">Property Location:</label>
+        <input type="text" id="property_location" name="property_location" required>
+        <br>
+        <br>
+        <label for="property_price">Property Price:</label>
+        <input type="text" id="property_price" name="property_price" required>
+        <br>
+        <br>
+        <label for="property_type">Property Type:</label>
+        <select id="property_type" name="property_type" required>
+          <option value="house">House</option>
+          <option value="apartment">Apartment</option>
+          <option value="condo">Condo</option>
+        </select>
+        <br>
+        <br>
+        <label for="year_built">Year Built:</label>
+        <input type="number" id="year_built" name="year_built" required min="0" pattern="\d{4,}">
+        <br>
+        <br>
+        <label for="property_agent">Agent Name:</label>
+        <input type="text" id="property_agent" name="property_agent" required>
+        <br>
+        <br>
+        <label for="property_email">Agent Email:</label>
+        <input type="text" id="property_email" name="property_email" required>
+        <br>
+        <br>
+        <label for="Agent_id">Agent License Number:</label>
+        <input type="number" id="agent_id" name="Agent_id" required>
+        <br>
+        <br>
+        <label for="property_seller">Seller(email):</label>
+        <input type="text" id="property_seller" name="property_seller" placeholder="email" required>
+        <br>
+        <br>
+        <label for="propAvail">Availability:</label>
+        <select id="propAvail" name="propAvail" required>
+          <option value="Available">Available</option>
+          <option value="Unavailable">sold</option>
+        </select>
 
-          if (td_id && td_name && td_avail && td_location && td_rating) {
-            txtValue_id = td_id.textContent || td_id.innerText;
-            txtValue_name = td_name.textContent || td_name.innerText;
-            txtValue_location = td_location.textContent || td_location.innerText;
-            txtValue_avail = td_avail.textContent || td_avail.innerText;
-            txtValue_rating = td_rating.textContent || td_rating.innerText;
-            if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_location.toUpperCase().indexOf(filter) > -1 || txtValue_avail.toUpperCase().indexOf(filter) > -1 || txtValue_rating.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
+        <button id="submitUpdateForm">Update</button>
+      </form>
+    </div>
+  </div>
+
+
+  <button class="scroll-up-btn">
+    <i class="arrow-up"></i>
+  </button>
+
+
+
+  <script>// logout script
+    document.getElementById('logout').addEventListener('click', function () {
+      console.log("Logout link clicked");
+      window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+    });
+  </script>
+
+  <script> // search fn script
+
+    document.getElementById('rea-search-button').addEventListener('click', function () {
+      var input, filter, table, tr, td_id, td_name, td_avail, td_rating, td_location, i, txtValue_id, txtValue_name, txtValue_avail, txtValue_location, txtValue_rating;
+      input = document.getElementById("search-id");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("table");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+        td_id = tr[i].getElementsByTagName("td")[0]; // Assuming ID is in the first column
+        td_name = tr[i].getElementsByTagName("td")[1]; // Assuming Property Name is in the second column
+        td_location = tr[i].getElementsByTagName("td")[2]; // location
+        td_rating = tr[i].getElementsByTagName("td")[3]; // rating
+        td_avail = tr[i].getElementsByTagName("td")[5]; // Status
+
+        if (td_id && td_name && td_avail && td_location && td_rating) {
+          txtValue_id = td_id.textContent || td_id.innerText;
+          txtValue_name = td_name.textContent || td_name.innerText;
+          txtValue_location = td_location.textContent || td_location.innerText;
+          txtValue_avail = td_avail.textContent || td_avail.innerText;
+          txtValue_rating = td_rating.textContent || td_rating.innerText;
+          if (txtValue_id.toUpperCase().indexOf(filter) > -1 || txtValue_name.toUpperCase().indexOf(filter) > -1 || txtValue_location.toUpperCase().indexOf(filter) > -1 || txtValue_avail.toUpperCase().indexOf(filter) > -1 || txtValue_rating.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
           }
         }
-      });
-
-
-    </script>
-
-    <script> // scroll-up script
-      const btn = document.querySelector(".scroll-up-btn");
-      btn.addEventListener("click", () => {
-        document.documentElement.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-    </script>
-
-    <script> // delete pop-up confirmation modal
-      // Get the modal
-      var deleteModal = document.getElementById('deleteModal');
-
-      // Get the button that opens the modal
-      var deleteButton = document.getElementById('rea-delete-button');
-
-      // Get the button elements inside the modal
-      var confirmButton = document.getElementById('delete-confirm');
-      var cancelButton = document.getElementById('delete-cancel');
-
-      // Function to open the modal
-      deleteButton.onclick = function () {
-        deleteModal.style.display = 'block';
       }
+    });
 
-      // Function to close the modal
-      function closeModal() {
-        deleteModal.style.display = 'none';
-      }
 
-      // Event listener for the Yes button (to delete)
-      confirmButton.onclick = function () {
-        // Place your delete code here
-        console.log('Listing deleted');
+  </script>
+
+  <script> // scroll-up script
+    const btn = document.querySelector(".scroll-up-btn");
+    btn.addEventListener("click", () => {
+      document.documentElement.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  </script>
+
+  <script> // delete pop-up confirmation modal
+    // Get the modal
+    var deleteModal = document.getElementById('deleteModal');
+
+    // Get the button that opens the modal
+    var deleteButton = document.getElementById('rea-delete-button');
+
+    // Get the button elements inside the modal
+    var confirmButton = document.getElementById('delete-confirm');
+    var cancelButton = document.getElementById('delete-cancel');
+
+    // Function to open the modal
+    deleteButton.onclick = function () {
+      deleteModal.style.display = 'block';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      deleteModal.style.display = 'none';
+    }
+
+    // Event listener for the Yes button (to delete)
+    confirmButton.onclick = function () {
+      // Place your delete code here
+      console.log('Listing deleted');
+      closeModal();
+    }
+
+    // Event listener for the No button (to cancel)
+    cancelButton.onclick = function () {
+      console.log('Deletion canceled');
+      closeModal();
+    }
+
+    // Close the modal if the user clicks anywhere outside of it
+    window.onclick = function (event) {
+      if (event.target == deleteModal) {
         closeModal();
       }
+    }
+  </script>
 
-      // Event listener for the No button (to cancel)
-      cancelButton.onclick = function () {
-        console.log('Deletion canceled');
-        closeModal();
-      }
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var updateModal = document.getElementById('updateModal');
+      var updSpan = document.querySelector(".close");
 
-      // Close the modal if the user clicks anywhere outside of it
+      // Close modal when clicking on the 'X'
+      updSpan.onclick = function (event) {
+        updateModal.style.display = "none";
+        event.stopPropagation(); // Prevents the click from propagating to higher-level elements
+      };
+
+      // Close modal when clicking outside of the modal content
       window.onclick = function (event) {
-        if (event.target == deleteModal) {
-          closeModal();
-        }
-      }
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var updateModal = document.getElementById('updateModal');
-        var updSpan = document.querySelector(".close");
-
-        // Close modal when clicking on the 'X'
-        updSpan.onclick = function (event) {
+        if (event.target == updateModal) {
           updateModal.style.display = "none";
-          event.stopPropagation(); // Prevents the click from propagating to higher-level elements
-        };
+        }
+      };
+    });
 
-        // Close modal when clicking outside of the modal content
-        window.onclick = function (event) {
-          if (event.target == updateModal) {
-            updateModal.style.display = "none";
-          }
-        };
-      });
+  </script>
 
-    </script>
+  <script> // script to unhide utility bar initially until click on 'fetch Listed Properties'
+    var utilityBar = document.getElementById('rea-utility-bar');
+    var inchargedTable1 = document.getElementById('rea-view-table');
+    var inchargedHeader1 = document.getElementById('rea-table-header');
+    var ratingContainer1 = document.getElementById('displayRating');
 
-    <script> // script to unhide utility bar initially until click on 'fetch Listed Properties'
-      var utilityBar = document.getElementById('rea-utility-bar');
-      document.getElementById('rea-viewProperties').addEventListener('click', function displayUtilityBar() {
-        console.log("fetch Listing Button clicked");
-        utilityBar.style.display = 'inline-block';
+    document.getElementById('rea-viewProperties').addEventListener('click', function displayUtilityBar() {
+      console.log("fetch Listing Button clicked");
+      utilityBar.style.display = 'inline-block';
 
-      });
+    });
+    document.getElementById('rea-viewProperties').addEventListener('click', function displayUtilityBar() {
+      inchargedTable1.style.display = 'inline-block';
+    });
+    document.getElementById('rea-viewProperties').addEventListener('click', function displayUtilityBar() {
+      inchargedHeader1.style.display = 'inline-block';
+    });
+    document.getElementById('rea-viewProperties').addEventListener('click', function displayUtilityBar() {
+      ratingContainer.style.display = 'none';
+    });
+  </script>
 
-    </script>
+  <script> // script to unhide Ratings Section hide In-charged Properties table when click on 'view ratings Properties'
+    var ratingContainer = document.getElementById('displayRating');
+    var inchargedTable = document.getElementById('rea-view-table');
+    var inchargedHeader = document.getElementById('rea-table-header');
 
-    <script>
-      document.getElementById('viewAccounts').addEventListener('click', function () {
-        console.log("View Accounts link clicked");
-        // Add logic here to handle viewAccounts functionality
-        window.open(c, "_self");
-      });
+    document.getElementById('rea-review-page').addEventListener('click', function displayRatingHideTable() {
+      ratingContainer.style.display = 'inline-block';
+    });
+    document.getElementById('rea-review-page').addEventListener('click', function displayRatingHideTable() {
+      inchargedTable.style.display = 'none';
+    });
+    document.getElementById('rea-review-page').addEventListener('click', function displayRatingHideTable() {
+      inchargedHeader.style.display = 'none';
+    });
+    console.log("viewRating Button clicked");
 
-      document.getElementById('viewProfiles').addEventListener('click', function () {
-        console.log("View Profiles link clicked");
-        // Add logic here to handle viewProfiles functionality
-      });
 
-      document.getElementById('logout').addEventListener('click', function () {
-        console.log("Logout link clicked");
-        // Add logic here to handle logout functionality
-        window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+  </script>
 
-      });
+  <script>
+    document.getElementById('viewAccounts').addEventListener('click', function () {
+      console.log("View Accounts link clicked");
+      // Add logic here to handle viewAccounts functionality
+      window.open(c, "_self");
+    });
 
-      document.getElementById("seller-review-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-      });
-    </script>
+    document.getElementById('viewProfiles').addEventListener('click', function () {
+      console.log("View Profiles link clicked");
+      // Add logic here to handle viewProfiles functionality
+    });
 
-    <script type="module" src="./js/reaController.js"></script>
-    <script type="module" src="./js/reaViewRatingController.js"></script>
-    <script type="module" src="./js/reaViewReviewsController.js"></script>
-    <script type="module" src="./js/reaViewManagedPropertiesController.js"></script>
-    <script type="module" src="./js/reaUpdateManagedPropertiesController.js"></script>
-    <script type="module" src="./js/reaDeleteManagedPropertiesController.js"></script>
+    document.getElementById('logout').addEventListener('click', function () {
+      console.log("Logout link clicked");
+      // Add logic here to handle logout functionality
+      window.location.href = "Login.html"; // or redirect straight to login.html, removing the need of a homepage?
+
+    });
+
+    document.getElementById("seller-review-form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+    });
+  </script>
+
+  <script type="module" src="./js/reaController.js"></script>
+  <script type="module" src="./js/reaViewRatingController.js"></script>
+  <script type="module" src="./js/reaViewReviewsController.js"></script>
+  <script type="module" src="./js/reaViewManagedPropertiesController.js"></script>
+  <script type="module" src="./js/reaUpdateManagedPropertiesController.js"></script>
+  <script type="module" src="./js/reaDeleteManagedPropertiesController.js"></script>
 
 </body>
 

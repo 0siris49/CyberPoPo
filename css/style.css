@@ -728,10 +728,15 @@ label.star:before {
   justify-content: space-between;
   width: 100%;
 }
+.rea-view-table{
+  width: 100%;
+}
 
 .rea-utility-bar {
   display: flex;
-  width: 120%;
+  width: 70%;
+  margin-left: 343px;
+
 }
 
 .ratingBox {
